@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "title": "Jorge Bastidas | decode9 - Full Stack Developer",
+    "description": "Full Stack Developer with over 10 years of experience. Specialized in scalable architectures, automation, and MVP development. TypeScript, React, Node.js, DevOps."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "technologies": "Technologies",
+    "projects": "Projects",
+    "architecture": "Architecture",
+    "problems": "Problems",
+    "contact": "Contact",
+    "letsChat": "Let's Talk"
+  },
+  "hero": {
+    "available": "Available for projects",
+    "greeting": "Hi, I'm",
+    "name": "Jorge",
+    "typing": "Transforming ideas into code",
+    "roles": {
+      "fullstack": "Full Stack Developer",
+      "architect": "Software Architect",
+      "devops": "DevOps Engineer",
+      "solver": "Problem Solver"
+    },
+    "description": "Over <years>10 years</years> of experience developing technological solutions. Specialized in <arch>scalable architectures</arch>, <auto>automation</auto> and <mvp>MVPs</mvp>.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "tag": "// ABOUT ME",
+    "title": "Building the",
+    "titleHighlight": "digital future",
+    "subtitle": "Passionate developer creating technological solutions that positively impact businesses and their users.",
+    "intro": "I'm <name>Jorge Bastidas</name>, known as <alias>decode9</alias> in the tech world. Since 2014, I've been dedicated to transforming ideas into functional digital products.",
+    "paragraph1": "My focus is centered on <highlight>process automation</highlight> for businesses and everyday activities. I've worked in various companies, especially startups and businesses looking to optimize their operations through technology.",
+    "paragraph2": "As an infrastructure leader and senior developer, I've guided teams in implementing scalable solutions, from MVPs to enterprise systems. My passion for video games has also led me to explore game development.",
+    "location": "Location",
+    "locationValue": "Argentina 🇦🇷",
+    "languages": "Languages",
+    "languagesValue": "Spanish, English",
+    "highlights": {
+      "fullstack": {
+        "title": "Full Stack Development",
+        "description": "Complete development from frontend to backend, creating robust web and mobile applications."
+      },
+      "architecture": {
+        "title": "Software Architecture",
+        "description": "Design of scalable systems with microservices, clean architecture, and modern design patterns."
+      },
+      "devops": {
+        "title": "DevOps & Cloud",
+        "description": "CI/CD implementation, containerization with Docker/Kubernetes, and deployment on AWS/DigitalOcean."
+      },
+      "automation": {
+        "title": "Automation",
+        "description": "Creating tools and scripts to optimize business processes and workflows."
+      }
+    },
+    "stats": {
+      "years": "Years of experience",
+      "repos": "Public repositories",
+      "projects": "Completed projects",
+      "satisfaction": "Client satisfaction"
+    }
+  },
+  "tech": {
+    "tag": "// TECHNOLOGIES",
+    "title": "My",
+    "titleHighlight": "Tech Stack",
+    "subtitle": "Tools and technologies I master to create high-quality solutions.",
+    "categories": {
+      "all": "All",
+      "language": "Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Databases",
+      "devops": "DevOps",
+      "tools": "Tools"
+    },
+    "proficiency": {
+      "expert": "Expert",
+      "advanced": "Advanced",
+      "intermediate": "Intermediate"
+    },
+    "footer": "Always learning and exploring new technologies. <highlight>Curiosity is my engine.</highlight>"
+  },
+  "projects": {
+    "tag": "// PROJECTS",
+    "title": "Featured",
+    "titleHighlight": "Work",
+    "subtitle": "A selection of projects that demonstrate my experience and technical skills.",
+    "categories": {
+      "all": "All",
+      "web": "Web",
+      "mobile": "Mobile",
+      "api": "API",
+      "devops": "DevOps",
+      "automation": "Automation"
+    },
+    "featured": "Featured",
+    "code": "Code",
+    "demo": "Demo",
+    "viewMore": "View more on GitHub"
+  },
+  "architecture": {
+    "tag": "// ARCHITECTURE",
+    "title": "Architecture",
+    "titleHighlight": "Patterns",
+    "subtitle": "Examples of architectures and design patterns I implement in my projects.",
+    "description": "Description",
+    "examples": {
+      "microservices": {
+        "title": "Microservices Architecture",
+        "description": "Design of distributed systems with independent services, asynchronous communication, and high availability."
+      },
+      "clean": {
+        "title": "Clean Architecture",
+        "description": "Separation of responsibilities with independent layers: domain, application, infrastructure."
+      },
+      "event": {
+        "title": "Event-Driven Architecture",
+        "description": "Asynchronous communication through events, service decoupling, and scalability."
+      },
+      "cqrs": {
+        "title": "CQRS Pattern",
+        "description": "Separation of read and write operations to optimize performance and scalability."
+      }
+    }
+  },
+  "problems": {
+    "tag": "// PROBLEM SOLVING",
+    "title": "Common",
+    "titleHighlight": "Code Problems",
+    "subtitle": "Real examples of problems I've solved and their optimized solutions.",
+    "problem": "Problem",
+    "solution": "Solution",
+    "showSolution": "Show solution",
+    "hideSolution": "Hide solution",
+    "explanation": "Explanation",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "contact": {
+    "tag": "// CONTACT",
+    "title": "Let's Work",
+    "titleHighlight": "Together",
+    "subtitle": "Have a project in mind? I'd love to hear your ideas and help make them a reality.",
+    "description": "I'm available for freelance projects, technical consulting, or just to chat about technology. Don't hesitate to contact me.",
+    "findMe": "You can also find me on",
+    "available": "Available for projects",
+    "availableDescription": "Currently accepting new projects. Average response time is 24-48 hours.",
+    "info": {
+      "email": "Email",
+      "location": "Location",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "description": "Full Stack Developer with over 10 years of experience creating innovative technological solutions. Specialized in scalable architectures and process automation.",
+    "navigation": "Navigation",
+    "resources": "Resources",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "using": "using Next.js & TypeScript"
+  }
+}
+
