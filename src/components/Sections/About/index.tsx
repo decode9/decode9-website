@@ -17,7 +17,7 @@ export function About() {
     : <>I&apos;m <span className="text-white font-semibold">Jorge Bastidas</span>, known as <span className="text-primary-400 font-mono">decode9</span> in the tech world. {dictionary.about.intro}</>;
 
   const stats = [
-    { value: getYearsOfExperience(2014), label: dictionary.about.stats.years, suffix: '+' },
+    { value: getYearsOfExperience(), label: dictionary.about.stats.years, suffix: '+' },
     { value: 41, label: dictionary.about.stats.repos, suffix: '' },
     { value: 50, label: dictionary.about.stats.projects, suffix: '+' },
     { value: 100, label: dictionary.about.stats.satisfaction, suffix: '%' },
