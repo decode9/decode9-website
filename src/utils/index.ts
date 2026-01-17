@@ -23,7 +23,7 @@ export function slugify(text: string): string {
     .replace(/(^-|-$)/g, '');
 }
 
-export function getYearsOfExperience(startYear: number = 2014): number {
-  return new Date().getFullYear() - startYear;
+export function getYearsOfExperience(): number {
+  return 10;
 }
 
