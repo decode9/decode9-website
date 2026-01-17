@@ -55,10 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" translate="no">
       <head>
         <link rel="icon" href="https://avatars.githubusercontent.com/u/25024663?v=4" />
         <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/25024663?v=4" />
+        <meta name="google" content="notranslate" />
       </head>
       <body className="bg-dark-950 text-dark-100 antialiased">
         {children}

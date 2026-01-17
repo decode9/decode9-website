@@ -5,11 +5,11 @@
   },
   "nav": {
     "home": "Inicio",
-    "about": "Sobre Mí",
-    "technologies": "Tecnologías",
+    "about": "Sobre mí",
+    "technologies": "Tech",
     "projects": "Proyectos",
     "architecture": "Arquitectura",
-    "problems": "Problemas",
+    "problems": "Soluciones",
     "contact": "Contacto",
     "letsChat": "Hablemos"
   },
@@ -17,15 +17,14 @@
     "available": "Disponible para proyectos",
     "greeting": "Hola, soy",
     "name": "Jorge",
-    "typing": "Transformando ideas en código",
+    "typing": "Convirtiendo ideas en código",
     "roles": {
       "fullstack": "Full Stack Developer",
       "architect": "Software Architect",
       "devops": "DevOps Engineer",
       "solver": "Problem Solver"
     },
-    "description": "Más de <years>10 años</years> de experiencia desarrollando soluciones tecnológicas. Especializado en <arch>arquitecturas escalables</arch>, <auto>automatización</auto> y <mvp>MVPs</mvp>.",
-    "viewProjects": "Ver Proyectos",
+    "viewProjects": "Ver proyectos",
     "contactMe": "Contactar",
     "scroll": "Scroll"
   },
@@ -33,18 +32,18 @@
     "tag": "// SOBRE MÍ",
     "title": "Construyendo el",
     "titleHighlight": "futuro digital",
-    "subtitle": "Desarrollador apasionado por crear soluciones tecnológicas que impactan positivamente en las empresas y sus usuarios.",
-    "intro": "Soy <name>Jorge Bastidas</name>, conocido como <alias>decode9</alias> en el mundo tech. Desde 2014 me dedico a transformar ideas en productos digitales funcionales.",
-    "paragraph1": "Mi enfoque está centrado en la <highlight>automatización de procesos</highlight> para empresas y actividades cotidianas. He trabajado en diversas compañías, especialmente startups y negocios que buscan optimizar sus operaciones a través de la tecnología.",
-    "paragraph2": "Como líder de infraestructura y desarrollador senior, he guiado equipos en la implementación de soluciones escalables, desde MVPs hasta sistemas enterprise. Mi pasión por los videojuegos me ha llevado también a explorar el desarrollo de juegos.",
+    "subtitle": "Desarrollador apasionado por crear soluciones tecnológicas que generan un impacto real en empresas y usuarios.",
+    "intro": "Desde 2014 me dedico a transformar ideas en productos digitales funcionales.",
+    "paragraph1": "Mi enfoque está en la automatización de procesos para empresas y tareas cotidianas. He trabajado con diversas compañías, especialmente startups y negocios que buscan optimizar sus operaciones a través de la tecnología.",
+    "paragraph2": "Como líder de infraestructura y desarrollador senior, he guiado equipos en la construcción de soluciones escalables, desde MVPs hasta sistemas empresariales. Mi pasión por los videojuegos también me ha llevado a explorar el desarrollo de juegos.",
     "location": "Ubicación",
     "locationValue": "Argentina 🇦🇷",
     "languages": "Idiomas",
     "languagesValue": "Español, Inglés",
     "highlights": {
       "fullstack": {
-        "title": "Full Stack Development",
-        "description": "Desarrollo completo desde el frontend hasta el backend, creando aplicaciones web y móviles robustas."
+        "title": "Desarrollo Full Stack",
+        "description": "Desarrollo integral desde el frontend hasta el backend, creando aplicaciones web y móviles robustas."
       },
       "architecture": {
         "title": "Arquitectura de Software",
@@ -52,11 +51,11 @@
       },
       "devops": {
         "title": "DevOps & Cloud",
-        "description": "Implementación de CI/CD, containerización con Docker/Kubernetes y despliegue en AWS/DigitalOcean."
+        "description": "Pipelines CI/CD, contenedores con Docker/Kubernetes y despliegues en AWS/DigitalOcean."
       },
       "automation": {
         "title": "Automatización",
-        "description": "Creación de herramientas y scripts para optimizar procesos empresariales y flujos de trabajo."
+        "description": "Creación de herramientas y scripts para optimizar procesos de negocio y flujos de trabajo."
       }
     },
     "stats": {
@@ -70,13 +69,13 @@
     "tag": "// TECNOLOGÍAS",
     "title": "Mi",
     "titleHighlight": "Stack Tecnológico",
-    "subtitle": "Herramientas y tecnologías que domino para crear soluciones de alta calidad.",
+    "subtitle": "Las herramientas y tecnologías que uso para crear soluciones de alta calidad.",
     "categories": {
       "all": "Todas",
       "language": "Lenguajes",
       "frontend": "Frontend",
       "backend": "Backend",
-      "database": "Bases de Datos",
+      "database": "Bases de datos",
       "devops": "DevOps",
       "tools": "Herramientas"
     },
@@ -85,7 +84,8 @@
       "advanced": "Avanzado",
       "intermediate": "Intermedio"
     },
-    "footer": "Siempre aprendiendo y explorando nuevas tecnologías. <highlight>La curiosidad es mi motor.</highlight>"
+    "footer": "Siempre aprendiendo y explorando nuevas tecnologías.",
+    "footerHighlight": "La curiosidad me impulsa."
   },
   "projects": {
     "tag": "// PROYECTOS",
@@ -118,23 +118,23 @@
       },
       "clean": {
         "title": "Clean Architecture",
-        "description": "Separación de responsabilidades con capas independientes: dominio, aplicación, infraestructura."
+        "description": "Separación clara de responsabilidades con capas independientes: dominio, aplicación e infraestructura."
       },
       "event": {
         "title": "Event-Driven Architecture",
-        "description": "Comunicación asíncrona mediante eventos, desacoplamiento de servicios y escalabilidad."
+        "description": "Comunicación asíncrona mediante eventos, desacoplamiento de servicios y escalabilidad horizontal."
       },
       "cqrs": {
-        "title": "CQRS Pattern",
+        "title": "Patrón CQRS",
         "description": "Separación de operaciones de lectura y escritura para optimizar rendimiento y escalabilidad."
       }
     }
   },
   "problems": {
-    "tag": "// RESOLUCIÓN DE PROBLEMAS",
+    "tag": "// SOLUCIONES DE CÓDIGO",
     "title": "Problemas",
     "titleHighlight": "Comunes de Código",
-    "subtitle": "Ejemplos reales de problemas que he resuelto y sus soluciones optimizadas.",
+    "subtitle": "Problemas reales que he resuelto junto con sus soluciones optimizadas.",
     "problem": "Problema",
     "solution": "Solución",
     "showSolution": "Mostrar solución",
@@ -150,9 +150,9 @@
     "tag": "// CONTACTO",
     "title": "Trabajemos",
     "titleHighlight": "Juntos",
-    "subtitle": "¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad.",
-    "description": "Estoy disponible para proyectos freelance, consultoría técnica, o simplemente para charlar sobre tecnología. No dudes en contactarme.",
-    "findMe": "También puedes encontrarme en",
+    "subtitle": "¿Tenés un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad.",
+    "description": "Estoy disponible para proyectos freelance, consultoría técnica o simplemente para charlar sobre tecnología. No dudes en escribirme.",
+    "findMe": "También podés encontrarme en",
     "available": "Disponible para proyectos",
     "availableDescription": "Actualmente acepto nuevos proyectos. El tiempo de respuesta promedio es de 24-48 horas.",
     "info": {
@@ -171,4 +171,3 @@
     "using": "usando Next.js & TypeScript"
   }
 }
-

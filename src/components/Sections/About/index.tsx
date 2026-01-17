@@ -10,7 +10,11 @@ const GITHUB_AVATAR = 'https://avatars.githubusercontent.com/u/25024663?v=4';
 
 export function About() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
-  const { dictionary } = useDictionary();
+  const { dictionary, locale } = useDictionary();
+
+  const introText = locale === 'es' 
+    ? <>Soy <span className="text-white font-semibold">Jorge Bastidas</span>, conocido como <span className="text-primary-400 font-mono">decode9</span> en el mundo tech. {dictionary.about.intro}</>
+    : <>I&apos;m <span className="text-white font-semibold">Jorge Bastidas</span>, known as <span className="text-primary-400 font-mono">decode9</span> in the tech world. {dictionary.about.intro}</>;
 
   const stats = [
     { value: getYearsOfExperience(2014), label: dictionary.about.stats.years, suffix: '+' },
@@ -90,12 +94,10 @@ export function About() {
 
               <div className="prose prose-invert max-w-none">
                 <p className="text-lg text-dark-300 leading-relaxed mb-6">
-                  <span className="text-white font-semibold">Jorge Bastidas</span>,{' '}
-                  <span className="text-primary-400 font-mono">decode9</span>.{' '}
-                  {dictionary.about.intro.replace(/<[^>]+>[^<]+<\/[^>]+>/g, '')}
+                  {introText}
                 </p>
                 <p className="text-dark-400 leading-relaxed mb-6">
-                  {dictionary.about.paragraph1.replace(/<[^>]+>[^<]+<\/[^>]+>/g, '')}
+                  {dictionary.about.paragraph1}
                 </p>
                 <p className="text-dark-400 leading-relaxed mb-8">
                   {dictionary.about.paragraph2}

@@ -148,8 +148,8 @@ export function TechStack() {
             className="mt-16 text-center"
           >
             <p className="text-dark-400">
-              {dictionary.tech.footer.replace(/<highlight>([^<]+)<\/highlight>/g, '')}
-              <span className="text-primary-400"> {dictionary.tech.footer.match(/<highlight>([^<]+)<\/highlight>/)?.[1]}</span>
+              {dictionary.tech.footer}{' '}
+              <span className="text-primary-400">{dictionary.tech.footerHighlight}</span>
             </p>
           </motion.div>
         </div>

@@ -6,10 +6,10 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "technologies": "Technologies",
+    "technologies": "Tech",
     "projects": "Projects",
     "architecture": "Architecture",
-    "problems": "Problems",
+    "problems": "Code Solutions",
     "contact": "Contact",
     "letsChat": "Let's Talk"
   },
@@ -17,26 +17,25 @@
     "available": "Available for projects",
     "greeting": "Hi, I'm",
     "name": "Jorge",
-    "typing": "Transforming ideas into code",
+    "typing": "Turning ideas into code",
     "roles": {
       "fullstack": "Full Stack Developer",
       "architect": "Software Architect",
       "devops": "DevOps Engineer",
       "solver": "Problem Solver"
     },
-    "description": "Over <years>10 years</years> of experience developing technological solutions. Specialized in <arch>scalable architectures</arch>, <auto>automation</auto> and <mvp>MVPs</mvp>.",
     "viewProjects": "View Projects",
-    "contactMe": "Contact Me",
+    "contactMe": "Get in Touch",
     "scroll": "Scroll"
   },
   "about": {
     "tag": "// ABOUT ME",
     "title": "Building the",
     "titleHighlight": "digital future",
-    "subtitle": "Passionate developer creating technological solutions that positively impact businesses and their users.",
-    "intro": "I'm <name>Jorge Bastidas</name>, known as <alias>decode9</alias> in the tech world. Since 2014, I've been dedicated to transforming ideas into functional digital products.",
-    "paragraph1": "My focus is centered on <highlight>process automation</highlight> for businesses and everyday activities. I've worked in various companies, especially startups and businesses looking to optimize their operations through technology.",
-    "paragraph2": "As an infrastructure leader and senior developer, I've guided teams in implementing scalable solutions, from MVPs to enterprise systems. My passion for video games has also led me to explore game development.",
+    "subtitle": "A passionate developer creating tech solutions that make a real impact on businesses and their users.",
+    "intro": "Since 2014, I've been turning ideas into functional digital products.",
+    "paragraph1": "My focus is on process automation for businesses and everyday tasks. I've worked with various companies, especially startups and businesses looking to optimize their operations through technology.",
+    "paragraph2": "As an infrastructure lead and senior developer, I've guided teams in building scalable solutions—from MVPs to enterprise systems. My passion for video games has also led me to explore game development.",
     "location": "Location",
     "locationValue": "Argentina 🇦🇷",
     "languages": "Languages",
@@ -44,33 +43,33 @@
     "highlights": {
       "fullstack": {
         "title": "Full Stack Development",
-        "description": "Complete development from frontend to backend, creating robust web and mobile applications."
+        "description": "End-to-end development from frontend to backend, building robust web and mobile applications."
       },
       "architecture": {
         "title": "Software Architecture",
-        "description": "Design of scalable systems with microservices, clean architecture, and modern design patterns."
+        "description": "Designing scalable systems with microservices, clean architecture, and modern design patterns."
       },
       "devops": {
         "title": "DevOps & Cloud",
-        "description": "CI/CD implementation, containerization with Docker/Kubernetes, and deployment on AWS/DigitalOcean."
+        "description": "CI/CD pipelines, containerization with Docker/Kubernetes, and cloud deployments on AWS/DigitalOcean."
       },
       "automation": {
         "title": "Automation",
-        "description": "Creating tools and scripts to optimize business processes and workflows."
+        "description": "Building tools and scripts to streamline business processes and workflows."
       }
     },
     "stats": {
       "years": "Years of experience",
       "repos": "Public repositories",
-      "projects": "Completed projects",
+      "projects": "Projects completed",
       "satisfaction": "Client satisfaction"
     }
   },
   "tech": {
-    "tag": "// TECHNOLOGIES",
+    "tag": "// TECH STACK",
     "title": "My",
     "titleHighlight": "Tech Stack",
-    "subtitle": "Tools and technologies I master to create high-quality solutions.",
+    "subtitle": "The tools and technologies I use to build high-quality solutions.",
     "categories": {
       "all": "All",
       "language": "Languages",
@@ -85,13 +84,14 @@
       "advanced": "Advanced",
       "intermediate": "Intermediate"
     },
-    "footer": "Always learning and exploring new technologies. <highlight>Curiosity is my engine.</highlight>"
+    "footer": "Always learning and exploring new technologies.",
+    "footerHighlight": "Curiosity drives me."
   },
   "projects": {
     "tag": "// PROJECTS",
     "title": "Featured",
     "titleHighlight": "Work",
-    "subtitle": "A selection of projects that demonstrate my experience and technical skills.",
+    "subtitle": "A selection of projects showcasing my experience and technical skills.",
     "categories": {
       "all": "All",
       "web": "Web",
@@ -114,27 +114,27 @@
     "examples": {
       "microservices": {
         "title": "Microservices Architecture",
-        "description": "Design of distributed systems with independent services, asynchronous communication, and high availability."
+        "description": "Distributed systems design with independent services, async communication, and high availability."
       },
       "clean": {
         "title": "Clean Architecture",
-        "description": "Separation of responsibilities with independent layers: domain, application, infrastructure."
+        "description": "Clear separation of concerns with independent layers: domain, application, and infrastructure."
       },
       "event": {
         "title": "Event-Driven Architecture",
-        "description": "Asynchronous communication through events, service decoupling, and scalability."
+        "description": "Async communication through events, service decoupling, and horizontal scalability."
       },
       "cqrs": {
         "title": "CQRS Pattern",
-        "description": "Separation of read and write operations to optimize performance and scalability."
+        "description": "Separating read and write operations to optimize performance and scalability."
       }
     }
   },
   "problems": {
-    "tag": "// PROBLEM SOLVING",
+    "tag": "// CODE SOLUTIONS",
     "title": "Common",
     "titleHighlight": "Code Problems",
-    "subtitle": "Real examples of problems I've solved and their optimized solutions.",
+    "subtitle": "Real-world problems I've solved along with their optimized solutions.",
     "problem": "Problem",
     "solution": "Solution",
     "showSolution": "Show solution",
@@ -150,11 +150,11 @@
     "tag": "// CONTACT",
     "title": "Let's Work",
     "titleHighlight": "Together",
-    "subtitle": "Have a project in mind? I'd love to hear your ideas and help make them a reality.",
-    "description": "I'm available for freelance projects, technical consulting, or just to chat about technology. Don't hesitate to contact me.",
+    "subtitle": "Got a project in mind? I'd love to hear your ideas and help bring them to life.",
+    "description": "I'm available for freelance projects, technical consulting, or just chatting about tech. Feel free to reach out.",
     "findMe": "You can also find me on",
     "available": "Available for projects",
-    "availableDescription": "Currently accepting new projects. Average response time is 24-48 hours.",
+    "availableDescription": "Currently taking on new projects. Average response time is 24-48 hours.",
     "info": {
       "email": "Email",
       "location": "Location",
@@ -163,7 +163,7 @@
     }
   },
   "footer": {
-    "description": "Full Stack Developer with over 10 years of experience creating innovative technological solutions. Specialized in scalable architectures and process automation.",
+    "description": "Full Stack Developer with over 10 years of experience building innovative tech solutions. Specialized in scalable architectures and process automation.",
     "navigation": "Navigation",
     "resources": "Resources",
     "rights": "All rights reserved.",
@@ -171,4 +171,3 @@
     "using": "using Next.js & TypeScript"
   }
 }
-
