@@ -2,12 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useScrollAnimation } from '@/hooks';
 import { codeProblems } from '@/data/codeProblems';
 import { cn } from '@/utils';
 import { useDictionary } from '@/context/DictionaryContext';
+import { CodeBlock } from '@/components/UI/CodeBlock';
 
 export function CodeProblems() {
   const [activeProblem, setActiveProblem] = useState(codeProblems[0]);
@@ -113,24 +112,10 @@ export function CodeProblems() {
                     </span>
                   </div>
                   <div className="max-h-[400px] overflow-auto">
-                    <SyntaxHighlighter
+                    <CodeBlock
+                      code={activeProblem.problem}
                       language={activeProblem.language}
-                      style={vscDarkPlus}
-                      customStyle={{
-                        margin: 0,
-                        padding: '1.5rem',
-                        background: 'transparent',
-                        fontSize: '0.8rem',
-                      }}
-                      showLineNumbers
-                      lineNumberStyle={{
-                        color: '#4a5568',
-                        paddingRight: '1rem',
-                        minWidth: '2.5rem',
-                      }}
-                    >
-                      {activeProblem.problem}
-                    </SyntaxHighlighter>
+                    />
                   </div>
                 </div>
               </div>
@@ -163,24 +148,10 @@ export function CodeProblems() {
                     </span>
                   </div>
                   <div className="max-h-[400px] overflow-auto">
-                    <SyntaxHighlighter
+                    <CodeBlock
+                      code={activeProblem.solution}
                       language={activeProblem.language}
-                      style={vscDarkPlus}
-                      customStyle={{
-                        margin: 0,
-                        padding: '1.5rem',
-                        background: 'transparent',
-                        fontSize: '0.8rem',
-                      }}
-                      showLineNumbers
-                      lineNumberStyle={{
-                        color: '#4a5568',
-                        paddingRight: '1rem',
-                        minWidth: '2.5rem',
-                      }}
-                    >
-                      {activeProblem.solution}
-                    </SyntaxHighlighter>
+                    />
                   </div>
                 </div>
               </div>

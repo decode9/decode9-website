@@ -7,21 +7,24 @@ import { technologies } from '@/data/technologies';
 import { cn } from '@/utils';
 import { useDictionary } from '@/context/DictionaryContext';
 import {
-  SiTypescript, SiJavascript, SiPython, SiOpenjdk, SiCsharp, SiPhp,
+  SiTypescript, SiJavascript, SiPython, SiOpenjdk, SiPhp,
   SiReact, SiNextdotjs, SiTailwindcss, SiGraphql,
   SiNodedotjs, SiExpress, SiNestjs,
   SiPostgresql, SiMongodb, SiMysql, SiRedis, SiSqlite,
   SiDocker, SiKubernetes, SiAmazonwebservices, SiDigitalocean, SiGithubactions, SiJenkins,
-  SiGit, SiVisualstudiocode, SiFigma, SiLinux
+  SiGit, SiFigma, SiLinux
 } from 'react-icons/si';
+import { TbBrandCSharp, TbBrandVscode } from 'react-icons/tb';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  SiTypescript, SiJavascript, SiPython, SiOpenjdk, SiCsharp, SiPhp,
+const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  SiTypescript, SiJavascript, SiPython, SiOpenjdk, SiPhp,
   SiReact, SiNextdotjs, SiTailwindcss, SiGraphql,
   SiNodedotjs, SiExpress, SiNestjs,
   SiPostgresql, SiMongodb, SiMysql, SiRedis, SiSqlite,
   SiDocker, SiKubernetes, SiAmazonwebservices, SiDigitalocean, SiGithubactions, SiJenkins,
-  SiGit, SiVisualstudiocode, SiFigma, SiLinux,
+  SiGit, SiFigma, SiLinux,
+  SiCsharp: TbBrandCSharp,
+  SiVisualstudiocode: TbBrandVscode,
   SiGrpc: SiGraphql,
 };
 

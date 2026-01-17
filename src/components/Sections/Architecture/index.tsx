@@ -2,12 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useScrollAnimation } from '@/hooks';
 import { architectureExamples } from '@/data/architecture';
 import { cn } from '@/utils';
 import { useDictionary } from '@/context/DictionaryContext';
+import { CodeBlock } from '@/components/UI/CodeBlock';
 
 export function Architecture() {
   const [activeExample, setActiveExample] = useState(architectureExamples[0]);
@@ -121,24 +120,10 @@ export function Architecture() {
 
                   {/* Code Content */}
                   <div className="max-h-[500px] overflow-auto">
-                    <SyntaxHighlighter
+                    <CodeBlock
+                      code={activeExample.code || '// No code available'}
                       language={activeExample.language || 'typescript'}
-                      style={vscDarkPlus}
-                      customStyle={{
-                        margin: 0,
-                        padding: '1.5rem',
-                        background: 'transparent',
-                        fontSize: '0.875rem',
-                      }}
-                      showLineNumbers
-                      lineNumberStyle={{
-                        color: '#4a5568',
-                        paddingRight: '1rem',
-                        minWidth: '2.5rem',
-                      }}
-                    >
-                      {activeExample.code || '// No code available'}
-                    </SyntaxHighlighter>
+                    />
                   </div>
                 </motion.div>
               </AnimatePresence>
