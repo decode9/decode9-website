@@ -1,8 +1,10 @@
 export { Hero } from './Hero';
+export { TrustStrip } from './TrustStrip';
 export { About } from './About';
+export { Services } from './Services';
 export { TechStack } from './TechStack';
-export { Projects } from './Projects';
-export { Architecture } from './Architecture';
-export { CodeProblems } from './CodeProblems';
+export { CodePatterns } from './CodePatterns';
+export { Work } from './Work';
+export { Process } from './Process';
+export { CTASection } from './CTASection';
 export { Contact } from './Contact';
-

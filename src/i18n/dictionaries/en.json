@@ -1,173 +1,207 @@
 {
   "metadata": {
-    "title": "Jorge Bastidas | decode9 - Full Stack Developer",
-    "description": "Full Stack Developer with over 10 years of experience. Specialized in scalable architectures, automation, and MVP development. TypeScript, React, Node.js, DevOps."
+    "title": "decode9 — Jorge Bastidas · Senior Full Stack Developer",
+    "description": "Senior full stack developer with 10+ years building scalable architecture, automation systems, and production MVPs for founders and product teams."
   },
   "nav": {
-    "home": "Home",
+    "services": "Services",
+    "work": "Work",
+    "stack": "Stack",
+    "patterns": "Patterns",
+    "process": "Process",
     "about": "About",
-    "technologies": "Tech",
-    "projects": "Projects",
-    "architecture": "Architecture",
-    "problems": "Code Solutions",
     "contact": "Contact",
-    "letsChat": "Let's Talk"
+    "cta": "Work with me"
   },
   "hero": {
-    "available": "Available for projects",
-    "greeting": "Hi, I'm",
-    "name": "Jorge",
-    "typing": "Turning ideas into code",
-    "roles": {
-      "fullstack": "Full Stack Developer",
-      "architect": "Software Architect",
-      "devops": "DevOps Engineer",
-      "solver": "Problem Solver"
-    },
-    "viewProjects": "View Projects",
-    "contactMe": "Get in Touch",
-    "scroll": "Scroll"
+    "pill": "Available for new projects · Q3 2026",
+    "title": "I build scalable software, automation, and MVPs that move businesses <span class=\"d9-text-energy\">faster</span>.",
+    "sub": "I'm Jorge Bastidas — decode9. For 10+ years I've shipped scalable architectures, automation systems, and production-ready products for founders, SaaS teams, and companies that need senior engineering they can trust.",
+    "cta1": "Work with me",
+    "cta2": "View work",
+    "meta1": "Based in Argentina",
+    "meta2": "Available worldwide · remote",
+    "meta3": "Building since 2014",
+    "console": {
+      "title": "decode9 — build console",
+      "uptime": "uptime",
+      "services": "services",
+      "deploy": "deploy",
+      "line1": "$ decode9 ship --env production",
+      "line2": "› build ok · tests passed · scan clean",
+      "line3": "› rollout k8s/api 100%",
+      "line4": "# shipped without drama",
+      "svc1": "api://gateway",
+      "svc2": "workers://automation",
+      "svc3": "db://primary",
+      "status1": "healthy",
+      "status2": "running",
+      "status3": "replicated"
+    }
+  },
+  "trust": {
+    "1": "10+ years experience",
+    "2": "Full stack",
+    "3": "Scalable architecture",
+    "4": "Automation",
+    "5": "MVP development",
+    "6": "Infrastructure / DevOps",
+    "7": "AI-enabled workflows"
   },
   "about": {
-    "tag": "// ABOUT ME",
-    "title": "Building the",
-    "titleHighlight": "digital future",
-    "subtitle": "A passionate developer creating tech solutions that make a real impact on businesses and their users.",
-    "intro": "Since 2014, I've been turning ideas into functional digital products.",
-    "paragraph1": "My focus is on process automation for businesses and everyday tasks. I've worked with various companies, especially startups and businesses looking to optimize their operations through technology.",
-    "paragraph2": "As an infrastructure lead and senior developer, I've guided teams in building scalable solutions—from MVPs to enterprise systems. My passion for video games has also led me to explore game development.",
-    "location": "Location",
-    "locationValue": "Argentina 🇦🇷",
-    "languages": "Languages",
-    "languagesValue": "Spanish, English",
-    "highlights": {
-      "fullstack": {
-        "title": "Full Stack Development",
-        "description": "End-to-end development from frontend to backend, building robust web and mobile applications."
-      },
-      "architecture": {
-        "title": "Software Architecture",
-        "description": "Designing scalable systems with microservices, clean architecture, and modern design patterns."
-      },
-      "devops": {
-        "title": "DevOps & Cloud",
-        "description": "CI/CD pipelines, containerization with Docker/Kubernetes, and cloud deployments on AWS/DigitalOcean."
-      },
-      "automation": {
-        "title": "Automation",
-        "description": "Building tools and scripts to streamline business processes and workflows."
-      }
+    "eyebrow": "About",
+    "title": "A senior engineer who ships.",
+    "p1": "I'm Jorge Bastidas, the engineer behind <strong>decode9</strong>. Since 2014 I've designed and built software across the entire stack — from the database and infrastructure underneath to the interface founders demo to investors.",
+    "p2": "I work as a hands-on technical partner, not just a pair of hands. I can architect a system, build the MVP, automate the operations around it, and stay accountable for what ships. That means clear communication, senior judgment on the trade-offs that matter, and fast, reliable execution.",
+    "p3": "Whether you're a founder validating an idea, a SaaS team scaling under load, or a business drowning in manual process, the goal is the same: turn complexity into a system that works — and keep it working.",
+    "sig": "Founder & engineer · decode9"
+  },
+  "spec": {
+    "k": {
+      "role": "role",
+      "exp": "experience",
+      "focus": "focus",
+      "loc": "location",
+      "eng": "engagement",
+      "status": "status"
     },
-    "stats": {
-      "years": "Years of experience",
-      "repos": "Public repositories",
-      "projects": "Projects completed",
-      "satisfaction": "Client satisfaction"
+    "v": {
+      "role": "Senior Full Stack Developer",
+      "exp": "10+ years · since 2014",
+      "focus": "Architecture · MVPs · Automation",
+      "loc": "Argentina · worldwide",
+      "eng": "Remote · freelance / contract",
+      "status": "Open to new work"
     }
   },
-  "tech": {
-    "tag": "// TECH STACK",
-    "title": "My",
-    "titleHighlight": "Tech Stack",
-    "subtitle": "The tools and technologies I use to build high-quality solutions.",
-    "categories": {
-      "all": "All",
-      "language": "Languages",
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "database": "Databases",
-      "devops": "DevOps",
-      "tools": "Tools"
+  "svc": {
+    "eyebrow": "Services",
+    "title": "From idea to production — engineered end to end.",
+    "sub": "Senior capability across the full lifecycle. Pick a single service or a complete technical partnership.",
+    "fullstack": {
+      "t": "Full stack development",
+      "d": "End-to-end product engineering across frontend, backend, and data — one partner accountable for the whole system.",
+      "out": "One owner for the entire stack."
     },
-    "proficiency": {
-      "expert": "Expert",
-      "advanced": "Advanced",
-      "intermediate": "Intermediate"
+    "mvp": {
+      "t": "MVP development",
+      "d": "Validated, production-ready MVPs built to demo, raise, and grow — not throwaway prototypes you'll rewrite.",
+      "out": "Launch in weeks, not quarters."
     },
-    "footer": "Always learning and exploring new technologies.",
-    "footerHighlight": "Curiosity drives me."
-  },
-  "projects": {
-    "tag": "// PROJECTS",
-    "title": "Featured",
-    "titleHighlight": "Work",
-    "subtitle": "A selection of projects showcasing my experience and technical skills.",
-    "categories": {
-      "all": "All",
-      "web": "Web",
-      "mobile": "Mobile",
-      "api": "API",
-      "devops": "DevOps",
-      "automation": "Automation"
+    "auto": {
+      "t": "Automation systems",
+      "d": "Automate manual operations and connect the tools your business runs on, with reliable, observable pipelines.",
+      "out": "Hours of manual work removed weekly."
     },
-    "featured": "Featured",
-    "code": "Code",
-    "demo": "Demo",
-    "viewMore": "View more on GitHub"
-  },
-  "architecture": {
-    "tag": "// ARCHITECTURE",
-    "title": "Architecture",
-    "titleHighlight": "Patterns",
-    "subtitle": "Examples of architectures and design patterns I implement in my projects.",
-    "description": "Description",
-    "examples": {
-      "microservices": {
-        "title": "Microservices Architecture",
-        "description": "Distributed systems design with independent services, async communication, and high availability."
-      },
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "Clear separation of concerns with independent layers: domain, application, and infrastructure."
-      },
-      "event": {
-        "title": "Event-Driven Architecture",
-        "description": "Async communication through events, service decoupling, and horizontal scalability."
-      },
-      "cqrs": {
-        "title": "CQRS Pattern",
-        "description": "Separating read and write operations to optimize performance and scalability."
-      }
+    "arch": {
+      "t": "Scalable architecture",
+      "d": "Systems designed to grow — clean service boundaries, queues, and data models that hold under real load.",
+      "out": "Infrastructure that scales with you."
+    },
+    "ai": {
+      "t": "AI product development",
+      "d": "LLM-powered features and AI-enabled workflows built into real products — measured, guarded, and shipped.",
+      "out": "AI that ships, not demos."
+    },
+    "devops": {
+      "t": "Infrastructure & DevOps",
+      "d": "Containerized, observable infrastructure with CI/CD you can trust — repeatable, reliable, boring in the best way.",
+      "out": "Deploys you don't fear."
+    },
+    "consult": {
+      "t": "Technical consulting",
+      "d": "CTO-level guidance on architecture, technical strategy, and hiring — senior judgment when the decision matters.",
+      "out": "The right call, the first time."
+    },
+    "proc": {
+      "t": "Process optimization",
+      "d": "Map, streamline, and automate the processes behind your operation — less overhead, more throughput.",
+      "out": "Less overhead, more output."
     }
   },
-  "problems": {
-    "tag": "// CODE SOLUTIONS",
-    "title": "Common",
-    "titleHighlight": "Code Problems",
-    "subtitle": "Real-world problems I've solved along with their optimized solutions.",
-    "problem": "Problem",
-    "solution": "Solution",
-    "showSolution": "Show solution",
-    "hideSolution": "Hide solution",
-    "explanation": "Explanation",
-    "difficulty": {
-      "easy": "Easy",
-      "medium": "Medium",
-      "hard": "Hard"
+  "stack": {
+    "eyebrow": "Technology",
+    "title": "A stack built for production.",
+    "sub": "Battle-tested tools chosen for reliability and scale — not novelty.",
+    "cat": {
+      "lang": "Languages",
+      "front": "Frontend & mobile",
+      "back": "Backend & APIs",
+      "db": "Databases",
+      "cloud": "Cloud",
+      "devops": "DevOps & CI/CD",
+      "ai": "AI & automation"
     }
+  },
+  "code": {
+    "eyebrow": "Patterns",
+    "title": "Solutions to common web problems.",
+    "sub": "A few patterns I reach for again and again — small, production-tested building blocks for resilience, performance, and UX.",
+    "c1": {
+      "t": "Debounce input",
+      "d": "Tame search & resize storms"
+    },
+    "c2": {
+      "t": "Resilient fetch",
+      "d": "Retry with exponential backoff"
+    },
+    "c3": {
+      "t": "Optimistic UI",
+      "d": "Update UI before the server replies"
+    },
+    "c4": {
+      "t": "Concurrency control",
+      "d": "Cancel stale async requests"
+    }
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "title": "Real products, real impact.",
+    "sub": "A selection of client work — from consumer apps to enterprise systems.",
+    "viewGithub": "More on GitHub",
+    "badge": {
+      "ecom": "E-commerce",
+      "fin": "Fintech",
+      "sus": "Sustainability",
+      "ent": "Enterprise"
+    },
+    "desc": {
+      "yujju": "A full e-commerce platform with product catalogue, checkout, payments, and multi-vendor order management — built to handle real transaction volume.",
+      "finami": "A personal finance management app for mobile — budgeting, expense tracking, and financial goal-setting with a clean, intuitive experience.",
+      "gg": "A digital platform for a recycling and sustainability operation — bringing process, tracking, and reporting into one system.",
+      "avianca": "An internal workforce management system for an enterprise airline operation — built for scale, control, and reliability."
+    }
+  },
+  "proc": {
+    "eyebrow": "Process",
+    "title": "Product-minded engineering, not just code.",
+    "sub": "A clear path from problem to a running product you can defend.",
+    "s1": { "t": "Discover", "d": "Understand the goal, constraints, and what success really means." },
+    "s2": { "t": "Architect", "d": "Design a system that fits the problem and is built to grow." },
+    "s3": { "t": "Build", "d": "Ship clean, tested, production-grade code in tight iterations." },
+    "s4": { "t": "Automate", "d": "Remove manual work with reliable pipelines and integrations." },
+    "s5": { "t": "Launch", "d": "Deploy with CI/CD, monitoring, and confidence — no drama." },
+    "s6": { "t": "Iterate", "d": "Measure, refine, and keep the system working as you scale." }
+  },
+  "cta": {
+    "work": "Work with me",
+    "viewwork": "View work",
+    "title": "Have an idea, product, or process to <span class=\"d9-text-energy\">automate</span>?",
+    "sub": "Tell me what you're building. I'll tell you the fastest, most reliable way to ship it — and how I'd help.",
+    "start": "Start a project",
+    "seework": "See the work",
+    "emailme": "Email me"
   },
   "contact": {
-    "tag": "// CONTACT",
-    "title": "Let's Work",
-    "titleHighlight": "Together",
-    "subtitle": "Got a project in mind? I'd love to hear your ideas and help bring them to life.",
-    "description": "I'm available for freelance projects, technical consulting, or just chatting about tech. Feel free to reach out.",
-    "findMe": "You can also find me on",
-    "available": "Available for projects",
-    "availableDescription": "Currently taking on new projects. Average response time is 24-48 hours.",
-    "info": {
-      "email": "Email",
-      "location": "Location",
-      "github": "GitHub",
-      "linkedin": "LinkedIn"
-    }
+    "eyebrow": "Contact",
+    "title": "Let's build something solid.",
+    "sub": "The best projects start with a direct conversation. Email me with what you're working on — I read and reply to every message."
   },
   "footer": {
-    "description": "Full Stack Developer with over 10 years of experience building innovative tech solutions. Specialized in scalable architectures and process automation.",
-    "navigation": "Navigation",
-    "resources": "Resources",
-    "rights": "All rights reserved.",
-    "madeWith": "Made with",
-    "using": "using Next.js & TypeScript"
+    "tagline": "Senior full stack engineering, automation, and MVP development. Built by Jorge Bastidas since 2014.",
+    "navigate": "Navigate",
+    "connect": "Connect",
+    "rights": "© 2026 decode9 · Jorge Bastidas. All rights reserved.",
+    "tag": "Engineered to decode complexity."
   }
 }

@@ -1,173 +1,207 @@
 {
   "metadata": {
-    "title": "Jorge Bastidas | decode9 - Desarrollador Full Stack",
-    "description": "Desarrollador Full Stack con más de 10 años de experiencia. Especializado en arquitecturas escalables, automatización y desarrollo de MVPs. TypeScript, React, Node.js, DevOps."
+    "title": "decode9 — Jorge Bastidas · Desarrollador Full Stack Senior",
+    "description": "Desarrollador full stack senior con más de 10 años construyendo arquitecturas escalables, sistemas de automatización y MVPs de producción para fundadores y equipos de producto."
   },
   "nav": {
-    "home": "Inicio",
-    "about": "Sobre mí",
-    "technologies": "Tech",
-    "projects": "Proyectos",
-    "architecture": "Arquitectura",
-    "problems": "Soluciones",
+    "services": "Servicios",
+    "work": "Trabajo",
+    "stack": "Stack",
+    "patterns": "Patrones",
+    "process": "Proceso",
+    "about": "Acerca",
     "contact": "Contacto",
-    "letsChat": "Hablemos"
+    "cta": "Trabajar juntos"
   },
   "hero": {
-    "available": "Disponible para proyectos",
-    "greeting": "Hola, soy",
-    "name": "Jorge",
-    "typing": "Convirtiendo ideas en código",
-    "roles": {
-      "fullstack": "Full Stack Developer",
-      "architect": "Software Architect",
-      "devops": "DevOps Engineer",
-      "solver": "Problem Solver"
-    },
-    "viewProjects": "Ver proyectos",
-    "contactMe": "Contactar",
-    "scroll": "Scroll"
+    "pill": "Disponible para nuevos proyectos · Q3 2026",
+    "title": "Construyo software escalable, automatización y MVPs que hacen que los negocios avancen <span class=\"d9-text-energy\">más rápido</span>.",
+    "sub": "Soy Jorge Bastidas — decode9. Por más de 10 años he entregado arquitecturas escalables, sistemas de automatización y productos listos para producción para fundadores, equipos SaaS y empresas que necesitan ingeniería senior de confianza.",
+    "cta1": "Trabajar juntos",
+    "cta2": "Ver trabajo",
+    "meta1": "Basado en Argentina",
+    "meta2": "Disponible en todo el mundo · remoto",
+    "meta3": "Construyendo desde 2014",
+    "console": {
+      "title": "decode9 — consola de build",
+      "uptime": "uptime",
+      "services": "servicios",
+      "deploy": "deploy",
+      "line1": "$ decode9 ship --env production",
+      "line2": "› build ok · tests passed · scan clean",
+      "line3": "› rollout k8s/api 100%",
+      "line4": "# shipped without drama",
+      "svc1": "api://gateway",
+      "svc2": "workers://automation",
+      "svc3": "db://primary",
+      "status1": "saludable",
+      "status2": "ejecutando",
+      "status3": "replicado"
+    }
+  },
+  "trust": {
+    "1": "10+ años de experiencia",
+    "2": "Full stack",
+    "3": "Arquitectura escalable",
+    "4": "Automatización",
+    "5": "Desarrollo de MVPs",
+    "6": "Infraestructura / DevOps",
+    "7": "Flujos habilitados con IA"
   },
   "about": {
-    "tag": "// SOBRE MÍ",
-    "title": "Construyendo el",
-    "titleHighlight": "futuro digital",
-    "subtitle": "Desarrollador apasionado por crear soluciones tecnológicas que generan un impacto real en empresas y usuarios.",
-    "intro": "Desde 2014 me dedico a transformar ideas en productos digitales funcionales.",
-    "paragraph1": "Mi enfoque está en la automatización de procesos para empresas y tareas cotidianas. He trabajado con diversas compañías, especialmente startups y negocios que buscan optimizar sus operaciones a través de la tecnología.",
-    "paragraph2": "Como líder de infraestructura y desarrollador senior, he guiado equipos en la construcción de soluciones escalables, desde MVPs hasta sistemas empresariales. Mi pasión por los videojuegos también me ha llevado a explorar el desarrollo de juegos.",
-    "location": "Ubicación",
-    "locationValue": "Argentina 🇦🇷",
-    "languages": "Idiomas",
-    "languagesValue": "Español, Inglés",
-    "highlights": {
-      "fullstack": {
-        "title": "Desarrollo Full Stack",
-        "description": "Desarrollo integral desde el frontend hasta el backend, creando aplicaciones web y móviles robustas."
-      },
-      "architecture": {
-        "title": "Arquitectura de Software",
-        "description": "Diseño de sistemas escalables con microservicios, clean architecture y patrones de diseño modernos."
-      },
-      "devops": {
-        "title": "DevOps & Cloud",
-        "description": "Pipelines CI/CD, contenedores con Docker/Kubernetes y despliegues en AWS/DigitalOcean."
-      },
-      "automation": {
-        "title": "Automatización",
-        "description": "Creación de herramientas y scripts para optimizar procesos de negocio y flujos de trabajo."
-      }
+    "eyebrow": "Acerca",
+    "title": "Un ingeniero senior que entrega.",
+    "p1": "Soy Jorge Bastidas, el ingeniero detrás de <strong>decode9</strong>. Desde 2014 he diseñado y construido software en todo el stack — desde la base de datos e infraestructura hasta la interfaz que los fundadores muestran a los inversores.",
+    "p2": "Trabajo como socio técnico práctico, no solo un par de manos. Puedo arquitectar un sistema, construir el MVP, automatizar las operaciones alrededor de él, y mantenerme responsable de lo que se entrega. Eso significa comunicación clara, juicio senior en los trade-offs que importan, y ejecución rápida y confiable.",
+    "p3": "Ya seas un fundador validando una idea, un equipo SaaS escalando bajo carga, o una empresa ahogada en procesos manuales, el objetivo es el mismo: convertir la complejidad en un sistema que funciona — y mantenerlo funcionando.",
+    "sig": "Fundador e ingeniero · decode9"
+  },
+  "spec": {
+    "k": {
+      "role": "rol",
+      "exp": "experiencia",
+      "focus": "enfoque",
+      "loc": "ubicación",
+      "eng": "modalidad",
+      "status": "estado"
     },
-    "stats": {
-      "years": "Años de experiencia",
-      "repos": "Repositorios públicos",
-      "projects": "Proyectos completados",
-      "satisfaction": "Clientes satisfechos"
+    "v": {
+      "role": "Desarrollador Full Stack Senior",
+      "exp": "10+ años · desde 2014",
+      "focus": "Arquitectura · MVPs · Automatización",
+      "loc": "Argentina · mundial",
+      "eng": "Remoto · freelance / contrato",
+      "status": "Abierto a nuevo trabajo"
     }
   },
-  "tech": {
-    "tag": "// TECNOLOGÍAS",
-    "title": "Mi",
-    "titleHighlight": "Stack Tecnológico",
-    "subtitle": "Las herramientas y tecnologías que uso para crear soluciones de alta calidad.",
-    "categories": {
-      "all": "Todas",
-      "language": "Lenguajes",
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "database": "Bases de datos",
-      "devops": "DevOps",
-      "tools": "Herramientas"
+  "svc": {
+    "eyebrow": "Servicios",
+    "title": "De la idea a producción — ingeniería de extremo a extremo.",
+    "sub": "Capacidad senior en todo el ciclo de vida. Elige un servicio puntual o una sociedad técnica completa.",
+    "fullstack": {
+      "t": "Desarrollo full stack",
+      "d": "Ingeniería de producto de extremo a extremo en frontend, backend y datos — un socio responsable de todo el sistema.",
+      "out": "Un responsable de todo el stack."
     },
-    "proficiency": {
-      "expert": "Experto",
-      "advanced": "Avanzado",
-      "intermediate": "Intermedio"
+    "mvp": {
+      "t": "Desarrollo de MVP",
+      "d": "MVPs validados y listos para producción, construidos para demostrar, captar inversión y crecer — no prototipos desechables.",
+      "out": "Lanza en semanas, no trimestres."
     },
-    "footer": "Siempre aprendiendo y explorando nuevas tecnologías.",
-    "footerHighlight": "La curiosidad me impulsa."
-  },
-  "projects": {
-    "tag": "// PROYECTOS",
-    "title": "Trabajo",
-    "titleHighlight": "Destacado",
-    "subtitle": "Una selección de proyectos que demuestran mi experiencia y habilidades técnicas.",
-    "categories": {
-      "all": "Todos",
-      "web": "Web",
-      "mobile": "Mobile",
-      "api": "API",
-      "devops": "DevOps",
-      "automation": "Automatización"
+    "auto": {
+      "t": "Sistemas de automatización",
+      "d": "Automatiza operaciones manuales y conecta las herramientas que usa tu negocio, con pipelines confiables y observables.",
+      "out": "Horas de trabajo manual eliminadas cada semana."
     },
-    "featured": "Destacado",
-    "code": "Código",
-    "demo": "Demo",
-    "viewMore": "Ver más en GitHub"
-  },
-  "architecture": {
-    "tag": "// ARQUITECTURA",
-    "title": "Patrones de",
-    "titleHighlight": "Arquitectura",
-    "subtitle": "Ejemplos de arquitecturas y patrones de diseño que implemento en mis proyectos.",
-    "description": "Descripción",
-    "examples": {
-      "microservices": {
-        "title": "Arquitectura de Microservicios",
-        "description": "Diseño de sistemas distribuidos con servicios independientes, comunicación asíncrona y alta disponibilidad."
-      },
-      "clean": {
-        "title": "Clean Architecture",
-        "description": "Separación clara de responsabilidades con capas independientes: dominio, aplicación e infraestructura."
-      },
-      "event": {
-        "title": "Event-Driven Architecture",
-        "description": "Comunicación asíncrona mediante eventos, desacoplamiento de servicios y escalabilidad horizontal."
-      },
-      "cqrs": {
-        "title": "Patrón CQRS",
-        "description": "Separación de operaciones de lectura y escritura para optimizar rendimiento y escalabilidad."
-      }
+    "arch": {
+      "t": "Arquitectura escalable",
+      "d": "Sistemas diseñados para crecer — límites de servicio limpios, colas y modelos de datos que aguantan carga real.",
+      "out": "Infraestructura que escala contigo."
+    },
+    "ai": {
+      "t": "Desarrollo de producto con IA",
+      "d": "Funcionalidades impulsadas por LLM y flujos habilitados con IA integrados en productos reales — medidos, protegidos y entregados.",
+      "out": "IA que se entrega, no solo demos."
+    },
+    "devops": {
+      "t": "Infraestructura & DevOps",
+      "d": "Infraestructura containerizada y observable con CI/CD de confianza — repetible, confiable, aburrida de la mejor manera.",
+      "out": "Deploys que no dan miedo."
+    },
+    "consult": {
+      "t": "Consultoría técnica",
+      "d": "Orientación a nivel CTO sobre arquitectura, estrategia técnica y contratación — juicio senior cuando la decisión importa.",
+      "out": "La decisión correcta, a la primera."
+    },
+    "proc": {
+      "t": "Optimización de procesos",
+      "d": "Mapea, simplifica y automatiza los procesos detrás de tu operación — menos overhead, más rendimiento.",
+      "out": "Menos overhead, más resultado."
     }
   },
-  "problems": {
-    "tag": "// SOLUCIONES DE CÓDIGO",
-    "title": "Problemas",
-    "titleHighlight": "Comunes de Código",
-    "subtitle": "Problemas reales que he resuelto junto con sus soluciones optimizadas.",
-    "problem": "Problema",
-    "solution": "Solución",
-    "showSolution": "Mostrar solución",
-    "hideSolution": "Ocultar solución",
-    "explanation": "Explicación",
-    "difficulty": {
-      "easy": "Fácil",
-      "medium": "Medio",
-      "hard": "Difícil"
+  "stack": {
+    "eyebrow": "Tecnología",
+    "title": "Un stack construido para producción.",
+    "sub": "Herramientas probadas en batalla, elegidas por confiabilidad y escala — no por novedad.",
+    "cat": {
+      "lang": "Lenguajes",
+      "front": "Frontend & mobile",
+      "back": "Backend & APIs",
+      "db": "Bases de datos",
+      "cloud": "Cloud",
+      "devops": "DevOps & CI/CD",
+      "ai": "IA & automatización"
     }
+  },
+  "code": {
+    "eyebrow": "Patrones",
+    "title": "Soluciones a problemas web comunes.",
+    "sub": "Algunos patrones a los que recurro una y otra vez — pequeños bloques de construcción probados en producción para resiliencia, rendimiento y UX.",
+    "c1": {
+      "t": "Debounce de input",
+      "d": "Controla tormentas de búsqueda y resize"
+    },
+    "c2": {
+      "t": "Fetch resiliente",
+      "d": "Reintentos con backoff exponencial"
+    },
+    "c3": {
+      "t": "UI optimista",
+      "d": "Actualiza la UI antes de que responda el servidor"
+    },
+    "c4": {
+      "t": "Control de concurrencia",
+      "d": "Cancela requests asíncronas obsoletas"
+    }
+  },
+  "work": {
+    "eyebrow": "Trabajo selecto",
+    "title": "Productos reales, impacto real.",
+    "sub": "Una selección de trabajo con clientes — desde apps de consumo hasta sistemas enterprise.",
+    "viewGithub": "Más en GitHub",
+    "badge": {
+      "ecom": "E-commerce",
+      "fin": "Fintech",
+      "sus": "Sostenibilidad",
+      "ent": "Enterprise"
+    },
+    "desc": {
+      "yujju": "Una plataforma completa de e-commerce con catálogo de productos, checkout, pagos y gestión de pedidos multi-proveedor — construida para manejar volumen de transacciones real.",
+      "finami": "Una app de finanzas personales para móvil — presupuestos, seguimiento de gastos y establecimiento de metas financieras con una experiencia limpia e intuitiva.",
+      "gg": "Una plataforma digital para una operación de reciclaje y sostenibilidad — centralizando proceso, seguimiento y reportes en un solo sistema.",
+      "avianca": "Un sistema interno de gestión de dotaciones para una operación aerolínea enterprise — construido para escala, control y confiabilidad."
+    }
+  },
+  "proc": {
+    "eyebrow": "Proceso",
+    "title": "Ingeniería orientada al producto, no solo código.",
+    "sub": "Un camino claro desde el problema hasta un producto en funcionamiento que puedas defender.",
+    "s1": { "t": "Descubrir", "d": "Entender el objetivo, las restricciones y qué significa realmente el éxito." },
+    "s2": { "t": "Arquitectar", "d": "Diseñar un sistema que se ajuste al problema y esté construido para crecer." },
+    "s3": { "t": "Construir", "d": "Entregar código limpio, testeado y de grado producción en iteraciones cortas." },
+    "s4": { "t": "Automatizar", "d": "Eliminar trabajo manual con pipelines e integraciones confiables." },
+    "s5": { "t": "Lanzar", "d": "Desplegar con CI/CD, monitoreo y confianza — sin dramas." },
+    "s6": { "t": "Iterar", "d": "Medir, refinar y mantener el sistema funcionando mientras escala." }
+  },
+  "cta": {
+    "work": "Trabajar juntos",
+    "viewwork": "Ver trabajo",
+    "title": "¿Tienes una idea, producto o proceso que <span class=\"d9-text-energy\">automatizar</span>?",
+    "sub": "Cuéntame qué estás construyendo. Te diré la forma más rápida y confiable de entregarlo — y cómo podría ayudar.",
+    "start": "Iniciar un proyecto",
+    "seework": "Ver el trabajo",
+    "emailme": "Enviar email"
   },
   "contact": {
-    "tag": "// CONTACTO",
-    "title": "Trabajemos",
-    "titleHighlight": "Juntos",
-    "subtitle": "¿Tenés un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad.",
-    "description": "Estoy disponible para proyectos freelance, consultoría técnica o simplemente para charlar sobre tecnología. No dudes en escribirme.",
-    "findMe": "También podés encontrarme en",
-    "available": "Disponible para proyectos",
-    "availableDescription": "Actualmente acepto nuevos proyectos. El tiempo de respuesta promedio es de 24-48 horas.",
-    "info": {
-      "email": "Email",
-      "location": "Ubicación",
-      "github": "GitHub",
-      "linkedin": "LinkedIn"
-    }
+    "eyebrow": "Contacto",
+    "title": "Construyamos algo sólido.",
+    "sub": "Los mejores proyectos comienzan con una conversación directa. Escríbeme con lo que estás trabajando — leo y respondo cada mensaje."
   },
   "footer": {
-    "description": "Desarrollador Full Stack con más de 10 años de experiencia creando soluciones tecnológicas innovadoras. Especializado en arquitecturas escalables y automatización de procesos.",
-    "navigation": "Navegación",
-    "resources": "Recursos",
-    "rights": "Todos los derechos reservados.",
-    "madeWith": "Hecho con",
-    "using": "usando Next.js & TypeScript"
+    "tagline": "Ingeniería full stack senior, automatización y desarrollo de MVPs. Construido por Jorge Bastidas desde 2014.",
+    "navigate": "Navegar",
+    "connect": "Conectar",
+    "rights": "© 2026 decode9 · Jorge Bastidas. Todos los derechos reservados.",
+    "tag": "Ingeniería para decodificar la complejidad."
   }
 }

@@ -1,51 +1,83 @@
 import type { Metadata } from 'next';
+import { Space_Grotesk, Manrope, Chakra_Petch, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const chakraPetch = Chakra_Petch({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-label',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-code',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Jorge Bastidas | decode9 - Full Stack Developer',
-  description: 'Full Stack Developer with over 10 years of experience. Specialized in scalable architectures, automation, and MVP development. TypeScript, React, Node.js, DevOps.',
+  metadataBase: new URL('https://decode9.codes'),
+  title: 'decode9 — Jorge Bastidas · Senior Full Stack Developer',
+  description: 'Senior full stack developer with 10+ years building scalable architecture, automation systems, and production MVPs for founders and product teams.',
   keywords: [
     'Jorge Bastidas',
     'decode9',
     'Full Stack Developer',
     'Software Engineer',
-    'React Developer',
-    'Node.js Developer',
+    'Scalable Architecture',
+    'Automation',
+    'MVP Development',
+    'DevOps',
+    'AI',
     'TypeScript',
-    'Argentina',
-    'Freelance Developer',
+    'React',
+    'Node.js',
   ],
   authors: [{ name: 'Jorge Bastidas', url: 'https://github.com/decode9' }],
   creator: 'Jorge Bastidas',
   icons: {
-    icon: [
-      { url: 'https://avatars.githubusercontent.com/u/25024663?v=4', type: 'image/png' },
-    ],
-    shortcut: 'https://avatars.githubusercontent.com/u/25024663?v=4',
-    apple: 'https://avatars.githubusercontent.com/u/25024663?v=4',
+    icon: [{ url: '/brand/favicon.png', type: 'image/png' }],
+    shortcut: '/brand/favicon.png',
+    apple: '/brand/favicon.png',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://decode9.dev',
+    url: 'https://decode9.codes/',
     siteName: 'decode9',
-    title: 'Jorge Bastidas | decode9 - Full Stack Developer',
-    description: 'Full Stack Developer with over 10 years of experience. Specialized in scalable architectures, automation, and MVP development.',
+    title: 'decode9 — Jorge Bastidas · Senior Full Stack Developer',
+    description: 'Senior full stack developer. 10+ years building scalable architecture, automation, and MVPs that move businesses faster.',
     images: [
       {
-        url: 'https://avatars.githubusercontent.com/u/25024663?v=4',
-        width: 460,
-        height: 460,
-        alt: 'decode9 - Jorge Bastidas',
+        url: '/brand/decode9-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'decode9 — Jorge Bastidas',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jorge Bastidas | decode9 - Full Stack Developer',
-    description: 'Full Stack Developer with over 10 years of experience.',
+    site: '@decode9',
     creator: '@decode9',
-    images: ['https://avatars.githubusercontent.com/u/25024663?v=4'],
+    title: 'decode9 — Jorge Bastidas · Senior Full Stack Developer',
+    description: 'Senior full stack developer. 10+ years building scalable architecture, automation, and MVPs that move businesses faster.',
+    images: ['/brand/decode9-og.png'],
   },
 };
 
@@ -55,13 +87,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth" translate="no">
+    <html
+      lang="en"
+      className={`scroll-smooth ${spaceGrotesk.variable} ${manrope.variable} ${chakraPetch.variable} ${jetbrainsMono.variable}`}
+      translate="no"
+    >
       <head>
-        <link rel="icon" href="https://avatars.githubusercontent.com/u/25024663?v=4" />
-        <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/25024663?v=4" />
         <meta name="google" content="notranslate" />
+        <meta name="theme-color" content="#0B0C0E" />
       </head>
-      <body className="bg-dark-950 text-dark-100 antialiased">
+      <body className="bg-ink-950 text-ink-100 antialiased font-body">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-red focus:text-white focus:rounded"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

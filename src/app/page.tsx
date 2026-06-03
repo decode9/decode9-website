@@ -5,18 +5,20 @@ import { Header } from '@/components/Layout/Header';
 import { Footer } from '@/components/Layout/Footer';
 import {
   Hero,
+  TrustStrip,
   About,
+  Services,
   TechStack,
-  Projects,
-  Architecture,
-  CodeProblems,
+  CodePatterns,
+  Work,
+  Process,
+  CTASection,
   Contact,
 } from '@/components/Sections';
 import { DictionaryProvider } from '@/context/DictionaryContext';
 import type { Dictionary } from '@/i18n';
 import type { Locale } from '@/i18n';
 
-// Import dictionaries directly for client-side use
 import enDict from '@/i18n/dictionaries/en.json';
 import esDict from '@/i18n/dictionaries/es.json';
 
@@ -27,21 +29,17 @@ const dictionaries: Record<Locale, Dictionary> = {
 
 function getInitialLocale(): Locale {
   if (typeof window === 'undefined') return 'en';
-  
-  // Check cookie first
+
   const cookieLocale = document.cookie
     .split('; ')
     .find(row => row.startsWith('NEXT_LOCALE='))
     ?.split('=')[1];
-  
-  if (cookieLocale === 'en' || cookieLocale === 'es') {
-    return cookieLocale;
-  }
-  
-  // Check browser language
+
+  if (cookieLocale === 'en' || cookieLocale === 'es') return cookieLocale;
+
   const browserLang = navigator.language.substring(0, 2);
   if (browserLang === 'es') return 'es';
-  
+
   return 'en';
 }
 
@@ -59,16 +57,17 @@ export default function Home() {
 
   useEffect(() => {
     setDictionary(dictionaries[locale]);
-    // Update cookie when locale changes
     document.cookie = `NEXT_LOCALE=${locale};path=/;max-age=31536000`;
-    // Update html lang attribute
     document.documentElement.lang = locale;
   }, [locale]);
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen bg-dark-950 flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-ink-950 flex items-center justify-center">
+        <div
+          className="w-10 h-10 border-2 border-t-transparent rounded-full animate-spin"
+          style={{ borderColor: 'var(--brand-red)', borderTopColor: 'transparent' }}
+        />
       </div>
     );
   }
@@ -76,17 +75,19 @@ export default function Home() {
   return (
     <DictionaryProvider dictionary={dictionary} locale={locale} setLocale={setLocale}>
       <Header />
-      <main>
+      <main id="main">
         <Hero />
+        <TrustStrip />
         <About />
+        <Services />
         <TechStack />
-        <Projects />
-        <Architecture />
-        <CodeProblems />
+        <CodePatterns />
+        <Work />
+        <Process />
+        <CTASection />
         <Contact />
       </main>
       <Footer />
     </DictionaryProvider>
   );
 }
-

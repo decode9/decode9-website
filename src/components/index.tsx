@@ -4,11 +4,16 @@ export { Header, Footer } from './Layout';
 // Section components
 export {
   Hero,
+  TrustStrip,
   About,
+  Services,
   TechStack,
-  Projects,
-  Architecture,
-  CodeProblems,
+  CodePatterns,
+  Work,
+  Process,
+  CTASection,
   Contact,
 } from './Sections';
 
+// UI components
+export { NotchCard } from './UI/NotchCard';

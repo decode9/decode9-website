@@ -3,28 +3,26 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { cn } from '@/utils';
 import { useDictionary } from '@/context/DictionaryContext';
 import { i18n, type Locale } from '@/i18n';
 
-const GITHUB_AVATAR = 'https://avatars.githubusercontent.com/u/25024663?v=4';
-
 const navItems = [
-  { key: 'home', href: '#hero' },
+  { key: 'services', href: '#services' },
+  { key: 'work', href: '#work' },
+  { key: 'stack', href: '#stack' },
+  { key: 'patterns', href: '#patterns' },
+  { key: 'process', href: '#process' },
   { key: 'about', href: '#about' },
-  { key: 'technologies', href: '#tech' },
-  { key: 'projects', href: '#projects' },
-  { key: 'architecture', href: '#architecture' },
-  { key: 'problems', href: '#problems' },
-  { key: 'contact', href: '#contact' },
 ];
 
 export function Header() {
   const { dictionary, locale, setLocale } = useDictionary();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('');
 
   const switchLocale = (newLocale: Locale) => {
     setLocale(newLocale);
@@ -32,99 +30,88 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+      setIsScrolled(window.scrollY > 40);
 
-    const handleSectionChange = () => {
-      const sections = navItems.map((item) => item.href.replace('#', ''));
-      
-      for (const section of [...sections].reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setActiveSection(section);
-            break;
-          }
+      const sectionIds = [...navItems.map((i) => i.href.replace('#', '')), 'contact'];
+      for (const id of [...sectionIds].reverse()) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(id);
+          break;
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleSectionChange);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleSectionChange);
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const getNavLabel = (key: string) => {
-    return dictionary.nav[key as keyof typeof dictionary.nav] || key;
-  };
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
 
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-dark-950/80 backdrop-blur-xl border-b border-dark-800/50'
-          : 'bg-transparent'
+          ? 'bg-ink-950/90 backdrop-blur-xl border-b border-ink-800'
+          : 'bg-transparent',
       )}
     >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className="d9-container-wide">
+        <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <motion.div
-              className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-dark-700 group-hover:border-primary-500 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Image
-                src={GITHUB_AVATAR}
-                alt="decode9"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-            <div className="hidden sm:block">
-              <span className="text-white font-display font-semibold">decode9</span>
-              <span className="text-dark-500 text-sm block -mt-1">Developer</span>
-            </div>
+          <Link href="/" aria-label="decode9 — home" className="flex-shrink-0">
+            <Image
+              src="/brand/decode9-logo.png"
+              alt="decode9"
+              width={120}
+              height={26}
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-7" aria-label="Primary">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-                  activeSection === item.href.replace('#', '')
-                    ? 'text-white bg-dark-800/50'
-                    : 'text-dark-400 hover:text-white hover:bg-dark-800/30'
+                  'd9-nav-link',
+                  activeSection === item.href.replace('#', '') && 'active',
                 )}
               >
-                {getNavLabel(item.key)}
+                {dictionary.nav[item.key as keyof typeof dictionary.nav]}
               </Link>
             ))}
-          </div>
+          </nav>
 
-          {/* Language Switcher & CTA */}
+          {/* Right side */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Language Switcher */}
-            <div className="flex items-center gap-1 bg-dark-800/50 rounded-lg p-1">
+            {/* Language switcher */}
+            <div
+              className="flex items-center rounded-sm overflow-hidden border border-ink-700"
+              role="group"
+              aria-label="Language"
+            >
               {i18n.locales.map((loc) => (
                 <button
                   key={loc}
+                  type="button"
                   onClick={() => switchLocale(loc)}
+                  aria-pressed={locale === loc}
                   className={cn(
-                    'px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200',
+                    'px-3 py-1.5 text-xs font-label font-semibold tracking-widest uppercase transition-all duration-150',
                     locale === loc
-                      ? 'bg-primary-500 text-white'
-                      : 'text-dark-400 hover:text-white'
+                      ? 'bg-brand-red text-white'
+                      : 'text-ink-400 hover:text-ink-100 hover:bg-ink-800',
                   )}
                 >
                   {loc.toUpperCase()}
@@ -132,103 +119,101 @@ export function Header() {
               ))}
             </div>
 
-            <Link
-              href="#contact"
-              className="btn-primary text-sm"
-            >
-              {dictionary.nav.letsChat}
+            {/* Contact link */}
+            <Link href="#contact" className="d9-nav-link">
+              {dictionary.nav.contact}
             </Link>
+
+            {/* CTA */}
+            <a
+              href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+              className="d9-btn d9-btn--energy d9-notch-tr d9-btn--sm inline-flex items-center gap-2"
+            >
+              <span>{dictionary.nav.cta}</span>
+              <ArrowRight size={14} />
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile burger */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-dark-400 hover:text-white transition-colors"
+            type="button"
+            className="lg:hidden p-2 text-ink-400 hover:text-ink-100 transition-colors"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-dark-900/95 backdrop-blur-xl border-b border-dark-800"
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-ink-900/98 backdrop-blur-xl border-b border-ink-800 overflow-hidden"
           >
-            <div className="container mx-auto px-6 py-4 space-y-2">
+            <div className="d9-container py-5 flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    'block px-4 py-3 rounded-lg font-medium transition-all duration-200',
+                    'block px-4 py-3 text-sm font-medium transition-colors rounded-sm',
                     activeSection === item.href.replace('#', '')
-                      ? 'text-white bg-dark-800'
-                      : 'text-dark-400 hover:text-white hover:bg-dark-800/50'
+                      ? 'text-ink-50 bg-ink-800'
+                      : 'text-ink-300 hover:text-ink-50 hover:bg-ink-800/50',
                   )}
                 >
-                  {getNavLabel(item.key)}
+                  {dictionary.nav[item.key as keyof typeof dictionary.nav]}
                 </Link>
               ))}
-              
-              {/* Mobile Language Switcher */}
-              <div className="flex items-center gap-2 px-4 py-3">
-                <span className="text-dark-500 text-sm">Language:</span>
-                <div className="flex items-center gap-1 bg-dark-800 rounded-lg p-1">
+              <Link
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-ink-300 hover:text-ink-50 transition-colors"
+              >
+                {dictionary.nav.contact}
+              </Link>
+
+              <div className="flex items-center gap-3 px-4 pt-3 mt-1 border-t border-ink-800">
+                <div
+                  className="flex items-center rounded-sm overflow-hidden border border-ink-700"
+                  role="group"
+                  aria-label="Language"
+                >
                   {i18n.locales.map((loc) => (
                     <button
                       key={loc}
-                      onClick={() => {
-                        switchLocale(loc);
-                        setIsMobileMenuOpen(false);
-                      }}
+                      type="button"
+                      onClick={() => { switchLocale(loc); setIsMobileMenuOpen(false); }}
+                      aria-pressed={locale === loc}
                       className={cn(
-                        'px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200',
+                        'px-3 py-1.5 text-xs font-label font-semibold tracking-widest uppercase transition-all duration-150',
                         locale === loc
-                          ? 'bg-primary-500 text-white'
-                          : 'text-dark-400 hover:text-white'
+                          ? 'bg-brand-red text-white'
+                          : 'text-ink-400 hover:text-ink-100 hover:bg-ink-800',
                       )}
                     >
                       {loc.toUpperCase()}
                     </button>
                   ))}
                 </div>
+                <a
+                  href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="d9-btn d9-btn--energy d9-notch-tr d9-btn--sm flex-1 justify-center"
+                >
+                  {dictionary.nav.cta}
+                </a>
               </div>
-
-              <Link
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="btn-primary w-full mt-4"
-              >
-                {dictionary.nav.letsChat}
-              </Link>
             </div>
           </motion.div>
         )}

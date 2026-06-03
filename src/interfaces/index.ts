@@ -28,6 +28,9 @@ export interface Project {
   imageUrl?: string;
   featured: boolean;
   year: number;
+  clientName?: string;
+  sector?: string;
+  locked?: boolean;
 }
 
 export type ProjectCategory = 
@@ -86,4 +89,6 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export * from './services';
 

@@ -1,235 +1,169 @@
 'use client';
 
-import Image from 'next/image';
+import { MapPin, Globe, CalendarCheck, ArrowRight, LayoutGrid } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaArrowDown } from 'react-icons/fa';
-import { useTypingEffect } from '@/hooks';
 import { useDictionary } from '@/context/DictionaryContext';
-
-const GITHUB_AVATAR = 'https://avatars.githubusercontent.com/u/25024663?v=4';
+import { useScrollAnimation } from '@/hooks';
 
 export function Hero() {
   const { dictionary } = useDictionary();
-  const { displayedText } = useTypingEffect({
-    text: dictionary.hero.typing,
-    speed: 80,
-    delay: 500,
-  });
+  const { ref, isVisible } = useScrollAnimation({ triggerOnce: true });
+  const d = dictionary.hero;
+  const con = d.console;
 
-  const roles = [
-    dictionary.hero.roles.fullstack,
-    dictionary.hero.roles.architect,
-    dictionary.hero.roles.devops,
-    dictionary.hero.roles.solver,
-  ];
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
+    transition: { duration: 0.5, delay, ease: [0.0, 0.0, 0.2, 1] as [number, number, number, number] },
+  });
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      aria-labelledby="hero-title"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-dark-950">
-        <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
-        <div className="absolute inset-0 bg-radial-glow" />
-        
-        {/* Floating orbs */}
-        <motion.div
-          className="floating-element w-96 h-96 bg-primary-500 top-1/4 -left-48"
-          animate={{
-            y: [0, 50, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="floating-element w-64 h-64 bg-accent-purple bottom-1/4 -right-32"
-          animate={{
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="floating-element w-48 h-48 bg-accent-cyan top-1/3 right-1/4"
-          animate={{
-            y: [0, 40, 0],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
-          }}
-        />
-      </div>
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+        style={{ backgroundImage: "url('/brand/bg-hero-dark.png')" }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-ink-950/70" aria-hidden="true" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Avatar */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <div className="relative inline-block">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-accent-purple to-accent-cyan rounded-full blur-xl opacity-50 animate-pulse-slow" />
-              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-dark-700 shadow-2xl">
-                <Image
-                  src={GITHUB_AVATAR}
-                  alt="Jorge Bastidas - decode9"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              {/* Status indicator */}
-              <div className="absolute bottom-2 right-2 w-6 h-6 bg-emerald-500 rounded-full border-4 border-dark-950 animate-pulse" />
-            </div>
-          </motion.div>
+      <div className="d9-container-wide relative z-10 py-32" ref={ref}>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Copy */}
+          <div>
+            {/* Availability pill */}
+            <motion.div {...fadeUp(0)}>
+              <span className="d9-pill">
+                <span className="d9-pill__dot d9-pill__dot--live" aria-hidden="true" />
+                {d.pill}
+              </span>
+            </motion.div>
 
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-800/50 border border-dark-700 mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-dark-300 text-sm">{dictionary.hero.available}</span>
-          </motion.div>
+            {/* Headline */}
+            <motion.h1
+              id="hero-title"
+              className="d9-display-lg mb-6"
+              {...fadeUp(0.08)}
+              dangerouslySetInnerHTML={{ __html: d.title }}
+            />
 
-          {/* Main Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-6"
-          >
-            <span className="text-white">{dictionary.hero.greeting} </span>
-            <span className="text-gradient">{dictionary.hero.name}</span>
-          </motion.h1>
+            {/* Sub */}
+            <motion.p className="d9-body-lg mb-10 max-w-xl" {...fadeUp(0.14)}>
+              {d.sub}
+            </motion.p>
 
-          {/* Subtitle with typing effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-8"
-          >
-            <p className="text-2xl md:text-3xl text-dark-300 font-light">
-              {displayedText}
-              <span className="terminal-cursor" />
-            </p>
-          </motion.div>
-
-          {/* Roles */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-3 mb-12"
-          >
-            {roles.map((role, index) => (
-              <motion.span
-                key={role}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="tech-badge"
+            {/* CTAs */}
+            <motion.div className="flex flex-wrap items-center gap-4 mb-10" {...fadeUp(0.2)}>
+              <a
+                href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+                className="d9-btn d9-btn--energy d9-notch-tr d9-btn--lg inline-flex items-center gap-2"
               >
-                {role}
-              </motion.span>
-            ))}
-          </motion.div>
+                <span>{d.cta1}</span>
+                <ArrowRight size={18} />
+              </a>
+              <a
+                href="#work"
+                className="d9-btn d9-btn--outline d9-btn--lg inline-flex items-center gap-2"
+              >
+                <LayoutGrid size={16} />
+                <span>{d.cta2}</span>
+              </a>
+            </motion.div>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg text-dark-400 max-w-2xl mx-auto mb-12 leading-relaxed"
-          >
-            <span className="text-white font-semibold">10+</span>{' '}
-            {dictionary.about.stats.years.toLowerCase()}.{' '}
-            <span className="text-primary-400">{dictionary.about.highlights.architecture.title}</span>,{' '}
-            <span className="text-accent-cyan">{dictionary.about.highlights.automation.title}</span> &{' '}
-            <span className="text-accent-purple">MVPs</span>.
-          </motion.p>
+            {/* Meta badges */}
+            <motion.div className="flex flex-wrap gap-x-6 gap-y-2" {...fadeUp(0.26)}>
+              {([
+                [MapPin, d.meta1],
+                [Globe, d.meta2],
+                [CalendarCheck, d.meta3],
+              ] as Array<[React.ElementType, string]>).map(([Icon, label]) => (
+                <span key={label} className="flex items-center gap-1.5 text-ink-400 text-sm">
+                  <Icon size={14} className="flex-shrink-0" />
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+          </div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-          >
-            <a href="#projects" className="btn-primary">
-              {dictionary.hero.viewProjects}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a href="#contact" className="btn-secondary">
-              {dictionary.hero.contactMe}
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex items-center justify-center gap-6"
-          >
-            <a
-              href="https://github.com/decode9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-dark-400 hover:text-white transition-colors"
+          {/* Console panel */}
+          <motion.div {...fadeUp(0.1)} className="hidden lg:block">
+            <div
+              className="d9-notch-tr-lg bg-ink-900 border border-ink-700 overflow-hidden"
+              role="img"
+              aria-label="decode9 build console"
             >
-              <FaGithub className="w-6 h-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/decode9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-dark-400 hover:text-white transition-colors"
-            >
-              <FaLinkedin className="w-6 h-6" />
-            </a>
+              {/* Bar */}
+              <div className="flex items-center gap-2 px-5 py-3 border-b border-ink-700 bg-ink-800">
+                <span className="w-3 h-3 rounded-full bg-ink-600" />
+                <span className="w-3 h-3 rounded-full bg-ink-600" />
+                <span className="w-3 h-3 rounded-full bg-ink-600" />
+                <span className="d9-mono-label ml-2 flex-1">{con.title}</span>
+                <span className="d9-badge d9-badge--brand d9-badge--dot text-[11px]">live</span>
+              </div>
+
+              <div className="p-5">
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-4 mb-5 pb-5 border-b border-ink-800">
+                  {([
+                    [con.uptime, '99.9%'],
+                    [con.services, '12'],
+                    [con.deploy, '3.4s'],
+                  ] as Array<[string, string]>).map(([label, val]) => (
+                    <div key={label}>
+                      <span className="d9-mono-label block mb-1">{label}</span>
+                      <span className="d9-data">{val}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Code lines */}
+                <div className="mb-5 space-y-1 font-code text-[13px] leading-6" aria-hidden="true">
+                  <div>
+                    <span className="d9s-c-mut">$</span>{' '}
+                    <span className="d9s-c-fn">decode9</span> ship{' '}
+                    <span className="d9s-c-str">--env production</span>
+                  </div>
+                  <div>
+                    <span className="d9s-c-key">›</span> build{' '}
+                    <span className="d9s-c-str">ok</span>{' '}
+                    <span className="d9s-c-mut">·</span> tests{' '}
+                    <span className="d9s-c-str">passed</span>{' '}
+                    <span className="d9s-c-mut">·</span> scan{' '}
+                    <span className="d9s-c-str">clean</span>
+                  </div>
+                  <div>
+                    <span className="d9s-c-key">›</span> rollout{' '}
+                    <span className="d9s-c-mut">k8s/api</span>{' '}
+                    <span className="d9s-c-str">100%</span>
+                  </div>
+                  <div className="d9s-c-mut"># shipped without drama</div>
+                </div>
+
+                {/* Service status rows */}
+                <div className="space-y-2">
+                  {([
+                    [con.svc1, con.status1, 'success'],
+                    [con.svc2, con.status2, 'success'],
+                    [con.svc3, con.status3, 'brand'],
+                  ] as Array<[string, string, string]>).map(([svc, status, badge]) => (
+                    <div
+                      key={svc}
+                      className="flex items-center justify-between px-3 py-2 rounded-sm bg-ink-800 border border-ink-700"
+                    >
+                      <span className="font-code text-[12px] text-ink-300">{svc}</span>
+                      <span className={`d9-badge d9-badge--${badge} d9-badge--dot text-[11px]`}>{status}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.a
-          href="#about"
-          className="flex flex-col items-center gap-2 text-dark-500 hover:text-white transition-colors"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <span className="text-sm">{dictionary.hero.scroll}</span>
-          <FaArrowDown className="w-4 h-4" />
-        </motion.a>
-      </motion.div>
     </section>
   );
 }

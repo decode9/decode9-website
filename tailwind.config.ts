@@ -10,79 +10,89 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // New brand palette
+        brand: {
+          red: '#E5121B',
+          'red-dark': '#8E0408',
+          'red-light': '#FF2A33',
+        },
+        // New ink/graphite dark palette
+        ink: {
+          950: '#0B0C0E',
+          900: '#111214',
+          800: '#18191C',
+          700: '#22242A',
+          600: '#2E3038',
+          500: '#3D4049',
+          400: '#5A5D68',
+          300: '#7E8290',
+          200: '#B0B4BF',
+          100: '#D4D7DE',
+          50: '#F4F6F8',
+        },
+        // Keep primary mapped to new brand red for backward compat
         primary: {
-          50: '#fef3f2',
-          100: '#ffe4e1',
-          200: '#ffcdc8',
-          300: '#ffa9a1',
-          400: '#ff7a6b',
-          500: '#f94d3c',
-          600: '#e6301e',
-          700: '#c22415',
-          800: '#a02115',
-          900: '#842218',
-          950: '#480d07',
+          50: '#FFF1F1',
+          100: '#FFD9DA',
+          200: '#FFB3B5',
+          300: '#FF7C7F',
+          400: '#FF3D40',
+          500: '#E5121B',
+          600: '#C00E16',
+          700: '#990B12',
+          800: '#7A0C11',
+          900: '#600F13',
+          950: '#480103',
         },
-        dark: {
-          50: '#f6f6f7',
-          100: '#e2e3e5',
-          200: '#c4c6cb',
-          300: '#9fa2a9',
-          400: '#7a7e87',
-          500: '#5f636c',
-          600: '#4b4e56',
-          700: '#3e4046',
-          800: '#1a1b1e',
-          900: '#121316',
-          950: '#0a0a0c',
+        // State colors
+        success: {
+          DEFAULT: '#1FA85C',
+          fg: '#1FA85C',
         },
-        accent: {
-          cyan: '#22d3ee',
-          purple: '#a855f7',
-          emerald: '#10b981',
-          amber: '#f59e0b',
-        }
+        warning: {
+          DEFAULT: '#E0A526',
+        },
+        error: {
+          DEFAULT: '#EF3E46',
+        },
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'JetBrains Mono', 'monospace'],
-        display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
-      },
-      animation: {
-        'gradient': 'gradient 8s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
-      },
-      keyframes: {
-        gradient: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        glow: {
-          '0%': { boxShadow: '0 0 20px rgba(249, 77, 60, 0.3)' },
-          '100%': { boxShadow: '0 0 40px rgba(249, 77, 60, 0.6)' },
-        },
-        typing: {
-          'from': { width: '0' },
-          'to': { width: '100%' },
-        },
-        'blink-caret': {
-          'from, to': { borderColor: 'transparent' },
-          '50%': { borderColor: '#f94d3c' },
-        },
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        body: ['Manrope', 'system-ui', 'sans-serif'],
+        heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        label: ['Chakra Petch', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-        'radial-glow': 'radial-gradient(ellipse at center, rgba(249, 77, 60, 0.15) 0%, transparent 70%)',
+        'red-energy': 'linear-gradient(165deg, #FF2A33 0%, #E5121B 60%, #8E0408 100%)',
       },
       backgroundSize: {
-        'grid': '50px 50px',
+        grid: '50px 50px',
+      },
+      animation: {
+        'pulse-dot': 'pulse-dot 2.4s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'reveal': 'reveal 0.6s ease forwards',
+      },
+      keyframes: {
+        'pulse-dot': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.35' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        reveal: {
+          from: { opacity: '0', transform: 'translateY(14px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      maxWidth: {
+        container: '1200px',
+        wide: '1320px',
       },
     },
   },
@@ -90,4 +100,3 @@ const config: Config = {
 }
 
 export default config
-
