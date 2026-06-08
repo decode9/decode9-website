@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Space_Grotesk, Manrope, Chakra_Petch, JetBrains_Mono } from 'next/font/google';
+import { GA_ID } from '@/lib/analytics';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -97,6 +99,18 @@ export default function RootLayout({
         <meta name="theme-color" content="#0B0C0E" />
       </head>
       <body className="bg-ink-950 text-ink-100 antialiased font-body">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-red focus:text-white focus:rounded"

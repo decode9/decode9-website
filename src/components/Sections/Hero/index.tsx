@@ -4,6 +4,7 @@ import { MapPin, Globe, CalendarCheck, ArrowRight, LayoutGrid } from 'lucide-rea
 import { motion } from 'framer-motion';
 import { useDictionary } from '@/context/DictionaryContext';
 import { useScrollAnimation } from '@/hooks';
+import { trackEvent } from '@/lib/analytics';
 
 export function Hero() {
   const { dictionary } = useDictionary();
@@ -60,6 +61,7 @@ export function Hero() {
             <motion.div className="flex flex-wrap items-center gap-4 mb-10" {...fadeUp(0.2)}>
               <a
                 href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+                onClick={() => trackEvent('cta_click', { location: 'hero', label: 'start_project' })}
                 className="d9-btn d9-btn--energy d9-notch-tr d9-btn--lg inline-flex items-center gap-2"
               >
                 <span>{d.cta1}</span>
@@ -67,6 +69,7 @@ export function Hero() {
               </a>
               <a
                 href="#work"
+                onClick={() => trackEvent('cta_click', { location: 'hero', label: 'see_work' })}
                 className="d9-btn d9-btn--outline d9-btn--lg inline-flex items-center gap-2"
               >
                 <LayoutGrid size={16} />

@@ -6,6 +6,7 @@ import { useScrollAnimation } from '@/hooks';
 import { useDictionary } from '@/context/DictionaryContext';
 import { NotchCard } from '@/components/UI/NotchCard';
 import { projects } from '@/data/projects';
+import { trackEvent } from '@/lib/analytics';
 
 const badgeKeys = ['ecom', 'fin', 'sus', 'ent'] as const;
 
@@ -73,6 +74,7 @@ export function Work() {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackEvent('project_click', { project: project.name })}
                         className="text-ink-400 hover:text-ink-100 transition-colors"
                         aria-label={`Visit ${project.name}`}
                       >
@@ -112,6 +114,7 @@ export function Work() {
             href="https://github.com/decode9"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('contact_link_click', { channel: 'github', source: 'work_section' })}
             className="d9-btn d9-btn--secondary inline-flex items-center gap-2"
           >
             <ExternalLink size={16} />

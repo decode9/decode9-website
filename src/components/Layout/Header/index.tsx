@@ -8,6 +8,7 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import { cn } from '@/utils';
 import { useDictionary } from '@/context/DictionaryContext';
 import { i18n, type Locale } from '@/i18n';
+import { trackEvent } from '@/lib/analytics';
 
 const navItems = [
   { key: 'services', href: '#services' },
@@ -26,6 +27,7 @@ export function Header() {
 
   const switchLocale = (newLocale: Locale) => {
     setLocale(newLocale);
+    trackEvent('language_change', { locale: newLocale });
   };
 
   useEffect(() => {
@@ -83,6 +85,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => trackEvent('nav_click', { section: item.key })}
                 className={cn(
                   'd9-nav-link',
                   activeSection === item.href.replace('#', '') && 'active',
@@ -120,13 +123,18 @@ export function Header() {
             </div>
 
             {/* Contact link */}
-            <Link href="#contact" className="d9-nav-link">
+            <Link
+              href="#contact"
+              onClick={() => trackEvent('nav_click', { section: 'contact' })}
+              className="d9-nav-link"
+            >
               {dictionary.nav.contact}
             </Link>
 
             {/* CTA */}
             <a
               href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+              onClick={() => trackEvent('cta_click', { location: 'header', label: 'email_cta' })}
               className="d9-btn d9-btn--energy d9-notch-tr d9-btn--sm inline-flex items-center gap-2"
             >
               <span>{dictionary.nav.cta}</span>
@@ -141,7 +149,11 @@ export function Header() {
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => {
+              const next = !isMobileMenuOpen;
+              setIsMobileMenuOpen(next);
+              if (next) trackEvent('mobile_menu_open');
+            }}
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -164,7 +176,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => { setIsMobileMenuOpen(false); trackEvent('nav_click', { section: item.key, source: 'mobile' }); }}
                   className={cn(
                     'block px-4 py-3 text-sm font-medium transition-colors rounded-sm',
                     activeSection === item.href.replace('#', '')
@@ -177,7 +189,7 @@ export function Header() {
               ))}
               <Link
                 href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => { setIsMobileMenuOpen(false); trackEvent('nav_click', { section: 'contact', source: 'mobile' }); }}
                 className="block px-4 py-3 text-sm font-medium text-ink-300 hover:text-ink-50 transition-colors"
               >
                 {dictionary.nav.contact}
@@ -208,7 +220,7 @@ export function Header() {
                 </div>
                 <a
                   href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => { setIsMobileMenuOpen(false); trackEvent('cta_click', { location: 'header_mobile', label: 'email_cta' }); }}
                   className="d9-btn d9-btn--energy d9-notch-tr d9-btn--sm flex-1 justify-center"
                 >
                   {dictionary.nav.cta}

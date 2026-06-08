@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks';
 import { useDictionary } from '@/context/DictionaryContext';
+import { trackEvent } from '@/lib/analytics';
 
 const GITHUB_SVG = (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -68,6 +69,7 @@ export function Contact() {
             <p className="d9-body-lg mb-8">{d.sub}</p>
             <a
               href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+              onClick={() => trackEvent('cta_click', { location: 'contact', label: 'email_me' })}
               className="d9-btn d9-btn--energy d9-notch-tr d9-btn--lg inline-flex items-center gap-2"
             >
               <span>{dictionary.cta.emailme}</span>
@@ -88,6 +90,7 @@ export function Contact() {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
+                onClick={() => trackEvent('contact_link_click', { channel: key })}
                 className="d9-card d9-card--hover flex items-center gap-4 px-5 py-4 group"
               >
                 <span className="w-10 h-10 flex items-center justify-center rounded-sm bg-ink-700 text-ink-300 group-hover:text-ink-100 transition-colors flex-shrink-0">

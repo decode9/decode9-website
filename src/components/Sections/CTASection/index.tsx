@@ -5,6 +5,7 @@ import { ArrowRight, LayoutGrid } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks';
 import { useDictionary } from '@/context/DictionaryContext';
+import { trackEvent } from '@/lib/analytics';
 
 export function CTASection() {
   const { dictionary } = useDictionary();
@@ -70,6 +71,7 @@ export function CTASection() {
         >
           <a
             href="mailto:jbastidas@theempire.tech?subject=Project%20inquiry%20%E2%80%94%20decode9"
+            onClick={() => trackEvent('cta_click', { location: 'cta_section', label: 'start_project' })}
             className="d9-btn d9-btn--energy d9-notch-tr d9-btn--lg inline-flex items-center gap-2"
           >
             <span>{d.start}</span>
@@ -77,6 +79,7 @@ export function CTASection() {
           </a>
           <a
             href="#work"
+            onClick={() => trackEvent('cta_click', { location: 'cta_section', label: 'see_work' })}
             className="d9-btn d9-btn--secondary d9-btn--lg inline-flex items-center gap-2"
           >
             <LayoutGrid size={16} />
