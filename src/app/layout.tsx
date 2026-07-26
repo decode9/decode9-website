@@ -96,6 +96,7 @@ export default function RootLayout({
     >
       <head>
         <meta name="google" content="notranslate" />
+        <meta name="google-adsense-account" content="ca-pub-1675722214703683" />
         <meta name="theme-color" content="#0B0C0E" />
       </head>
       <body className="bg-ink-950 text-ink-100 antialiased font-body">
