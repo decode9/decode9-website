@@ -1,118 +1,57 @@
 'use client';
 
-import {
-  Layers,
-  Rocket,
-  Workflow,
-  Share2,
-  Sparkles,
-  Server,
-  Compass,
-  Gauge,
-  Target,
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks';
+import ChapterHeading from '@/components/UI/ChapterHeading';
+import ChapterSection from '@/components/UI/ChapterSection';
 import { useDictionary } from '@/context/DictionaryContext';
-import { NotchCard } from '@/components/UI/NotchCard';
 import { services } from '@/data/services';
+import ServiceCard from './components/ServiceCard';
+import useServices from './useServices';
 
-const iconMap: Record<string, React.ElementType> = {
-  Layers,
-  Rocket,
-  Workflow,
-  Share2,
-  Sparkles,
-  Server,
-  Compass,
-  Gauge,
-};
-
-const svcKeys = [
-  'fullstack',
-  'mvp',
-  'auto',
-  'arch',
-  'ai',
-  'devops',
-  'consult',
-  'proc',
-] as const;
-
-type SvcKey = typeof svcKeys[number];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-export function Services() {
+const Services = () => {
   const { dictionary } = useDictionary();
-  const { ref, isVisible } = useScrollAnimation({ triggerOnce: true });
-  const d = dictionary.svc;
+  const { ref, focusNode } = useServices();
+  const capabilities = dictionary.capabilities;
 
   return (
-    <section id="services" className="d9-section d9-section-alt" aria-labelledby="svc-title">
-      <div className="d9-container" ref={ref}>
-        {/* Header */}
-        <motion.div
-          className="d9-head"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+    <ChapterSection
+      id="capabilities"
+      code="02"
+      label={dictionary.nav.chapters.capabilities}
+      labelledBy="capabilities-title"
+      layout="wide"
+    >
+      <div className="d9-container-wide lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-x-10 h:flex h:w-max h:max-w-none h:items-center h:gap-14 h:px-[max(24px,5vw)]">
+        <div className="lg:col-start-1 h:w-[420px] h:flex-none">
+          <ChapterHeading
+            id="capabilities-title"
+            eyebrow={capabilities.eyebrow}
+            title={capabilities.title}
+            sub={capabilities.sub}
+          />
+        </div>
+        <div
+          ref={ref}
+          className="grid gap-4 sm:grid-cols-2 lg:col-start-1 h:grid-flow-col h:grid-rows-2 h:auto-cols-[290px] h:grid-cols-none"
         >
-          <span className="d9-eyebrow">{d.eyebrow}</span>
-          <h2 id="svc-title" className="d9-h1 mb-4">{d.title}</h2>
-          <p className="d9-body-lg">{d.sub}</p>
-        </motion.div>
-
-        {/* Services grid */}
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
-          variants={container}
-          initial="hidden"
-          animate={isVisible ? 'show' : 'hidden'}
-        >
-          {services.map((svc, idx) => {
-            const svcKey = svcKeys[idx] as SvcKey;
-            const svcData = d[svcKey] as { t: string; d: string; out: string };
-            const Icon = iconMap[svc.icon] ?? Layers;
-
-            return (
-              <motion.article key={svc.id} variants={item}>
-                <NotchCard variant="service" hover className="p-5 h-full flex flex-col gap-4">
-                  {/* Icon */}
-                  <span className="d9-notch-tr inline-flex items-center justify-center w-10 h-10 bg-ink-700">
-                    <Icon size={18} className="text-ink-200" />
-                  </span>
-
-                  <div className="flex-1">
-                    <h3 className="d9-h4 mb-2">{svcData.t}</h3>
-                    <p className="d9-body text-[14px] text-ink-400 mb-4">{svcData.d}</p>
-                  </div>
-
-                  {/* Outcome */}
-                  <p className="flex items-start gap-2 text-[13px] text-ink-400 border-t border-ink-700 pt-3">
-                    <Target size={13} className="flex-shrink-0 mt-0.5 text-ink-500" />
-                    <span>{svcData.out}</span>
-                  </p>
-
-                  {/* Tech chips */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {svc.techChips.map((chip) => (
-                      <span key={chip} className="d9-tech-chip">{chip}</span>
-                    ))}
-                  </div>
-                </NotchCard>
-              </motion.article>
-            );
-          })}
-        </motion.div>
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.key}
+              service={service}
+              copy={capabilities.services[service.key]}
+              index={index}
+              outcomeLabel={capabilities.outcome}
+              onFocus={focusNode}
+            />
+          ))}
+        </div>
+        {/* Open space: the 3D constellation answers to the cards from here. */}
+        <div
+          aria-hidden="true"
+          className="hidden lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:block h:w-[34vw] h:flex-none"
+        />
       </div>
-    </section>
+    </ChapterSection>
   );
-}
+};
+
+export default Services;

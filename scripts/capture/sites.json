@@ -1,0 +1,8 @@
+[
+  { "id": "the-empire", "url": "https://theempire.tech" },
+  { "id": "solvo", "url": "https://solvo.lat", "click": ["Ocultar consejos"] },
+  { "id": "desaparecidos", "url": "https://desaparecidosterremotovenezuela.com", "click": ["Rechazar todo"], "hideFixed": true },
+  { "id": "finami", "url": "https://finami.app" },
+  { "id": "latin-freedom", "url": "https://latinfreedom.org" },
+  { "id": "patilla-games", "url": "https://games.lapatilla.com" }
+]

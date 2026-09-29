@@ -2,57 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font variables are set by next/font/google via CSS variables on <html> */
-/* --font-heading, --font-body, --font-label, --font-code come from layout.tsx */
+/* Font variables (--font-heading, --font-body, --font-label, --font-code) are set on <html> by next/font. */
 
 :root {
   /* Brand */
-  --brand-red: #E5121B;
-  --brand-red-dark: #8E0408;
-  --brand-red-light: #FF2A33;
-  --red-energy: linear-gradient(165deg, #FF2A33 0%, #E5121B 60%, #8E0408 100%);
+  --brand-red: #e5121b;
+  --brand-red-dark: #8e0408;
+  --brand-red-light: #ff2a33;
+  --red-energy: linear-gradient(165deg, #ff2a33 0%, #e5121b 60%, #8e0408 100%);
   --glow-red: 0 0 24px rgba(229, 18, 27, 0.4);
   --glow-red-md: 0 0 40px rgba(229, 18, 27, 0.55);
 
+  /* Scene accent: follows the chapter / project on screen */
+  --accent: var(--brand-red);
+
   /* Ink palette */
-  --ink-950: #0B0C0E;
+  --ink-950: #0b0c0e;
   --ink-900: #111214;
-  --ink-800: #18191C;
-  --ink-700: #22242A;
-  --ink-600: #2E3038;
-  --ink-500: #3D4049;
-  --ink-400: #5A5D68;
-  --ink-300: #7E8290;
-  --ink-200: #B0B4BF;
-  --ink-100: #D4D7DE;
-  --ink-50: #F4F6F8;
-
-  /* Text */
-  --text-primary: var(--ink-50);
-  --text-secondary: var(--ink-300);
-  --text-muted: var(--ink-400);
-
-  /* Surfaces */
-  --surface-base: var(--ink-950);
-  --surface-card: var(--ink-800);
-  --surface-alt: var(--ink-900);
-  --border-default: var(--ink-700);
+  --ink-800: #18191c;
+  --ink-700: #22242a;
+  --ink-600: #2e3038;
+  --ink-500: #3d4049;
+  --ink-400: #5a5d68;
+  --ink-300: #7e8290;
+  --ink-200: #b0b4bf;
+  --ink-100: #d4d7de;
+  --ink-50: #f4f6f8;
 
   /* State */
-  --success-fg: #1FA85C;
+  --success-fg: #1fa85c;
+  --warning-fg: #e0a526;
 
-  /* Fonts */
-  --font-heading: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
-  --font-label: 'Chakra Petch', system-ui, sans-serif;
-  --font-code: 'JetBrains Mono', monospace;
+  /* Glass surfaces over the WebGL stage */
+  --glass: rgba(11, 12, 14, 0.78);
+  --glass-strong: rgba(11, 12, 14, 0.9);
+  --hairline: rgba(255, 255, 255, 0.08);
 
   /* Motion */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 180ms;
   --dur-base: 280ms;
   --dur-slow: 400ms;
+
+  /* Layout */
+  --header-h: 72px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes scan-x {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
 }
 
 @layer base {
@@ -61,23 +121,27 @@
   }
 
   html {
-    @apply scroll-smooth;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--ink-950);
     color: var(--ink-100);
-    font-family: var(--font-body);
+    font-family: var(--font-body), system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
 
   ::selection {
-    background-color: rgba(229, 18, 27, 0.25);
+    background-color: rgba(229, 18, 27, 0.3);
     color: var(--ink-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-red-light);
+    outline-offset: 3px;
   }
 
   ::-webkit-scrollbar {
@@ -96,25 +160,36 @@
 }
 
 @layer components {
-  /* Signature notch corners */
+  /* ── Accessibility ─────────────────────────────────────────── */
+  .d9-skip-link {
+    position: absolute;
+    left: 16px;
+    top: -100px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--brand-red);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+  .d9-skip-link:focus {
+    top: 16px;
+  }
+
+  /* ── Signature notch corners ───────────────────────────────── */
   .d9-notch-tr {
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
   }
-
   .d9-notch-tr-lg {
     clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
   }
-
   .d9-notch-num {
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
   }
 
-  /* Red energy background */
   .d9-bg-energy {
     background: var(--red-energy);
   }
-
-  /* Text energy */
   .d9-text-energy {
     background: var(--red-energy);
     -webkit-background-clip: text;
@@ -122,20 +197,168 @@
     background-clip: text;
   }
 
-  /* Eyebrow / section label */
+  /* ── Stage (WebGL) and atmosphere ──────────────────────────── */
+  .d9-stage {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 70% 40%, rgba(229, 18, 27, 0.08), transparent 60%), var(--ink-950);
+  }
+  .d9-stage canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .d9-stage__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% 50%;
+  }
+
+  .d9-grain {
+    position: fixed;
+    inset: -50%;
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Opening sequence ──────────────────────────────────────── */
+  html[data-loading] {
+    overflow: hidden;
+  }
+  /* UI waits behind the preloader; only the stage (the forming mark) is visible. */
+  html[data-loading] [data-ui] {
+    opacity: 0;
+    visibility: hidden;
+  }
+  [data-ui] {
+    transition:
+      opacity 0.9s var(--ease-out),
+      visibility 0.9s;
+  }
+  [data-ui='header'] {
+    transition-delay: 0.25s;
+  }
+  [data-ui='main'] {
+    transition-delay: 0.4s;
+  }
+  [data-ui='chrome'] {
+    transition-delay: 0.75s;
+  }
+  html[data-loading] .d9-stage__poster {
+    opacity: 0 !important;
+  }
+  .d9-preloader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: opacity 0.7s var(--ease-out);
+  }
+  html[data-loading] .d9-preloader,
+  .d9-preloader[data-phase='decoded'],
+  .d9-preloader[data-phase='leaving'] {
+    display: flex;
+  }
+  .d9-preloader--leaving {
+    opacity: 0;
+  }
+
+  /* ── HUD micro typography ──────────────────────────────────── */
+  .d9-hud-label {
+    font-family: var(--font-code), monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+  }
+  .d9-hud-code {
+    font-family: var(--font-code), monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Corner brackets around a frame */
+  .d9-brackets {
+    position: relative;
+  }
+  .d9-brackets::before,
+  .d9-brackets::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .d9-brackets::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+  .d9-brackets::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  /* ── Chapters ──────────────────────────────────────────────── */
+  .d9-chapter {
+    position: relative;
+    padding-top: clamp(96px, 14vh, 144px);
+    padding-bottom: clamp(96px, 14vh, 144px);
+  }
+  /* Keeps copy readable over the stage: dark under the text, open where the 3D lives. */
+  .d9-chapter--veil {
+    background: linear-gradient(90deg, rgba(11, 12, 14, 0.86) 0%, rgba(11, 12, 14, 0.62) 48%, transparent 78%);
+  }
+  .d9-chapter--veil-full {
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(11, 12, 14, 0.78) 10%,
+      rgba(11, 12, 14, 0.78) 90%,
+      transparent
+    );
+  }
+  @media (max-width: 1023px) {
+    .d9-chapter--veil {
+      background: rgba(11, 12, 14, 0.72);
+    }
+  }
+
+  /* SplitText line masks */
+  .d9-line-mask {
+    overflow: clip;
+    padding-bottom: 0.08em;
+  }
+
+  /* ── Eyebrow / labels ──────────────────────────────────────── */
   .d9-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: var(--font-label);
+    gap: 10px;
+    font-family: var(--font-label), system-ui, sans-serif;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--brand-red);
-    margin-bottom: 16px;
+    color: var(--brand-red-light);
+    margin-bottom: 18px;
   }
-
   .d9-eyebrow::before {
     content: '';
     display: inline-block;
@@ -145,81 +368,106 @@
     flex-shrink: 0;
   }
 
-  /* Mono label (used in spec card, console) */
   .d9-mono-label {
-    font-family: var(--font-code);
+    font-family: var(--font-code), monospace;
     font-size: 11px;
     color: var(--ink-400);
     letter-spacing: 0.04em;
   }
-
-  /* Data values in console */
   .d9-data {
-    font-family: var(--font-code);
+    font-family: var(--font-code), monospace;
     font-size: 14px;
     font-weight: 600;
     color: var(--ink-50);
   }
 
-  /* Tech chip */
+  /* ── Chips, tags, badges ───────────────────────────────────── */
   .d9-tech-chip {
     display: inline-flex;
     align-items: center;
     padding: 3px 10px;
     border-radius: 4px;
     border: 1px solid var(--ink-600);
-    background: var(--ink-800);
-    font-family: var(--font-label);
+    background: rgba(24, 25, 28, 0.8);
+    font-family: var(--font-label), system-ui, sans-serif;
     font-size: 11px;
     font-weight: 500;
     color: var(--ink-300);
     letter-spacing: 0.04em;
   }
-
-  /* Card tag */
   .d9-tag {
     display: inline-flex;
     align-items: center;
     padding: 4px 12px;
     border-radius: 4px;
     border: 1px solid var(--ink-700);
-    background: var(--ink-900);
+    background: rgba(17, 18, 20, 0.85);
     font-size: 13px;
     color: var(--ink-200);
-    transition: border-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+    transition:
+      border-color var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
   }
-
   .d9-tag:hover {
     border-color: rgba(229, 18, 27, 0.4);
     color: var(--ink-50);
   }
+  .d9-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: 1px solid var(--ink-600);
+    background: rgba(24, 25, 28, 0.85);
+    color: var(--ink-100);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 2px;
+    cursor: pointer;
+    transition:
+      border-color var(--dur-fast) var(--ease-standard),
+      background var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
+  }
+  .d9-chip:hover {
+    border-color: var(--brand-red);
+    background: rgba(229, 18, 27, 0.12);
+    color: var(--ink-50);
+  }
+  .d9-chip[aria-pressed='true'] {
+    border-color: var(--brand-red);
+    background: rgba(229, 18, 27, 0.18);
+    color: var(--ink-50);
+  }
 
-  /* Badge */
   .d9-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
     padding: 3px 8px;
     border-radius: 4px;
-    font-family: var(--font-label);
+    font-family: var(--font-label), system-ui, sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-
   .d9-badge--brand {
     background: rgba(229, 18, 27, 0.15);
-    color: #FF6B70;
+    color: #ff6b70;
     border: 1px solid rgba(229, 18, 27, 0.3);
   }
-
   .d9-badge--success {
     background: rgba(31, 168, 92, 0.12);
-    color: #2ECC71;
+    color: #2ecc71;
     border: 1px solid rgba(31, 168, 92, 0.3);
   }
-
+  .d9-badge--muted {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--ink-300);
+    border: 1px solid var(--ink-600);
+  }
   .d9-badge--dot::before {
     content: '';
     display: inline-block;
@@ -230,51 +478,41 @@
     animation: pulse-dot 2.4s ease-in-out infinite;
   }
 
-  /* Navigation links */
+  /* ── Navigation ────────────────────────────────────────────── */
   .d9-nav-link {
-    font-family: var(--font-body);
-    font-size: 14px;
+    position: relative;
+    font-size: 13px;
     font-weight: 500;
     color: var(--ink-300);
     text-decoration: none;
     transition: color var(--dur-fast) var(--ease-standard);
-    position: relative;
   }
-
   .d9-nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 1px;
     background: var(--brand-red);
     transition: width var(--dur-base) var(--ease-standard);
   }
-
-  .d9-nav-link:hover {
+  .d9-nav-link:hover,
+  .d9-nav-link[aria-current='step'] {
     color: var(--ink-50);
   }
-
-  .d9-nav-link:hover::after {
+  .d9-nav-link:hover::after,
+  .d9-nav-link[aria-current='step']::after {
     width: 100%;
   }
 
-  .d9-nav-link.active {
-    color: var(--ink-50);
-  }
-
-  .d9-nav-link.active::after {
-    width: 100%;
-  }
-
-  /* Buttons */
+  /* ── Buttons ───────────────────────────────────────────────── */
   .d9-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-family: var(--font-body);
+    font-family: var(--font-body), system-ui, sans-serif;
     font-weight: 600;
     font-size: 14px;
     text-decoration: none;
@@ -283,55 +521,62 @@
     transition: all var(--dur-base) var(--ease-standard);
     white-space: nowrap;
   }
-
+  .d9-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
   .d9-btn--energy {
     background: var(--red-energy);
     color: white;
     padding: 12px 24px;
   }
-
-  .d9-btn--energy:hover {
+  .d9-btn--energy:hover:not(:disabled) {
     box-shadow: var(--glow-red-md);
     filter: brightness(1.08);
   }
-
   .d9-btn--outline {
-    background: transparent;
+    background: rgba(11, 12, 14, 0.4);
     color: var(--ink-200);
     border: 1px solid var(--ink-600);
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
-
-  .d9-btn--outline:hover {
-    border-color: var(--ink-400);
+  .d9-btn--outline:hover:not(:disabled) {
+    border-color: var(--ink-300);
     color: var(--ink-50);
   }
-
   .d9-btn--secondary {
     background: var(--ink-800);
     color: var(--ink-200);
     border: 1px solid var(--ink-600);
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
-
-  .d9-btn--secondary:hover {
+  .d9-btn--secondary:hover:not(:disabled) {
     border-color: var(--ink-400);
     color: var(--ink-50);
   }
-
+  .d9-btn--ghost {
+    background: transparent;
+    color: var(--ink-300);
+    padding: 8px 10px;
+  }
+  .d9-btn--ghost:hover:not(:disabled) {
+    color: var(--ink-50);
+  }
   .d9-btn--sm {
     padding: 8px 16px;
     font-size: 13px;
   }
-
   .d9-btn--lg {
-    padding: 14px 32px;
+    padding: 14px 30px;
     font-size: 15px;
   }
+  .d9-btn--icon {
+    padding: 8px;
+  }
 
-  /* Section container */
+  /* ── Layout ────────────────────────────────────────────────── */
   .d9-container {
     width: 100%;
     max-width: 1200px;
@@ -340,114 +585,98 @@
     padding-left: 24px;
     padding-right: 24px;
   }
-
   .d9-container-wide {
+    width: 100%;
     max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 24px;
     padding-right: 24px;
   }
-
-  /* Section spacing */
-  .d9-section {
-    padding-top: 112px;
-    padding-bottom: 112px;
-  }
-
-  .d9-section-alt {
-    background-color: var(--ink-900);
-  }
-
-  /* Section heading group */
   .d9-head {
-    margin-bottom: 64px;
-    max-width: 640px;
+    margin-bottom: 56px;
+    max-width: 660px;
   }
-
   .d9-head-center {
     text-align: center;
-    max-width: 640px;
+    max-width: 660px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 64px;
+    margin-bottom: 56px;
   }
 
-  /* Typography */
+  /* ── Typography ────────────────────────────────────────────── */
   .d9-display-lg {
-    font-family: var(--font-heading);
-    font-size: clamp(38px, 5.5vw, 56px);
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-size: clamp(36px, 5.4vw, 64px);
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
     color: var(--ink-50);
   }
-
   .d9-h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(28px, 3.5vw, 44px);
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-size: clamp(28px, 3.6vw, 46px);
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.12;
     letter-spacing: -0.02em;
     color: var(--ink-50);
   }
-
   .d9-h3 {
-    font-family: var(--font-heading);
-    font-size: clamp(18px, 2vw, 22px);
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-size: clamp(19px, 2vw, 24px);
     font-weight: 600;
     line-height: 1.25;
     color: var(--ink-50);
   }
-
   .d9-h4 {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading), system-ui, sans-serif;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.3;
     color: var(--ink-50);
   }
-
   .d9-body-lg {
     font-size: 17px;
     line-height: 1.7;
-    color: var(--ink-300);
+    color: var(--ink-200);
   }
-
   .d9-body {
     font-size: 15px;
     line-height: 1.7;
     color: var(--ink-300);
   }
-
   .d9-label {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading), system-ui, sans-serif;
     font-size: 15px;
     font-weight: 600;
     color: var(--ink-100);
   }
-
   .d9-caption {
     font-size: 13px;
     color: var(--ink-400);
   }
 
-  /* Card base */
+  /* ── Surfaces ──────────────────────────────────────────────── */
   .d9-card {
-    background: var(--ink-800);
+    background: rgba(24, 25, 28, 0.82);
     border: 1px solid var(--ink-700);
     border-radius: 2px;
     transition: all var(--dur-base) var(--ease-standard);
   }
-
   .d9-card--hover:hover {
-    background: var(--ink-700);
+    background: rgba(34, 36, 42, 0.92);
     border-color: var(--ink-600);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
+  .d9-glass {
+    background: var(--glass);
+    border: 1px solid var(--hairline);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  }
 
-  /* Pill / availability badge */
   .d9-pill {
     display: inline-flex;
     align-items: center;
@@ -455,62 +684,148 @@
     padding: 6px 14px;
     border-radius: 999px;
     border: 1px solid var(--ink-600);
-    background: var(--ink-800);
+    background: rgba(24, 25, 28, 0.8);
     font-size: 13px;
     color: var(--ink-200);
     font-weight: 500;
-    margin-bottom: 28px;
   }
-
   .d9-pill__dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
     flex-shrink: 0;
   }
-
   .d9-pill__dot--live {
-    background: #1FA85C;
+    background: var(--success-fg);
     animation: pulse-dot 2.4s ease-in-out infinite;
   }
 
-  /* Console code colors */
-  .d9s-c-mut { color: var(--ink-400); }
-  .d9s-c-fn  { color: #79C0FF; }
-  .d9s-c-str { color: #A5D6FF; }
-  .d9s-c-key { color: var(--brand-red); }
+  .d9-caret::after {
+    content: '▍';
+    margin-left: 1px;
+    color: var(--accent);
+    animation: caret 1s steps(1) infinite;
+  }
 
-  /* Social links */
+  .d9s-c-mut {
+    color: var(--ink-400);
+  }
+  .d9s-c-fn {
+    color: #79c0ff;
+  }
+  .d9s-c-str {
+    color: #a5d6ff;
+  }
+  .d9s-c-key {
+    color: var(--brand-red);
+  }
+
   .d9-social {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 36px;
     height: 36px;
-    border-radius: 4px;
+    border-radius: 2px;
     border: 1px solid var(--ink-700);
     color: var(--ink-400);
     text-decoration: none;
     transition: all var(--dur-fast) var(--ease-standard);
   }
-
   .d9-social:hover {
     border-color: var(--ink-500);
     color: var(--ink-100);
     background: var(--ink-800);
   }
+
+  /* ── Guide console ─────────────────────────────────────────── */
+  .d9-console {
+    background: var(--glass-strong);
+    border: 1px solid var(--hairline);
+    backdrop-filter: blur(18px) saturate(1.25);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  .d9-bubble {
+    max-width: 92%;
+    font-size: 14px;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+  .d9-bubble p + p,
+  .d9-bubble p + ul,
+  .d9-bubble ul + p {
+    margin-top: 6px;
+  }
+  .d9-bubble ul {
+    list-style: '— ';
+    padding-left: 16px;
+  }
+  .d9-bubble a {
+    color: var(--brand-red-light);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .d9-bubble strong {
+    color: var(--ink-50);
+    font-weight: 700;
+  }
 }
 
 @layer utilities {
-  .animation-delay-100 { animation-delay: 100ms; }
-  .animation-delay-200 { animation-delay: 200ms; }
-  .animation-delay-300 { animation-delay: 300ms; }
-  .animation-delay-400 { animation-delay: 400ms; }
-  .animation-delay-500 { animation-delay: 500ms; }
-  .animation-delay-600 { animation-delay: 600ms; }
+  .font-body {
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+  .font-heading {
+    font-family: var(--font-heading), system-ui, sans-serif;
+  }
+  .font-label {
+    font-family: var(--font-label), system-ui, sans-serif;
+  }
+  .font-code {
+    font-family: var(--font-code), monospace;
+  }
+  .h-svh-screen {
+    min-height: 100svh;
+  }
+}
 
-  .font-body { font-family: var(--font-body); }
-  .font-heading { font-family: var(--font-heading); }
-  .font-label { font-family: var(--font-label); }
-  .font-code { font-family: var(--font-code); }
+/* Horizontal tour: tighter vertical rhythm so every panel fits one screen. */
+@media (min-width: 1024px) and (min-height: 600px) and (prefers-reduced-motion: no-preference) {
+  .d9-head,
+  .d9-head-center {
+    margin-bottom: 28px;
+  }
+  /* Panels travel side by side: the veil fades in from its left edge instead of starting on a seam. */
+  .d9-chapter--veil {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(11, 12, 14, 0.78) 14%,
+      rgba(11, 12, 14, 0.6) 52%,
+      transparent 82%
+    );
+  }
+}
+
+@media (max-height: 820px) and (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .d9-h1 {
+    font-size: clamp(26px, 3vw, 38px);
+  }
+  .d9-body-lg {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

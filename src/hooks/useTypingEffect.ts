@@ -1,61 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface UseTypingEffectOptions {
   text: string;
+  /** Milliseconds between steps. */
   speed?: number;
+  /** Characters revealed per step. */
+  step?: number;
   delay?: number;
-  loop?: boolean;
-  loopDelay?: number;
+  /** When false the full text is shown immediately (reduced motion, old messages). */
+  enabled?: boolean;
 }
 
-export function useTypingEffect({
+interface UseTypingEffectReturn {
+  displayedText: string;
+  isTyping: boolean;
+  isComplete: boolean;
+}
+
+const useTypingEffect = ({
   text,
-  speed = 50,
+  speed = 18,
+  step = 2,
   delay = 0,
-  loop = false,
-  loopDelay = 2000,
-}: UseTypingEffectOptions) {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+  enabled = true,
+}: UseTypingEffectOptions): UseTypingEffectReturn => {
+  const [count, setCount] = useState(enabled ? 0 : text.length);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    let currentIndex = 0;
-
-    const startTyping = () => {
-      setIsTyping(true);
-      setIsComplete(false);
-      setDisplayedText('');
-      currentIndex = 0;
-
-      const type = () => {
-        if (currentIndex < text.length) {
-          setDisplayedText(text.slice(0, currentIndex + 1));
-          currentIndex++;
-          timeout = setTimeout(type, speed);
-        } else {
-          setIsTyping(false);
-          setIsComplete(true);
-
-          if (loop) {
-            timeout = setTimeout(() => {
-              setDisplayedText('');
-              currentIndex = 0;
-              startTyping();
-            }, loopDelay);
-          }
-        }
-      };
-
-      timeout = setTimeout(type, delay);
+    if (!enabled) {
+      setCount(text.length);
+      return undefined;
+    }
+    setCount(0);
+    let revealed = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      revealed = Math.min(text.length, revealed + step);
+      setCount(revealed);
+      if (revealed < text.length) timer = setTimeout(tick, speed);
     };
+    timer = setTimeout(tick, delay);
+    return () => clearTimeout(timer);
+  }, [text, speed, step, delay, enabled]);
 
-    startTyping();
+  return {
+    displayedText: text.slice(0, count),
+    isTyping: count < text.length,
+    isComplete: count >= text.length,
+  };
+};
 
-    return () => clearTimeout(timeout);
-  }, [text, speed, delay, loop, loopDelay]);
-
-  return { displayedText, isTyping, isComplete };
-}
-
+export default useTypingEffect;

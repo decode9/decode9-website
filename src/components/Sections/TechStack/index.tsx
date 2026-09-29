@@ -1,118 +1,57 @@
 'use client';
 
-import {
-  Code2,
-  LayoutDashboard,
-  ServerCog,
-  Database,
-  Cloud,
-  GitBranch,
-  Bot,
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks';
+import ChapterHeading from '@/components/UI/ChapterHeading';
+import ChapterSection from '@/components/UI/ChapterSection';
 import { useDictionary } from '@/context/DictionaryContext';
+import { stackCategories } from '@/data/stack';
+import StackCard from './components/StackCard';
+import StackFilters from './components/StackFilters';
+import useTechStack from './useTechStack';
 
-const stackCategories = [
-  {
-    key: 'lang',
-    Icon: Code2,
-    tags: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C#', 'PHP'],
-  },
-  {
-    key: 'front',
-    Icon: LayoutDashboard,
-    tags: ['React', 'Angular', 'React Native', 'GraphQL'],
-  },
-  {
-    key: 'back',
-    Icon: ServerCog,
-    tags: ['Node.js', 'REST', 'gRPC', 'Microservices'],
-  },
-  {
-    key: 'db',
-    Icon: Database,
-    tags: ['MySQL', 'MSSQL', 'MongoDB', 'SQLite'],
-  },
-  {
-    key: 'cloud',
-    Icon: Cloud,
-    tags: ['AWS', 'Azure', 'Google Cloud', 'DigitalOcean'],
-  },
-  {
-    key: 'devops',
-    Icon: GitBranch,
-    tags: ['Docker', 'Kubernetes', 'Jenkins', 'GitHub Actions', 'GitLab CI', 'SonarQube', 'Ubuntu'],
-  },
-  {
-    key: 'ai',
-    Icon: Bot,
-    tags: ['MCP', 'AI agents', 'n8n'],
-  },
-];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-export function TechStack() {
+const TechStack = () => {
   const { dictionary } = useDictionary();
-  const { ref, isVisible } = useScrollAnimation({ triggerOnce: true });
-  const d = dictionary.stack;
+  const { scopeRef, filter, setFilter, ordered } = useTechStack();
+  const stack = dictionary.stack;
 
   return (
-    <section id="stack" className="d9-section" aria-labelledby="stack-title">
-      <div className="d9-container" ref={ref}>
-        {/* Header */}
-        <motion.div
-          className="d9-head"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="d9-eyebrow">{d.eyebrow}</span>
-          <h2 id="stack-title" className="d9-h1 mb-4">{d.title}</h2>
-          <p className="d9-body-lg">{d.sub}</p>
-        </motion.div>
-
-        {/* Category cards grid */}
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-          variants={container}
-          initial="hidden"
-          animate={isVisible ? 'show' : 'hidden'}
-        >
-          {stackCategories.map(({ key, Icon, tags }) => (
-            <motion.article
-              key={key}
-              variants={item}
-              className="d9-card p-5"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-8 flex items-center justify-center rounded-sm bg-ink-700 text-ink-300">
-                  <Icon size={16} />
-                </span>
-                <h3 className="d9-h4 text-[15px]">
-                  {d.cat[key as keyof typeof d.cat]}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <span key={tag} className="d9-tag text-[12px] py-0.5 px-2.5">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+    <ChapterSection
+      id="stack"
+      code="05"
+      label={dictionary.nav.chapters.stack}
+      labelledBy="stack-title"
+      veil="side"
+      layout="wide"
+    >
+      <div className="d9-container-wide grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] h:flex h:w-max h:max-w-none h:items-center h:gap-14 h:px-[max(24px,5vw)]">
+        <div ref={scopeRef} className="h:flex h:items-center h:gap-14">
+          <div className="h:w-[440px] h:flex-none">
+            <ChapterHeading id="stack-title" eyebrow={stack.eyebrow} title={stack.title} sub={stack.sub} />
+            <StackFilters
+              label={stack.eyebrow}
+              allLabel={stack.all}
+              names={stack.cat}
+              keys={stackCategories.map((category) => category.key)}
+              active={filter}
+              onChange={setFilter}
+            />
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 h:grid-flow-col h:grid-rows-2 h:auto-cols-[300px] h:grid-cols-none">
+            {ordered.map((category) => (
+              <StackCard
+                key={category.key}
+                category={category}
+                name={stack.cat[category.key]}
+                dimmed={filter !== 'all' && filter !== category.key}
+                selected={filter === category.key}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Open space for the 3D sphere. */}
+        <div aria-hidden="true" className="hidden lg:block h:w-[30vw] h:flex-none" />
       </div>
-    </section>
+    </ChapterSection>
   );
-}
+};
+
+export default TechStack;

@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // GitHub Pages serves static files only: every route is pre-rendered to /out.
+  output: 'export',
+  trailingSlash: true,
   images: {
-    // GitHub avatar no longer used, but keep domain allowlist clean
-    remotePatterns: [],
+    unoptimized: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

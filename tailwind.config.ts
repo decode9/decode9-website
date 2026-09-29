@@ -6,7 +6,6 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -57,12 +56,12 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
-        body: ['Manrope', 'system-ui', 'sans-serif'],
-        heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        label: ['Chakra Petch', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
+        label: ['var(--font-label)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-code)', 'monospace'],
+        display: ['var(--font-heading)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
@@ -71,24 +70,10 @@ const config: Config = {
       backgroundSize: {
         grid: '50px 50px',
       },
-      animation: {
-        'pulse-dot': 'pulse-dot 2.4s ease-in-out infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'reveal': 'reveal 0.6s ease forwards',
-      },
-      keyframes: {
-        'pulse-dot': {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.35' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        reveal: {
-          from: { opacity: '0', transform: 'translateY(14px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
+      screens: {
+        // Horizontal tour: roomy desktop viewports that allow motion. Everything
+        // else keeps the vertical layout. Keep in sync with lib/motion/tokens.ts.
+        h: { raw: '(min-width: 1024px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)' },
       },
       maxWidth: {
         container: '1200px',

@@ -14,7 +14,7 @@ export const debounceSnippet = [
   '  };',
   '}',
   '',
-  "const search = debounce(q => api.search(q), 250);",
+  'const search = debounce(q => api.search(q), 250);',
   "input.addEventListener('input', e => search(e.target.value));",
 ].join('\n');
 

@@ -1,207 +1,621 @@
 {
-  "metadata": {
-    "title": "decode9 — Jorge Bastidas · Senior Full Stack Developer",
-    "description": "Senior full stack developer with 10+ years building scalable architecture, automation systems, and production MVPs for founders and product teams."
+  "meta": {
+    "title": "decode9 — Jorge Bastidas · Senior Full Stack Engineer & CTO",
+    "description": "A guided session through decode9: Jorge Bastidas, senior full stack engineer and CTO at The Empire. Scalable architecture, AI agents, automation and MVPs — with the real products behind them.",
+    "ogAlt": "decode9 — Jorge Bastidas",
+    "locale": "en_US"
   },
   "nav": {
-    "services": "Services",
-    "work": "Work",
-    "stack": "Stack",
-    "patterns": "Patterns",
-    "process": "Process",
-    "about": "About",
-    "contact": "Contact",
-    "cta": "Work with me"
+    "chapters": {
+      "handshake": "Start",
+      "origin": "Origin",
+      "capabilities": "Capabilities",
+      "lab": "Lab",
+      "work": "Work",
+      "stack": "Stack",
+      "process": "Process",
+      "handoff": "Contact"
+    },
+    "primary": "Chapters",
+    "menu": "Open menu",
+    "close": "Close menu",
+    "cta": "Work with me",
+    "skip": "Skip to content",
+    "language": "Language",
+    "home": "decode9 — home"
+  },
+  "hud": {
+    "session": "decode session",
+    "chapter": "CH",
+    "live": "live",
+    "scroll": "Scroll to begin",
+    "boot": [
+      "establishing secure session",
+      "decoding decode9.codes",
+      "guide online"
+    ],
+    "elapsed": "session",
+    "progress": "Tour progress",
+    "decoded": "session decoded",
+    "loading": "Loading the session"
   },
   "hero": {
-    "pill": "Available for new projects · Q3 2026",
-    "title": "I build scalable software, automation, and MVPs that move businesses <span class=\"d9-text-energy\">faster</span>.",
-    "sub": "I'm Jorge Bastidas — decode9. For 10+ years I've shipped scalable architectures, automation systems, and production-ready products for founders, SaaS teams, and companies that need senior engineering they can trust.",
+    "pill": "Available for new projects · Q4 2026",
+    "titleLead": "I build scalable software, AI agents and MVPs that move businesses",
+    "titleAccent": "faster.",
+    "sub": "I'm Jorge Bastidas — decode9, and CTO at The Empire. For 10+ years I've shipped scalable architectures, automation and production-ready products for founders, SaaS teams and companies that need senior engineering they can trust.",
     "cta1": "Work with me",
-    "cta2": "View work",
-    "meta1": "Based in Argentina",
-    "meta2": "Available worldwide · remote",
-    "meta3": "Building since 2014",
-    "console": {
-      "title": "decode9 — build console",
-      "uptime": "uptime",
-      "services": "services",
-      "deploy": "deploy",
-      "line1": "$ decode9 ship --env production",
-      "line2": "› build ok · tests passed · scan clean",
-      "line3": "› rollout k8s/api 100%",
-      "line4": "# shipped without drama",
-      "svc1": "api://gateway",
-      "svc2": "workers://automation",
-      "svc3": "db://primary",
-      "status1": "healthy",
-      "status2": "running",
-      "status3": "replicated"
-    }
+    "cta2": "Take the tour",
+    "meta": [
+      "Based in Argentina",
+      "Available worldwide · remote",
+      "Building since 2014"
+    ]
   },
-  "trust": {
-    "1": "10+ years experience",
-    "2": "Full stack",
-    "3": "Scalable architecture",
-    "4": "Automation",
-    "5": "MVP development",
-    "6": "Infrastructure / DevOps",
-    "7": "AI-enabled workflows"
+  "origin": {
+    "eyebrow": "Origin",
+    "title": "A senior engineer who ships — and leads.",
+    "p1": "I'm Jorge Bastidas, the engineer behind decode9. Since 2014 I've designed and built software across the entire stack — from the infrastructure and data underneath to the interface founders demo to investors.",
+    "p2": "Today I'm also CTO at The Empire, where I lead the engineering behind products like Solvo, Finami and Desaparecidos Terremoto Venezuela — from the first architecture decision to production, and the teams that keep them running.",
+    "p3": "Whether you're validating an idea, scaling under load or drowning in manual process, the goal is the same: turn complexity into a system that works — and keeps working.",
+    "sig": "Founder & engineer · decode9 — CTO · The Empire",
+    "specTitle": "profile.json",
+    "spec": [
+      {
+        "k": "role",
+        "v": "Senior Full Stack Engineer · CTO"
+      },
+      {
+        "k": "experience",
+        "v": "10+ years · since 2014"
+      },
+      {
+        "k": "focus",
+        "v": "Architecture · AI agents · Automation"
+      },
+      {
+        "k": "location",
+        "v": "Argentina · worldwide"
+      },
+      {
+        "k": "engagement",
+        "v": "Remote · contract / partnership"
+      },
+      {
+        "k": "status",
+        "v": "Open to new work"
+      }
+    ],
+    "stats": [
+      {
+        "value": 10,
+        "suffix": "+",
+        "label": "years shipping software"
+      },
+      {
+        "value": 6,
+        "suffix": "",
+        "label": "flagship products led"
+      },
+      {
+        "value": 52,
+        "suffix": "k",
+        "label": "users in one week on a single launch"
+      }
+    ]
   },
-  "about": {
-    "eyebrow": "About",
-    "title": "A senior engineer who ships.",
-    "p1": "I'm Jorge Bastidas, the engineer behind <strong>decode9</strong>. Since 2014 I've designed and built software across the entire stack — from the database and infrastructure underneath to the interface founders demo to investors.",
-    "p2": "I work as a hands-on technical partner, not just a pair of hands. I can architect a system, build the MVP, automate the operations around it, and stay accountable for what ships. That means clear communication, senior judgment on the trade-offs that matter, and fast, reliable execution.",
-    "p3": "Whether you're a founder validating an idea, a SaaS team scaling under load, or a business drowning in manual process, the goal is the same: turn complexity into a system that works — and keep it working.",
-    "sig": "Founder & engineer · decode9"
-  },
-  "spec": {
-    "k": {
-      "role": "role",
-      "exp": "experience",
-      "focus": "focus",
-      "loc": "location",
-      "eng": "engagement",
-      "status": "status"
-    },
-    "v": {
-      "role": "Senior Full Stack Developer",
-      "exp": "10+ years · since 2014",
-      "focus": "Architecture · MVPs · Automation",
-      "loc": "Argentina · worldwide",
-      "eng": "Remote · freelance / contract",
-      "status": "Open to new work"
-    }
-  },
-  "svc": {
-    "eyebrow": "Services",
+  "capabilities": {
+    "eyebrow": "Capabilities",
     "title": "From idea to production — engineered end to end.",
     "sub": "Senior capability across the full lifecycle. Pick a single service or a complete technical partnership.",
-    "fullstack": {
-      "t": "Full stack development",
-      "d": "End-to-end product engineering across frontend, backend, and data — one partner accountable for the whole system.",
-      "out": "One owner for the entire stack."
-    },
-    "mvp": {
-      "t": "MVP development",
-      "d": "Validated, production-ready MVPs built to demo, raise, and grow — not throwaway prototypes you'll rewrite.",
-      "out": "Launch in weeks, not quarters."
-    },
-    "auto": {
-      "t": "Automation systems",
-      "d": "Automate manual operations and connect the tools your business runs on, with reliable, observable pipelines.",
-      "out": "Hours of manual work removed weekly."
-    },
-    "arch": {
-      "t": "Scalable architecture",
-      "d": "Systems designed to grow — clean service boundaries, queues, and data models that hold under real load.",
-      "out": "Infrastructure that scales with you."
-    },
-    "ai": {
-      "t": "AI product development",
-      "d": "LLM-powered features and AI-enabled workflows built into real products — measured, guarded, and shipped.",
-      "out": "AI that ships, not demos."
-    },
-    "devops": {
-      "t": "Infrastructure & DevOps",
-      "d": "Containerized, observable infrastructure with CI/CD you can trust — repeatable, reliable, boring in the best way.",
-      "out": "Deploys you don't fear."
-    },
-    "consult": {
-      "t": "Technical consulting",
-      "d": "CTO-level guidance on architecture, technical strategy, and hiring — senior judgment when the decision matters.",
-      "out": "The right call, the first time."
-    },
-    "proc": {
-      "t": "Process optimization",
-      "d": "Map, streamline, and automate the processes behind your operation — less overhead, more throughput.",
-      "out": "Less overhead, more output."
+    "outcome": "Outcome",
+    "services": {
+      "fullstack": {
+        "t": "Full stack development",
+        "d": "End-to-end product engineering across frontend, backend and data — one partner accountable for the whole system.",
+        "out": "One owner for the entire stack."
+      },
+      "mvp": {
+        "t": "MVP development",
+        "d": "Validated, production-ready MVPs built to demo, raise and grow — not throwaway prototypes you'll rewrite.",
+        "out": "Launch in weeks, not quarters."
+      },
+      "auto": {
+        "t": "Automation systems",
+        "d": "Automate manual operations and connect the tools your business runs on, with reliable, observable pipelines.",
+        "out": "Hours of manual work removed weekly."
+      },
+      "arch": {
+        "t": "Scalable architecture",
+        "d": "Systems designed to grow — clean service boundaries, queues and data models that hold under real load.",
+        "out": "Infrastructure that scales with you."
+      },
+      "ai": {
+        "t": "AI agents & products",
+        "d": "LLM agents that act on real data with guardrails in code — like Solvo — measured, guarded and shipped.",
+        "out": "AI that ships, not demos."
+      },
+      "devops": {
+        "t": "Infrastructure & DevOps",
+        "d": "Serverless and containerized infrastructure as code, with CI/CD you can trust — repeatable, observable, boring in the best way.",
+        "out": "Deploys you don't fear."
+      },
+      "consult": {
+        "t": "Technical leadership",
+        "d": "CTO-level guidance on architecture, technical strategy and teams — senior judgment when the decision matters.",
+        "out": "The right call, the first time."
+      },
+      "proc": {
+        "t": "Process optimization",
+        "d": "Map, streamline and automate the processes behind your operation — less overhead, more throughput.",
+        "out": "Less overhead, more output."
+      }
     }
   },
-  "stack": {
-    "eyebrow": "Technology",
-    "title": "A stack built for production.",
-    "sub": "Battle-tested tools chosen for reliability and scale — not novelty.",
-    "cat": {
-      "lang": "Languages",
-      "front": "Frontend & mobile",
-      "back": "Backend & APIs",
-      "db": "Databases",
-      "cloud": "Cloud",
-      "devops": "DevOps & CI/CD",
-      "ai": "AI & automation"
-    }
-  },
-  "code": {
-    "eyebrow": "Patterns",
-    "title": "Solutions to common web problems.",
-    "sub": "A few patterns I reach for again and again — small, production-tested building blocks for resilience, performance, and UX.",
-    "c1": {
-      "t": "Debounce input",
-      "d": "Tame search & resize storms"
+  "lab": {
+    "eyebrow": "Lab",
+    "title": "Don't take my word for it — run it.",
+    "sub": "Small live demos of the kind of systems I build. Everything runs in your browser.",
+    "pipeline": {
+      "t": "Automation pipeline",
+      "d": "A WhatsApp lead qualified by AI, synced to the CRM, invoiced and announced to the team — without a human touching it.",
+      "run": "Run pipeline",
+      "running": "Running…",
+      "replay": "Run again",
+      "nodes": {
+        "lead": "WhatsApp lead",
+        "qualify": "AI qualifies",
+        "crm": "CRM sync",
+        "invoice": "Invoice",
+        "notify": "Team notified"
+      },
+      "logs": [
+        "› inbound message from +54 9 11 •••• 8874",
+        "› intent: quote · confidence 0.94",
+        "› contact upserted · tag: wholesale",
+        "› invoice #4512 drafted · USD 1,240.00",
+        "› team pinged on WhatsApp · order ready"
+      ],
+      "saved": "manual hours saved per week",
+      "idle": "Press run to watch a lead flow through."
     },
-    "c2": {
-      "t": "Resilient fetch",
-      "d": "Retry with exponential backoff"
+    "resilience": {
+      "t": "Resilience lab",
+      "d": "Three patterns I reach for in every production app — simulated so you can see what they do.",
+      "tabs": {
+        "debounce": {
+          "t": "Debounce",
+          "d": "Type in the box: every keystroke is an event, but only the pause fires a request.",
+          "placeholder": "Type a search…",
+          "typed": "keystrokes",
+          "fired": "requests"
+        },
+        "retry": {
+          "t": "Retry + backoff",
+          "d": "A flaky API fails twice. The client waits 500 ms, then 1 s, and succeeds on the third try.",
+          "run": "Call flaky API",
+          "attempt": "attempt",
+          "ok": "200 OK",
+          "fail": "503"
+        },
+        "cancel": {
+          "t": "Cancel stale",
+          "d": "Rapid searches race each other. Aborting the stale ones means only the latest answer is used.",
+          "run": "Search fast",
+          "stale": "aborted",
+          "fresh": "used"
+        }
+      }
     },
-    "c3": {
-      "t": "Optimistic UI",
-      "d": "Update UI before the server replies"
-    },
-    "c4": {
-      "t": "Concurrency control",
-      "d": "Cancel stale async requests"
+    "trace": {
+      "t": "How the guide answers",
+      "d": "What happens between your question and the reply, step by step.",
+      "illustrative": "Illustrative trace — not live telemetry",
+      "empty": "Ask the guide something, then replay it here.",
+      "question": "Your question",
+      "replay": "Replay trace",
+      "open": "Ask the guide",
+      "steps": {
+        "receive": {
+          "t": "Receive",
+          "d": "The message reaches the agent with this visit's session."
+        },
+        "retrieve": {
+          "t": "Retrieve",
+          "d": "Semantic search over decode9's knowledge base, with the source kept."
+        },
+        "guard": {
+          "t": "Guardrails",
+          "d": "The draft is checked in code: on-topic, no invented facts."
+        },
+        "answer": {
+          "t": "Answer",
+          "d": "The reply comes back — or a human takes over from the panel."
+        }
+      }
     }
   },
   "work": {
     "eyebrow": "Selected work",
-    "title": "Real products, real impact.",
-    "sub": "A selection of client work — from consumer apps to enterprise systems.",
-    "viewGithub": "More on GitHub",
-    "badge": {
-      "ecom": "E-commerce",
-      "fin": "Fintech",
-      "sus": "Sustainability",
-      "ent": "Enterprise"
+    "title": "Real products, in production.",
+    "sub": "Products I've led end to end — most of them built with The Empire.",
+    "poweredBy": "powered by The Empire",
+    "visit": "Visit site",
+    "details": "Case study",
+    "close": "Close case study",
+    "labels": {
+      "role": "Role",
+      "sector": "Sector",
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "outcomes": "Outcomes",
+      "stack": "Stack",
+      "since": "Since"
     },
-    "desc": {
-      "yujju": "A full e-commerce platform with product catalogue, checkout, payments, and multi-vendor order management — built to handle real transaction volume.",
-      "finami": "A personal finance management app for mobile — budgeting, expense tracking, and financial goal-setting with a clean, intuitive experience.",
-      "gg": "A digital platform for a recycling and sustainability operation — bringing process, tracking, and reporting into one system.",
-      "avianca": "An internal workforce management system for an enterprise airline operation — built for scale, control, and reliability."
+    "status": {
+      "live": "Live",
+      "private": "Private",
+      "building": "In development"
+    },
+    "projects": {
+      "the-empire": {
+        "role": "CTO",
+        "sector": "Product & engineering studio",
+        "summary": "The Empire is a product and digital-operations partner: it defines ideas before building them, then ships custom platforms, MVPs and AI agents. As CTO I lead the engineering behind its products and client platforms.",
+        "challenge": "Run several production products and client platforms at once — each with its own stack, team and uptime expectations — without the quality bar slipping.",
+        "solution": "One engineering playbook across every repo: layered architectures, infrastructure as code with Terraform, CI/CD quality gates and serverless AWS as the default runtime.",
+        "outcomes": [
+          "Solvo, Finami and Desaparecidos built and operated in-house",
+          "Terraform + GitHub Actions deploys across products",
+          "The same standards from Blueprint to Platforms"
+        ],
+        "metrics": [
+          {
+            "value": "4",
+            "label": "offerings: Solvo, Blueprint, MVP, Platforms"
+          },
+          {
+            "value": "15+",
+            "label": "products & platforms shipped"
+          }
+        ],
+        "alt": "The Empire website"
+      },
+      "solvo": {
+        "role": "Architecture & lead engineering",
+        "sector": "AI · Conversational commerce",
+        "summary": "An AI sales agent for WhatsApp that knows each business's catalogue, stock, prices, calendar and orders. It qualifies, quotes, books and hands off to a person whenever money or judgement is involved.",
+        "challenge": "An LLM that promises what the business can't deliver is a complaint generator. The agent had to act on real data without ever inventing prices, slots or payment confirmations.",
+        "solution": "Fifteen tools that call the same use cases as the admin panel, guardrails enforced in code — every reply is checked against the database before it's sent — and a 13-state order flow where every change records its author.",
+        "outcomes": [
+          "The AI can write exactly one order state, and only with explicit confirmation",
+          "Double-booking prevented by the database, not by a prompt",
+          "One isolated installation per client, provisioned on AWS with Terraform"
+        ],
+        "metrics": [
+          {
+            "value": "15",
+            "label": "agent tools"
+          },
+          {
+            "value": "13",
+            "label": "audited order states"
+          },
+          {
+            "value": "~306",
+            "label": "test files"
+          }
+        ],
+        "alt": "Solvo website"
+      },
+      "desaparecidos": {
+        "role": "CTO · architecture & operations",
+        "sector": "Social impact",
+        "summary": "A public platform to reconnect families after the La Guaira earthquakes of June 2026: report someone you can't reach, mark them as found, search by photo and follow live metrics — run by volunteers, funded through Latin Freedom.",
+        "challenge": "Go live within hours of a disaster, absorb a traffic spike driven by national and international press, and protect highly sensitive data — including photos of minors.",
+        "solution": "A static Next.js front end behind CloudFront and WAF, a Node API split into serverless functions, moderation with duplicate merging and three-stage verification, and photo matching through a partner face-recognition service where a human always confirms.",
+        "outcomes": [
+          "Moved from EC2 to Lambda mid-crisis, then right-sized to cut infrastructure cost by ~60%",
+          "Minors' photos kept in storage that is never public",
+          "Read-only API with an OpenAPI spec for partner organizations"
+        ],
+        "metrics": [
+          {
+            "value": "~52k",
+            "label": "active users in week one"
+          },
+          {
+            "value": "44k+",
+            "label": "records managed"
+          },
+          {
+            "value": "150+",
+            "label": "volunteers & moderators"
+          }
+        ],
+        "alt": "Desaparecidos Terremoto Venezuela website"
+      },
+      "finami": {
+        "role": "Lead engineer",
+        "sector": "Fintech",
+        "summary": "Two products under one brand: Finami App, a personal-finance app whose data is encrypted on the phone, and Finami Business, a multi-tenant financial ERP for invoicing, cash, accounting, inventory and credit.",
+        "challenge": "Offer sync and backups without the server ever being able to read someone's finances — and run a business ERP where tenants never see each other's data.",
+        "solution": "An offline-first mobile app with SQLCipher and end-to-end encrypted sync — the server only stores sealed records — plus a Postgres-schema-per-tenant SaaS with RBAC and 2FA, on hexagonal layers enforced by lint rules.",
+        "outcomes": [
+          "The sync server can't read what it stores",
+          "A tenant's schema is created automatically on signup",
+          "CI publishes straight to the Google Play tracks"
+        ],
+        "metrics": [
+          {
+            "value": "1,647",
+            "label": "mobile tests, 0 failing"
+          },
+          {
+            "value": "E2E",
+            "label": "encrypted sync"
+          },
+          {
+            "value": "1:1",
+            "label": "schema per tenant"
+          }
+        ],
+        "alt": "Finami website"
+      },
+      "latin-freedom": {
+        "role": "End-to-end engineering",
+        "sector": "Nonprofit",
+        "summary": "Latin Freedom trains, connects and funds citizens leading community initiatives across Latin America. I built its digital platform: the public site, donations, volunteering, the staff back office and the Tándem Ayuda landing.",
+        "challenge": "Accept one-off and monthly donations for a dozen campaigns on a Stripe account shared with other apps — and keep every dollar traceable.",
+        "solution": "One serverless API powering four apps, with donations and administration split into separate functions, a ledger reconciled against Stripe by scheduled workflows and per-campaign permissions checked on every request.",
+        "outcomes": [
+          "An admin-side failure can't take donations down",
+          "Charges that arrive without a campaign are detected and tagged",
+          "WAF geo-blocking and rate rules in front of every app"
+        ],
+        "metrics": [
+          {
+            "value": "4",
+            "label": "apps on one API"
+          },
+          {
+            "value": "12",
+            "label": "campaigns"
+          },
+          {
+            "value": "~210",
+            "label": "automated tests"
+          }
+        ],
+        "alt": "Latin Freedom website"
+      },
+      "patilla-games": {
+        "role": "Co-technical lead",
+        "sector": "Media · Gaming",
+        "summary": "The video-game vertical of the Venezuelan news site La Patilla: a public catalogue, in-house games with Venezuelan identity, game jams with voting and ad revenue shared with developers — white-label ready for other media.",
+        "challenge": "Publish third-party browser games safely, keep every game fast on 3G and pay developers fairly from ad revenue.",
+        "solution": "Uploads land in a quarantine bucket before reaching the CDN, games run in sandboxed iframes on a shared TypeScript kit, and AdSense revenue is imported daily and split per game into a ledger with frozen rates.",
+        "outcomes": [
+          "White-label builds proven byte-identical to the default brand",
+          "Every in-house game under 3 MB and playable in under 2 s on 3G",
+          "A Kotlin Multiplatform companion app"
+        ],
+        "metrics": [
+          {
+            "value": "12",
+            "label": "in-house games"
+          },
+          {
+            "value": "13",
+            "label": "serverless functions"
+          },
+          {
+            "value": "< 3 MB",
+            "label": "per game"
+          }
+        ],
+        "alt": "La Patilla Games website"
+      }
+    },
+    "also": {
+      "title": "Also built",
+      "items": {
+        "globalrec": "Municipal fee collection with a taxpayer mobile app — audited, moved to the cloud and handed over.",
+        "yujju": "B2B jewelry commerce on WooCommerce with a custom commerce plugin.",
+        "miuniforme": "Keeps Avianca's employee data in sync across corporate systems.",
+        "academy": "21 training videos rendered with three.js + GSAP — deterministic and voiced."
+      }
     }
   },
-  "proc": {
+  "stack": {
+    "eyebrow": "Technology",
+    "title": "A stack chosen for production.",
+    "sub": "Battle-tested tools picked for reliability and scale — not novelty.",
+    "all": "All",
+    "cat": {
+      "lang": "Languages",
+      "front": "Frontend, mobile & motion",
+      "back": "Backend & APIs",
+      "db": "Data",
+      "cloud": "Cloud",
+      "devops": "DevOps & IaC",
+      "ai": "AI & automation"
+    }
+  },
+  "process": {
     "eyebrow": "Process",
     "title": "Product-minded engineering, not just code.",
     "sub": "A clear path from problem to a running product you can defend.",
-    "s1": { "t": "Discover", "d": "Understand the goal, constraints, and what success really means." },
-    "s2": { "t": "Architect", "d": "Design a system that fits the problem and is built to grow." },
-    "s3": { "t": "Build", "d": "Ship clean, tested, production-grade code in tight iterations." },
-    "s4": { "t": "Automate", "d": "Remove manual work with reliable pipelines and integrations." },
-    "s5": { "t": "Launch", "d": "Deploy with CI/CD, monitoring, and confidence — no drama." },
-    "s6": { "t": "Iterate", "d": "Measure, refine, and keep the system working as you scale." }
+    "steps": {
+      "discover": {
+        "t": "Discover",
+        "d": "Understand the goal, the constraints and what success really means."
+      },
+      "architect": {
+        "t": "Architect",
+        "d": "Design a system that fits the problem and is built to grow."
+      },
+      "build": {
+        "t": "Build",
+        "d": "Ship clean, tested, production-grade code in tight iterations."
+      },
+      "automate": {
+        "t": "Automate",
+        "d": "Remove manual work with reliable pipelines and integrations."
+      },
+      "launch": {
+        "t": "Launch",
+        "d": "Deploy with CI/CD, monitoring and confidence — no drama."
+      },
+      "iterate": {
+        "t": "Iterate",
+        "d": "Measure, refine and keep the system working as you scale."
+      }
+    }
   },
-  "cta": {
-    "work": "Work with me",
-    "viewwork": "View work",
-    "title": "Have an idea, product, or process to <span class=\"d9-text-energy\">automate</span>?",
-    "sub": "Tell me what you're building. I'll tell you the fastest, most reliable way to ship it — and how I'd help.",
-    "start": "Start a project",
-    "seework": "See the work",
-    "emailme": "Email me"
-  },
-  "contact": {
+  "handoff": {
     "eyebrow": "Contact",
-    "title": "Let's build something solid.",
-    "sub": "The best projects start with a direct conversation. Email me with what you're working on — I read and reply to every message."
+    "titleLead": "Have an idea, product or process to",
+    "titleAccent": "decode?",
+    "sub": "Tell me what you're building. I'll tell you the fastest, most reliable way to ship it — and how I'd help. I read and reply to every message.",
+    "email": "Email me",
+    "guide": "Leave my details with the guide",
+    "channels": {
+      "email": "email",
+      "github": "github",
+      "linkedin": "linkedin"
+    }
   },
   "footer": {
-    "tagline": "Senior full stack engineering, automation, and MVP development. Built by Jorge Bastidas since 2014.",
+    "tagline": "Senior full stack engineering, AI agents, automation and MVPs. Built by Jorge Bastidas since 2014.",
     "navigate": "Navigate",
     "connect": "Connect",
     "rights": "© 2026 decode9 · Jorge Bastidas. All rights reserved.",
     "tag": "Engineered to decode complexity."
+  },
+  "guide": {
+    "fallbackName": "decode9",
+    "greeting": "Hi, I'm {name} — your guide through decode9. I'll narrate each chapter as you scroll. Ask me anything, anytime.",
+    "offlineReply": "I'm in offline mode right now, so I can't answer free-form questions. Use the suggestions below to explore, or email Jorge at jbastidas@theempire.tech — he reads every message.",
+    "chapters": {
+      "handshake": [
+        "Session open. Scroll at your own pace — or pick a path below."
+      ],
+      "origin": [
+        "This is Jorge Bastidas: the engineer behind decode9 and CTO at The Empire.",
+        "Ten-plus years shipping across the whole stack — the next chapters show what that looks like."
+      ],
+      "capabilities": [
+        "Eight ways Jorge usually helps teams — from a first MVP to the infrastructure that scales it.",
+        "Hover a capability and watch its node light up."
+      ],
+      "lab": [
+        "Words are cheap. These demos run live in your browser.",
+        "Try the pipeline — it's the same shape as the automations Jorge ships."
+      ],
+      "work": [
+        "Real products, in production — each one keeps its own identity.",
+        "Solvo, Finami and Desaparecidos are powered by The Empire."
+      ],
+      "stack": [
+        "A stack chosen for reliability, not novelty. Filter it by layer."
+      ],
+      "process": [
+        "How a project moves: six steps from discovery to a system you can defend."
+      ],
+      "handoff": [
+        "That's the tour. If something resonated, let's talk.",
+        "Email Jorge, or leave your details here and he'll write back."
+      ]
+    },
+    "replies": {
+      "startTour": {
+        "label": "Start the tour"
+      },
+      "showWork": {
+        "label": "Show me the work"
+      },
+      "showLab": {
+        "label": "Open the lab"
+      },
+      "showStack": {
+        "label": "See the stack"
+      },
+      "showProcess": {
+        "label": "How do you work?"
+      },
+      "showCapabilities": {
+        "label": "What do you build?"
+      },
+      "contact": {
+        "label": "Contact Jorge"
+      },
+      "askWho": {
+        "label": "Who is Jorge?",
+        "prompt": "Who is Jorge Bastidas and what does decode9 do?"
+      },
+      "askSolvo": {
+        "label": "What is Solvo?",
+        "prompt": "What is Solvo and what makes it different from a chatbot?"
+      },
+      "askAvailability": {
+        "label": "Is he available?",
+        "prompt": "Is Jorge available for new projects, and how does an engagement work?"
+      },
+      "askStack": {
+        "label": "Best stack for my MVP?",
+        "prompt": "What stack would Jorge recommend for a new SaaS MVP?"
+      },
+      "askMvp": {
+        "label": "How fast is an MVP?",
+        "prompt": "How long does it usually take Jorge to ship a production-ready MVP?"
+      },
+      "askDesaparecidos": {
+        "label": "Tell me about Desaparecidos",
+        "prompt": "How was the Desaparecidos Terremoto Venezuela platform built and scaled?"
+      }
+    },
+    "console": {
+      "title": "Decode session",
+      "open": "Talk to {name}",
+      "minimize": "Minimize guide",
+      "placeholder": "Ask me anything about decode9…",
+      "send": "Send",
+      "label": "Message for {name}",
+      "transcript": "Conversation with {name}",
+      "suggestions": "Suggestions",
+      "you": "You",
+      "previous": "Earlier conversation",
+      "attachment": "Attachment",
+      "attachmentHint": "link valid for 15 minutes",
+      "poweredBy": "Powered by Solvo"
+    },
+    "status": {
+      "connecting": "connecting…",
+      "ready": "online",
+      "thinking": "thinking…",
+      "human": "Jorge joined the conversation",
+      "offline": "offline mode",
+      "network": "You seem to be offline. Your message wasn't sent.",
+      "rateLimited": "You're writing a bit fast. Try again in {time}.",
+      "dailyCap": "The guide is resting for today. Email Jorge instead.",
+      "unavailable": "The live guide isn't available right now — switching to offline mode.",
+      "timeout": "That took too long. Try sending it again.",
+      "sessionExpired": "Your session expired. Reload the page to continue.",
+      "invalid": "That message couldn't be sent.",
+      "queued": "Got it — the reply will appear here in a moment.",
+      "paused": "The guide is paused. Jorge will reply here when he can."
+    },
+    "identify": {
+      "title": "Leave your details and Jorge will write back.",
+      "name": "Name",
+      "email": "Email",
+      "submit": "Send details",
+      "sending": "Sending…",
+      "done": "Thanks — Jorge will reach out soon.",
+      "notAllowed": "Write a message first, then leave your details.",
+      "error": "That didn't go through. Email Jorge directly instead.",
+      "mailto": "Email Jorge"
+    }
   }
 }
