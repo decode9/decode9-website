@@ -12,7 +12,8 @@ producto, no sólo código.
 6. Iterar: medir, refinar y mantener el sistema funcionando mientras escala.
 
 ## Cómo empezar un proyecto con decode9
-Escribir a jbastidas@theempire.tech contando qué se quiere construir. Jorge lee
-y responde cada mensaje, y propone la forma más rápida y confiable de lanzarlo.
+Escribir a decode9.dev@gmail.com o por WhatsApp al +1 (786) 531-8494
+(wa.me/17865318494) contando qué se quiere construir. Jorge lee y responde cada
+mensaje, y propone la forma más rápida y confiable de lanzarlo.
 También se pueden dejar nombre y correo en la conversación con el guía del
 sitio. Trabaja en remoto con clientes de todo el mundo.

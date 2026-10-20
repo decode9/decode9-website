@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Mail } from 'lucide-react';
+import { Mail, MessageCircle } from 'lucide-react';
 import SocialIcon from '@/components/UI/SocialIcon';
 import { useDictionary } from '@/context/DictionaryContext';
 import { chapters } from '@/data/chapters';
@@ -19,6 +19,7 @@ const Footer = () => {
 
   const connect = [
     { key: 'email', label: 'Email', href: `mailto:${CONTACT.email}`, external: false },
+    { key: 'whatsapp', label: 'WhatsApp', href: CONTACT.whatsappUrl, external: true },
     { key: 'github', label: 'GitHub', href: CONTACT.github, external: true },
     { key: 'linkedin', label: 'LinkedIn', href: CONTACT.linkedin, external: true },
   ];
@@ -50,6 +51,15 @@ const Footer = () => {
             </a>
             <a href={`mailto:${CONTACT.email}`} className="d9-social" aria-label="Email">
               <Mail size={18} />
+            </a>
+            <a
+              href={CONTACT.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="d9-social"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={18} />
             </a>
           </div>
         </div>

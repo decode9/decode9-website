@@ -27,4 +27,4 @@ decisiones que importan y ejecución rápida y confiable.
 - Ubicación: Argentina; trabaja con clientes de todo el mundo, en remoto.
 - Modalidad: contrato o alianza técnica.
 - Estado: disponible para nuevos proyectos (cuarto trimestre de 2026).
-- Contacto: jbastidas@theempire.tech · github.com/decode9 · linkedin.com/in/decode9
+- Contacto: decode9.dev@gmail.com · WhatsApp +1 (786) 531-8494 (wa.me/17865318494) · github.com/decode9 · linkedin.com/in/decode9

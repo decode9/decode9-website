@@ -482,6 +482,7 @@
     "guide": "Leave my details with the guide",
     "channels": {
       "email": "email",
+      "whatsapp": "whatsapp",
       "github": "github",
       "linkedin": "linkedin"
     }
@@ -496,7 +497,7 @@
   "guide": {
     "fallbackName": "decode9",
     "greeting": "Hi, I'm {name} — your guide through decode9. I'll narrate each chapter as you scroll. Ask me anything, anytime.",
-    "offlineReply": "I'm in offline mode right now, so I can't answer free-form questions. Use the suggestions below to explore, or email Jorge at jbastidas@theempire.tech — he reads every message.",
+    "offlineReply": "I'm in offline mode right now, so I can't answer free-form questions. Use the suggestions below to explore, or reach Jorge at decode9.dev@gmail.com or on WhatsApp at +1 (786) 531-8494 — he reads every message.",
     "chapters": {
       "handshake": [
         "Session open. Scroll at your own pace — or pick a path below."

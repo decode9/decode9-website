@@ -36,4 +36,4 @@ Mapear, simplificar y automatizar los procesos de una operación.
 
 ## Precios
 decode9 no publica tarifas: cada proyecto se conversa según su alcance. La
-forma de empezar es escribirle a Jorge a jbastidas@theempire.tech.
+forma de empezar es escribirle a Jorge a decode9.dev@gmail.com.

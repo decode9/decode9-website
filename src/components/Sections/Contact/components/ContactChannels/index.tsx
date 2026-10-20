@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react';
 import SocialIcon from '@/components/UI/SocialIcon';
 import { CONTACT } from '@/data/contact';
 import type { ContactChannelsProps } from './interface';
@@ -12,6 +12,14 @@ const ContactChannels = ({ labels, onSelect }: ContactChannelsProps) => {
       href: CONTACT.mailto,
       icon: <Mail size={19} />,
       external: false,
+    },
+    {
+      key: 'whatsapp',
+      label: labels.whatsapp,
+      value: CONTACT.whatsapp,
+      href: CONTACT.whatsappUrl,
+      icon: <MessageCircle size={19} />,
+      external: true,
     },
     {
       key: 'github',
@@ -32,9 +40,9 @@ const ContactChannels = ({ labels, onSelect }: ContactChannelsProps) => {
   ];
 
   return (
-    <ul className="grid grid-cols-2 gap-3">
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {channels.map((channel) => (
-        <li key={channel.key} data-reveal className={channel.key === 'email' ? 'col-span-2' : undefined}>
+        <li key={channel.key} data-reveal>
           <a
             href={channel.href}
             target={channel.external ? '_blank' : undefined}
