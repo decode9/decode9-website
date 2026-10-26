@@ -1,3 +1,5 @@
+'use client';
+
 import { i18n, LOCALE_COOKIE, localePath } from '@/i18n';
 import { trackEvent } from '@/lib/analytics';
 import { cn } from '@/utils/cn';
@@ -9,7 +11,7 @@ const rememberLocale = (locale: string) => {
 };
 
 /** Each language is its own static page: switching is a navigation, not a re-render. */
-const LocaleSwitch = ({ current, label }: LocaleSwitchProps) => (
+const LocaleSwitch = ({ current, label, hrefs }: LocaleSwitchProps) => (
   <div role="group" aria-label={label} className="flex items-center overflow-hidden rounded-sm border border-ink-700">
     {i18n.locales.map((locale) =>
       locale === current ? (
@@ -23,7 +25,7 @@ const LocaleSwitch = ({ current, label }: LocaleSwitchProps) => (
       ) : (
         <a
           key={locale}
-          href={localePath(locale)}
+          href={hrefs?.[locale] ?? localePath(locale)}
           hrefLang={locale}
           lang={locale}
           onClick={() => rememberLocale(locale)}

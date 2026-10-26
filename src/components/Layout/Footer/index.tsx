@@ -6,13 +6,14 @@ import SocialIcon from '@/components/UI/SocialIcon';
 import { useDictionary } from '@/context/DictionaryContext';
 import { chapters } from '@/data/chapters';
 import { CONTACT } from '@/data/contact';
+import { legalPath } from '@/data/legal';
 import type { ChapterId } from '@/interfaces';
 import { trackEvent } from '@/lib/analytics';
 import { withBase } from '@/utils/asset';
 import useFooter from './useFooter';
 
 const Footer = () => {
-  const { dictionary } = useDictionary();
+  const { dictionary, locale } = useDictionary();
   const { goTo } = useFooter();
   const footer = dictionary.footer;
   const names = dictionary.nav.chapters as Record<ChapterId, string>;
@@ -108,6 +109,14 @@ const Footer = () => {
       <div className="border-t border-ink-800">
         <div className="d9-container-wide flex flex-col items-center justify-between gap-3 py-5 sm:flex-row">
           <span className="d9-caption">{footer.rights}</span>
+          <nav aria-label={footer.legal} className="flex items-center gap-4">
+            <a href={legalPath(locale, 'privacy')} className="d9-caption text-ink-300 transition-colors hover:text-ink-50">
+              {footer.privacy}
+            </a>
+            <a href={legalPath(locale, 'terms')} className="d9-caption text-ink-300 transition-colors hover:text-ink-50">
+              {footer.terms}
+            </a>
+          </nav>
           <span className="d9-caption">{footer.tag}</span>
         </div>
       </div>
