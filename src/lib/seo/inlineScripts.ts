@@ -1,15 +1,20 @@
 import { LOCALE_COOKIE } from '@/i18n/routes';
 
+/** Home routes of the guided session. Legal pages must not arm the preloader. */
+export const SESSION_PATH = /^\/(es\/)?$/;
+
 /**
- * Runs before first paint. Turns the preloader on (not under reduced motion,
- * and with a safety timeout), marks returning visitors for a shorter opening
- * and, on the English page only, sends first-time Spanish-speaking visitors to
- * /es/ unless they already chose a language.
+ * Runs before first paint. On the session routes only, turns the preloader on
+ * (not under reduced motion, and with a safety timeout) and marks returning
+ * visitors for a shorter opening. On the English home, sends first-time
+ * Spanish-speaking visitors to /es/ unless they already chose a language.
  */
 export const bootScript = (redirectSpanish: boolean): string => `(function(){try{
 var d=document.documentElement;
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.dataset.loading='on';setTimeout(function(){delete d.dataset.loading;},12000);}
-var seen=null;try{seen=localStorage.getItem('d9-session-seen');localStorage.setItem('d9-session-seen','1');}catch(e){}
+var session=/${SESSION_PATH.source}/.test(location.pathname);
+if(session&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.dataset.loading='on';setTimeout(function(){delete d.dataset.loading;},12000);}
+var seen=null;
+if(session){try{seen=localStorage.getItem('d9-session-seen');localStorage.setItem('d9-session-seen','1');}catch(e){}}
 d.dataset.boot=seen?'short':'full';
 ${
   redirectSpanish
