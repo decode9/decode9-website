@@ -231,7 +231,6 @@ export const CHAPTERS: Record<ChapterId, Chapter> = {
     world: 'Por descubrir',
     acc: '#ffb86b',
     ghost: 'Señal',
-    prov: 'contenido provisional · datos por confirmar',
     title: [{ em: 'Hablemos' }],
     intro: 'Si tienes un mundo por construir, este es el canal.',
     items: [

@@ -28,7 +28,6 @@
 .footRow { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .again { appearance: none; border: 0; background: none; cursor: pointer; padding: 0; font: 500 11px var(--f-code); color: #6b6f86; }
 .again:hover { color: #15182b; }
-.provD { justify-self: start; font: 500 10px var(--f-code); letter-spacing: 0.04em; color: #5a3608; background: #ffd23f; padding: 3px 7px; border-radius: 4px; }
 .dl { list-style: none; margin: 0; padding: 0; display: grid; }
 .dl li { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 9px 0; border-top: 1px solid rgba(21, 24, 43, 0.12); }
 .k { font: 500 10.5px var(--f-code); letter-spacing: 0.06em; text-transform: uppercase; color: #5d6178; }
