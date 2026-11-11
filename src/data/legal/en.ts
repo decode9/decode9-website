@@ -1,6 +1,6 @@
 import type { LegalCopy } from '@/interfaces/legal';
 
-/** English legal texts (privacy and terms), as published on main in e44cac9. */
+/** English legal texts (privacy and terms), for the new site (entry, terminal, transmitter and profile). */
 export const LEGAL_EN: LegalCopy = {
   labels: {
     back: 'Back to home',
@@ -18,14 +18,14 @@ export const LEGAL_EN: LegalCopy = {
     rights: '© 2026 decode9 · Jorge Bastidas. All rights reserved.',
     otherLanguage: 'Español',
   },
-  updated: '26 October 2026',
+  updated: '11 November 2026',
   privacy: {
     kicker: 'Legal · 01',
     title: 'Privacy',
     metaTitle: 'Privacy — decode9',
     metaDescription:
-      'Who operates decode9.codes: Jorge Bastidas Araujo, CUIL 20964746193. What the site stores, what leaves the browser, and how to make contact.',
-    lead: 'decode9.codes is operated by Jorge Bastidas Araujo, CUIL 20964746193. This page says what stays on your device, what leaves the browser, and how to reach the person responsible.',
+      'Who operates decode9.codes (Jorge Bastidas Araujo, CUIL 20964746193), what your browser stores, and what happens to what you send from the terminal or profile.',
+    lead: 'decode9.codes is operated by Jorge Bastidas Araujo, CUIL 20964746193. This page says what stays on your device, what you send when you use a form, who else receives data, and how to ask for it to be deleted.',
     sections: [
       {
         heading: 'The person responsible',
@@ -37,59 +37,89 @@ export const LEGAL_EN: LegalCopy = {
       {
         heading: 'What this covers',
         paragraphs: [
-          'This notice covers the public website at decode9.codes, including the guided session, the in-page guide, and these legal pages. It does not cover GitHub, LinkedIn, WhatsApp, Google, or any client product linked from the work chapter. Those services have their own terms.',
+          'This notice covers the public website decode9.codes: the entry page, the decode9 terminal (/decode9/), the mobile transmitter (/decode9/movil/), the professional profile (/perfil/) and these legal pages.',
+          'It does not cover the sites it links to, such as GitHub, LinkedIn, theempire.tech, the websites of the projects in the profile, the news sources or social networks. Those services have their own terms.',
         ],
       },
       {
         heading: 'What you can send',
         paragraphs: [
-          'The site has no account and no checkout. You can read it without identifying yourself.',
-          'If you email decode9.dev@gmail.com or message WhatsApp +1 (786) 531-8494, that message is handled by your email or WhatsApp provider and by Jorge. This website does not host a contact form.',
-          'The guide can take a message you type. Leaving a name or email with the guide is optional, and it is sent only when the live guide is connected. When the guide is offline, the conversation stays in your browser and is not transmitted.',
+          'The site has no accounts and no payments. You can browse it without identifying yourself.',
+          'Signal: the terminal and the transmitter have a form to write to Jorge. It asks for an alias (required), an email address or a WhatsApp number (at least one of the two), an optional message and the topics you tick. It also sends the page language and whether you are writing from the terminal or from the transmitter.',
+          'Walkie: the profile has a walkie to leave a free-text message. If you write an email address or a phone number in that text, the service detects it and stores it separately so it can reply to you. It also sends the page language.',
+          'Only what you write is sent, and only when you press send. If you write by email or WhatsApp, that message is handled by your email or WhatsApp provider, and by Jorge.',
+        ],
+      },
+      {
+        heading: 'Where what you send is stored',
+        paragraphs: [
+          'The forms are sent to decode9-api, a service of the site itself that runs on Cloudflare Workers. Each signal or message is stored in a Cloudflare D1 database with the date and time it was sent. Each signal also gets a reference code (for example SOS-1234).',
+          'There is no automatic deletion today: signals and messages are kept until they are deleted by hand. You can ask for what you sent to be deleted by writing to decode9.dev@gmail.com.',
+        ],
+      },
+      {
+        heading: 'Sending limit and anonymous fingerprint',
+        paragraphs: [
+          'To limit abuse, each form accepts at most 5 submissions every 10 minutes from the same connection. To count them, the service computes an anonymous fingerprint of your IP address: a SHA-256 hash of the IP together with a secret salt, cut to 16 characters. The IP address itself is not stored.',
+          'The fingerprint is stored with each signal or message and in a submission counter. Counter rows are deleted once they fall outside the 10-minute window, when a new submission arrives.',
+        ],
+      },
+      {
+        heading: 'Email notice',
+        paragraphs: [
+          'The service can notify Jorge by email of each new signal or message, with its content, through Resend, an email delivery service. That notice is not active today. If it is turned on, Resend will process the content of the notice as the processor of that delivery.',
         ],
       },
       {
         heading: 'What stays on your device',
         paragraphs: [
-          'A cookie named NEXT_LOCALE remembers the language you pick, English or Spanish, for one year. It is set only when you switch language.',
-          'The localStorage key d9-session-seen records that you have opened the session, so the next visit can use a shorter intro.',
-          'The localStorage key d9-agent-name can store the display name the guide uses. Clearing site data for decode9.codes removes these entries.',
+          'The site does not set cookies of its own. It keeps a few preferences in your browser’s localStorage:',
+          'd9crt-lang (terminal language), d9crt-fx (CRT screen effect on or off) and d9crt-mute (terminal sound); d9m-mute (transmitter sound); and tf-sound (ambient sound of the profile). None of these keys stores what you write in the forms.',
+          'When the terminal opens, the site deletes the old d9crt-user key if it exists. Clearing the site data for decode9.codes in your browser removes all of these entries.',
         ],
       },
       {
         heading: 'Measurement and ads',
         paragraphs: [
-          'The site loads Google Analytics, measurement ID G-VMLFSX6GXW, to understand which chapters people use. Those events do not include the text you type to the guide.',
-          "The site is linked to Google AdSense, publisher ca-pub-1675722214703683, and publishes that relationship at /ads.txt. If Google serves or measures ads in your browser, it may set its own cookies and receive technical data such as pages viewed, device, and approximate location, under Google's policies.",
+          'The site loads Google Analytics (GA4), measurement ID G-VMLFSX6GXW, to learn which parts are used. Besides page visits, it records a few events: which side you choose on the entry page, which post you open, whether a signal or walkie submission went through or not, and the jump to decode9 from the profile. Google Analytics never receives the text you write, nor your alias, email or number. Google may set its own cookies for this measurement, under its policies.',
+          'The site declares a Google AdSense account, publisher ca-pub-1675722214703683, in a tag on the page and in /ads.txt. Today the site does not load Google’s ad code. If that changes, this page will be updated.',
+        ],
+      },
+      {
+        heading: 'External content and links',
+        paragraphs: [
+          'The fonts are bundled with the site when it is published, so your browser does not request them from Google Fonts.',
+          'The news ticker in the profile shows public headlines from php.net, CoinDesk, Hacker News, Ars Technica and TechCrunch. Those sources are queried by the server (decode9-api), not by your browser. If that service does not respond, your browser requests the Hacker News front page directly from hn.algolia.com, which then receives the normal technical data of any web request, such as your IP address.',
+          'The share buttons open X, Facebook, LinkedIn, WhatsApp or Telegram with the link to the post, and the profile links to the websites of its projects, to GitHub, to LinkedIn and to theempire.tech. Those services only receive data if you open the link. Copying a link or using your phone’s share menu happens on your device.',
+        ],
+      },
+      {
+        heading: 'Features of your device',
+        paragraphs: [
+          'Sound is generated in your browser with Web Audio. The transmitter can read texts aloud with the browser’s speech synthesis and use the phone’s vibration. The entry page and the transmitter can use the gyroscope to react to how you tilt the phone; on iOS, the browser asks for your permission first.',
+          'All of this happens only on your device. The site does not send any sound, voice, vibration or gyroscope data to any server.',
         ],
       },
       {
         heading: 'Who else receives data',
         paragraphs: [
-          'Jorge Bastidas Araujo receives messages you send to the email and WhatsApp above, and guide messages when the live guide is connected.',
-          'Google receives the analytics and advertising data described above.',
-          "The live guide's service receives the text you send it, and a name or email only if you submit them.",
+          'Jorge Bastidas Araujo receives the signals and walkie messages, and the messages you send to the email and WhatsApp above.',
+          'Cloudflare hosts the decode9-api service and its database, and therefore processes what you send through the forms.',
+          'Google receives the measurement data described above. Resend would receive the content of the email notices if those notices are turned on.',
           'This site does not sell personal information.',
-        ],
-      },
-      {
-        heading: 'How long it is kept',
-        paragraphs: [
-          'The language cookie lasts up to one year, or until you delete it. localStorage entries last until you clear site data.',
-          'Messages you send by email or WhatsApp are kept long enough to answer and to keep a record of the work. Analytics and ad retention are set by Google.',
         ],
       },
       {
         heading: 'Your choices',
         paragraphs: [
-          'You can browse without the guide, block cookies in your browser, and use a private window. You can ask for access to, or deletion of, information Jorge holds about you by writing to decode9.dev@gmail.com.',
-          'The site is a professional portfolio. It is not directed at children.',
+          'You can browse the site without using the forms, block cookies in your browser, clear the site data and use a private window. You can ask for access to the information Jorge holds about you, or for its deletion, by writing to decode9.dev@gmail.com.',
+          'The site is a professional portfolio. It is not directed to children.',
         ],
       },
       {
         heading: 'Changes',
         paragraphs: [
-          'The current version of this notice is dated 26 October 2026. The page you are reading is the version in force.',
+          'The current version of this notice is dated 11 November 2026. The page you are reading is the version in force.',
         ],
       },
     ],
@@ -98,8 +128,9 @@ export const LEGAL_EN: LegalCopy = {
     kicker: 'Legal · 02',
     title: 'Terms',
     metaTitle: 'Terms — decode9',
-    metaDescription: 'Terms for using decode9.codes, operated by Jorge Bastidas Araujo, CUIL 20964746193.',
-    lead: 'These terms cover use of decode9.codes, operated by Jorge Bastidas Araujo, CUIL 20964746193. Reading the site does not create a contract for engineering work.',
+    metaDescription:
+      'Terms of use of decode9.codes (entry, decode9 terminal, transmitter and profile), operated by Jorge Bastidas Araujo, CUIL 20964746193.',
+    lead: 'These terms cover the use of decode9.codes, operated by Jorge Bastidas Araujo, CUIL 20964746193. Using the site does not create an engineering engagement.',
     sections: [
       {
         heading: 'Who offers the site',
@@ -110,56 +141,58 @@ export const LEGAL_EN: LegalCopy = {
       {
         heading: 'What the site is',
         paragraphs: [
-          'The site is a portfolio and a guided session through the work. Lab demos run in your browser as illustrations. Nothing here is legal, financial, or employment advice, and nothing here is an offer to buy a product on the page.',
+          'The site is a portfolio in four parts: the entry page, where you choose a side; the decode9 terminal, with the manifesto, the file, the lab, the codex and the posts; the mobile transmitter, with contact, videos, readings and audio; and Jorge’s professional profile, with his career, his projects, a news ticker and the walkie.',
+          'None of this is legal, financial or employment advice, nor an offer to buy a product on the page.',
         ],
       },
       {
-        heading: 'Using it',
+        heading: 'How to use it',
         paragraphs: [
-          "You may read the site and share links to it. Don't misrepresent an affiliation with decode9, interfere with the session for other visitors, or copy the site and present it as your own.",
+          'You can browse the site and share links. Do not claim a relationship with decode9 that does not exist, do not copy the site to present it as your own, and do not use the forms to send spam, unlawful content or automated submissions. The forms have a sending limit to prevent abuse.',
         ],
       },
       {
         heading: 'Working together',
         paragraphs: [
-          'Writing by email, WhatsApp, or the guide starts a conversation. It does not hire Jorge and it does not set a price. Scope, fee, and timeline are agreed in writing before work starts.',
+          'Sending a signal from the terminal or the transmitter, leaving a message on the profile’s walkie, or writing by email or WhatsApp opens a conversation. It does not hire Jorge and does not set a price. Scope, fee and timeline are agreed in writing before work starts.',
         ],
       },
       {
         heading: 'Intellectual property',
         paragraphs: [
-          "The decode9 name, mark, copy, and the session belong to Jorge Bastidas Araujo unless a case study names a client. Client names and marks stay with those clients. Case studies describe work; they do not transfer a client's brand.",
+          'The decode9 name, the brand, the texts, the illustrations and the code of the site belong to Jorge Bastidas Araujo, except where a case names a client. Client and project names and marks remain their owners’. The cases describe work; they do not transfer anyone’s brand.',
+          'The headlines in the news ticker belong to their sources and link to the original story.',
         ],
       },
       {
         heading: 'Other services',
         paragraphs: [
-          'Links to GitHub, LinkedIn, WhatsApp, and Google leave this site. Their terms apply once you are there. The live guide, when connected, is a third-party service used to answer messages.',
+          'Links to GitHub, LinkedIn, theempire.tech, the project websites, the news sources, and the share buttons for X, Facebook, LinkedIn, WhatsApp and Telegram leave this site. From there, their terms apply.',
         ],
       },
       {
         heading: 'Advertising',
         paragraphs: [
-          'The site may show or measure ads through Google AdSense, publisher ca-pub-1675722214703683. The authorized sellers file is at /ads.txt.',
+          'The site declares a Google AdSense account, publisher ca-pub-1675722214703683. The authorized sellers file is at /ads.txt. Today the site does not show ads.',
         ],
       },
       {
         heading: 'No warranty',
         paragraphs: [
-          'The site is provided as a portfolio. Chapters, demos, and the guide can change or go offline. To the extent the law allows, Jorge Bastidas Araujo is not liable for decisions you make from the content, or for outages of third-party services.',
-          'Nothing here waives rights that Argentine law, or the mandatory law of your place of residence, does not allow to be waived.',
+          'The site is offered as a portfolio. Its parts, its content, the news ticker and the forms may change or go offline. To the extent the law allows, Jorge Bastidas Araujo is not liable for decisions you make based on the content, nor for outages of third-party services.',
+          'Nothing here waives rights that Argentine law, or the mandatory law of the place where you live, does not allow to be waived.',
         ],
       },
       {
         heading: 'Disputes',
         paragraphs: [
-          'Write to decode9.dev@gmail.com first. The site is operated from Argentina by Jorge Bastidas Araujo. If a dispute needs a court, the intended forum is the courts of Argentina, without removing mandatory protections that apply where you live.',
+          'Write first to decode9.dev@gmail.com. The site is operated from Argentina by Jorge Bastidas Araujo. If a dispute needs a court, the intended forum is the courts of Argentina, without removing the mandatory protections that apply where you live.',
         ],
       },
       {
         heading: 'Changes',
         paragraphs: [
-          'The current version of these terms is dated 26 October 2026. Continuing to use the site after this page changes means you are using it under the updated terms.',
+          'The current version of these terms is dated 11 November 2026. Continuing to use the site after a change to this page means you use it under the updated terms.',
         ],
       },
     ],
