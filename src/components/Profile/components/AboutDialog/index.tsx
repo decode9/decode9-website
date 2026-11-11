@@ -1,22 +1,9 @@
 import { LEGAL_COPY, legalPath } from '@/data/legal';
+import { ABOUT_SECTIONS } from '@/data/profile/about';
 import { withBase } from '@/utils/asset';
 import type { AboutDialogProps } from './interface';
 import useAboutDialog from './useAboutDialog';
 import styles from './styles.module.scss';
-
-const SECTIONS: { h: string; p: string[] }[] = [
-  { h: 'Derechos', p: ['© 2026 the empire. Todos los derechos reservados. Los textos, la marca, las ilustraciones y el código de este sitio no se pueden reproducir sin autorización.'] },
-  {
-    h: 'Política de privacidad',
-    p: [
-      'Si escribes por el walkie, guardamos tu mensaje y el correo o número que dejes, solo para responderte. No vendemos ni compartimos estos datos. Para evitar abusos se guarda una huella anónima de la conexión, no tu dirección IP.',
-      'Puedes pedir que borremos tu mensaje escribiendo por el mismo walkie.',
-    ],
-  },
-  { h: 'Almacenamiento local', p: ['El sitio no usa cookies de seguimiento. Solo recuerda en tu navegador si dejaste el sonido encendido o apagado.'] },
-  { h: 'Contenido de terceros', p: ['La sección Actualidad muestra titulares públicos de php.net, CoinDesk, Hacker News, Ars Technica y TechCrunch, con enlace a cada nota. Las tipografías se cargan desde Google Fonts.'] },
-  { h: 'Sonido', p: ['El ambiente espacial se genera en tu navegador y puedes apagarlo con el botón de la barra inferior.'] },
-];
 
 const LEGAL_LINKS = (['privacy', 'terms'] as const).map((kind) => ({
   href: withBase(legalPath('es', kind)),
@@ -43,9 +30,8 @@ const AboutDialog = ({ open, onClose }: AboutDialogProps) => {
           <p className={styles.lead}>
             Perfil profesional de Jorge Bastidas. Un viaje por los mundos que ha terraformado: ideas que se convierten en sistemas completos.
           </p>
-          <span className={styles.prov}>textos legales en borrador · validar antes de publicar</span>
           <div className={styles.grid}>
-            {SECTIONS.map((s) => (
+            {ABOUT_SECTIONS.map((s) => (
               <article key={s.h}>
                 <h3>{s.h}</h3>
                 {s.p.map((t) => (
@@ -56,7 +42,7 @@ const AboutDialog = ({ open, onClose }: AboutDialogProps) => {
             <article>
               <h3>Contacto</h3>
               <p>
-                Usa el walkie de Jorge para escribirle. Sitio de{' '}
+                Usa el walkie de Jorge para escribirle, o escribe a decode9.dev@gmail.com. Sitio de{' '}
                 <a href="https://theempire.tech" target="_blank" rel="noopener">
                   the empire ↗
                 </a>
