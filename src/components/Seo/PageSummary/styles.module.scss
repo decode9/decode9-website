@@ -1,5 +1,5 @@
-// Indexable summary, visually hidden (the CRT shell covers the viewport).
-.seo {
+/* Visually hidden but readable by screen readers and crawlers (same pattern as .sr-only). */
+.summary {
   position: absolute;
   width: 1px;
   height: 1px;

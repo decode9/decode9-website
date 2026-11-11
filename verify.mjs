@@ -5,6 +5,7 @@
  *   npm run verify
  *
  * Checks:
+ *  - static SEO of every page in ./out (verify.seo.mjs: meta, OG image, JSON-LD, h1, sitemap, icons);
  *  - the four routes answer 200, have lang="es" and load without page/console errors
  *    (expected network errors of an unconfigured API, news feeds or GA are ignored);
  *  - the legacy /es/ redirects to /;
@@ -21,6 +22,7 @@ import { existsSync, readdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { chromium, devices } from 'playwright';
+import { checkSeo } from './verify.seo.mjs';
 
 const BASE = process.env.VERIFY_URL ?? 'http://localhost:4173';
 const ROUTES = ['/', '/decode9/', '/decode9/movil/', '/perfil/'];
@@ -161,6 +163,8 @@ const checkContactForm = async (browser) => {
   }
   await context.close();
 };
+
+checkSeo(process.env.VERIFY_OUT ?? 'out', check);
 
 const browser = await launch();
 try {

@@ -8,3 +8,4 @@ export * from './storage';
 export * from './walkie';
 export * from './terminal';
 export * from './legal';
+export * from './seo';

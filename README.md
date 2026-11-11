@@ -87,8 +87,11 @@ Más detalle (mapa de páginas, claves de `localStorage`, assets y fuentes) en
 - **Analítica:** los eventos pasan por el puerto `Analytics` (`interfaces/analytics.ts`). Llevan solo valores
   cerrados, **nunca texto del visitante**. Eventos: `choose_side` {side}, `signal_sent` {origen, ok},
   `walkie_sent` {ok}, `post_open` {type, id} y `d9_jump`.
-- **SEO:** cada ruta tiene título, descripción, canonical y OpenGraph/Twitter con `/brand/decode9-og.jpg`, definidos en
-  `lib/seo/site.ts`. JSON-LD Person y WebSite, sitemap y robots generados.
+- **SEO:** cada ruta tiene título, descripción, canonical, Open Graph (`es_LA`; `en_US` en las legales en inglés) y
+  Twitter con su imagen propia en `public/og/*.jpg` (1200×630), definidos en `lib/seo/site.ts`. JSON-LD por página
+  (WebSite + WebPage/ProfilePage + Person), resumen indexable en el HTML estático, sitemap con `lastmod`, robots,
+  manifest e íconos. `npm run verify` lo comprueba sobre `out/` (`verify.seo.mjs`). Detalle en
+  [docs/arquitectura.md](docs/arquitectura.md#seo).
 
 ## Worker / API
 

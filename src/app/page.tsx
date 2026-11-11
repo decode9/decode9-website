@@ -1,29 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import EntryClient from '@/components/Entry/EntryClient';
+import JsonLd from '@/components/Seo/JsonLd';
+import PageSummary from '@/components/Seo/PageSummary';
+import { PAGE_SUMMARIES } from '@/data/seo/summaries';
+import { serializeJsonLd } from '@/lib/seo/jsonLd';
 import { buildPageMetadata, buildPageViewport } from '@/lib/seo/metadata';
-import { LEGAL_COPY, legalPath } from '@/data/legal';
-import { withBase } from '@/utils/asset';
 
 export const metadata: Metadata = buildPageMetadata('entry');
 export const viewport: Viewport = buildPageViewport('entry');
 
 const EntryPage = () => (
   <>
-    {/* Static text for crawlers and no-JS visitors; the interactive page covers it once mounted. */}
-    <noscript>
-      <h1>Elige tu lado</h1>
-      <p>
-        <a href={withBase('/decode9/')}>My Hacker Mode: decode9, mi versión investigadora</a>
-      </p>
-      <p>
-        <a href={withBase('/perfil/')}>My Professional Mode: perfil profesional de Jorge Bastidas</a>
-      </p>
-      <p>
-        <a href={withBase(legalPath('es', 'privacy'))}>{LEGAL_COPY.es.labels.privacy}</a>
-        {' · '}
-        <a href={withBase(legalPath('es', 'terms'))}>{LEGAL_COPY.es.labels.terms}</a>
-      </p>
-    </noscript>
+    <JsonLd data={serializeJsonLd('entry')} />
+    {/* The entry paints the same copy with its own h1 once mounted. */}
+    <PageSummary copy={PAGE_SUMMARIES.entry} replaceOnMount />
     <EntryClient />
   </>
 );

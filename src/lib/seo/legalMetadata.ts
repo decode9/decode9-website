@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { LEGAL_COPY, LEGAL_DEFAULT_LOCALE, LEGAL_ENTITY, LEGAL_LOCALES, legalPath } from '@/data/legal';
+import { LEGAL_COPY, LEGAL_DEFAULT_LOCALE, LEGAL_ENTITY, LEGAL_LOCALES, legalPath, otherLegalLocale } from '@/data/legal';
 import type { LegalKind, LegalLocale } from '@/interfaces/legal';
 import { buildDocumentMetadata, buildViewport } from './metadata';
-import { LEGAL_SEO, SITE_URL } from './site';
+import { LEGAL_SEO, SITE_NAME, SITE_URL } from './site';
 
 export const legalUrl = (locale: LegalLocale, kind: LegalKind): string => `${SITE_URL}${legalPath(locale, kind)}`;
 
@@ -21,7 +21,9 @@ export const buildLegalMetadata = (locale: LegalLocale, kind: LegalKind): Metada
     path: legalPath(locale, kind),
     title: page.metaTitle,
     description: page.metaDescription,
+    image: { url: LEGAL_SEO.image.url, alt: LEGAL_SEO.image.alt[locale] },
     ogLocale: LEGAL_SEO.ogLocale[locale],
+    alternateLocale: [LEGAL_SEO.ogLocale[otherLegalLocale(locale)]],
     languages: legalAlternates(kind),
   });
 };
@@ -35,7 +37,9 @@ export const buildLegalJsonLd = (locale: LegalLocale, kind: LegalKind): string =
     '@type': 'WebPage',
     name: LEGAL_COPY[locale][kind].metaTitle,
     url: legalUrl(locale, kind),
+    description: LEGAL_COPY[locale][kind].metaDescription,
     inLanguage: locale,
+    isPartOf: { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, name: SITE_NAME, url: `${SITE_URL}/` },
     publisher: {
       '@type': 'Person',
       name: LEGAL_ENTITY.name,
