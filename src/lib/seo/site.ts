@@ -105,7 +105,7 @@ export const PERSON = {
   /** Frontal portrait of the entry page. */
   image: '/entrada/frames/f03.webp',
   /** Only profiles linked from the site's own content. */
-  sameAs: ['https://github.com/decode9'],
+  sameAs: ['https://github.com/decode9', 'https://www.linkedin.com/in/decode9/'],
   /** Languages of the chapter «Bitácora» (Base). */
   knowsLanguage: ['es', 'en'],
   /** Chapter «Kit de terraformación» of the profile (src/data/profile/chapters.ts). */
