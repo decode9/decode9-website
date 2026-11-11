@@ -1,3 +1,5 @@
+import { LEGAL_COPY, legalPath } from '@/data/legal';
+import { withBase } from '@/utils/asset';
 import type { AboutDialogProps } from './interface';
 import useAboutDialog from './useAboutDialog';
 import styles from './styles.module.scss';
@@ -15,6 +17,11 @@ const SECTIONS: { h: string; p: string[] }[] = [
   { h: 'Contenido de terceros', p: ['La sección Actualidad muestra titulares públicos de php.net, CoinDesk, Hacker News, Ars Technica y TechCrunch, con enlace a cada nota. Las tipografías se cargan desde Google Fonts.'] },
   { h: 'Sonido', p: ['El ambiente espacial se genera en tu navegador y puedes apagarlo con el botón de la barra inferior.'] },
 ];
+
+const LEGAL_LINKS = (['privacy', 'terms'] as const).map((kind) => ({
+  href: withBase(legalPath('es', kind)),
+  label: LEGAL_COPY.es.labels[kind],
+}));
 
 /** "About" sheet opened from the moon: rights, privacy, storage, third parties. */
 const AboutDialog = ({ open, onClose }: AboutDialogProps) => {
@@ -57,6 +64,13 @@ const AboutDialog = ({ open, onClose }: AboutDialogProps) => {
               </p>
             </article>
           </div>
+          <nav className={styles.legal} aria-label="Legal">
+            {LEGAL_LINKS.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
     </>

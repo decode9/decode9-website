@@ -22,36 +22,54 @@ export const baseMetadata: Metadata = {
   },
 };
 
-/** Per-route metadata: title, description, canonical and Open Graph. */
-export const buildPageMetadata = (key: PageKey): Metadata => {
-  const page = PAGES[key];
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: { canonical: page.path },
-    openGraph: {
-      type: 'website',
-      locale: SITE_LOCALE,
-      url: page.path,
-      siteName: 'decode9',
-      title: page.title,
-      description: page.description,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'decode9' }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@decode9',
-      creator: '@decode9',
-      title: page.title,
-      description: page.description,
-      images: [OG_IMAGE],
-    },
-  };
-};
+export interface SeoDocument {
+  path: string;
+  title: string;
+  description: string;
+  /** Open Graph locale; the site default is Spanish. */
+  ogLocale?: string;
+  /** hreflang → path. */
+  languages?: Record<string, string>;
+}
 
-export const buildPageViewport = (key: PageKey): Viewport => ({
+/** Title, description, canonical, alternates, Open Graph and Twitter card of one document. */
+export const buildDocumentMetadata = ({
+  path,
+  title,
+  description,
+  ogLocale = SITE_LOCALE,
+  languages,
+}: SeoDocument): Metadata => ({
+  title,
+  description,
+  alternates: { canonical: path, ...(languages ? { languages } : {}) },
+  openGraph: {
+    type: 'website',
+    locale: ogLocale,
+    url: path,
+    siteName: 'decode9',
+    title,
+    description,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'decode9' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@decode9',
+    creator: '@decode9',
+    title,
+    description,
+    images: [OG_IMAGE],
+  },
+});
+
+/** Per-route metadata: title, description, canonical and Open Graph. */
+export const buildPageMetadata = (key: PageKey): Metadata => buildDocumentMetadata(PAGES[key]);
+
+export const buildViewport = (themeColor: string): Viewport => ({
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: PAGES[key].themeColor,
+  themeColor,
 });
+
+export const buildPageViewport = (key: PageKey): Viewport => buildViewport(PAGES[key].themeColor);

@@ -24,3 +24,7 @@
 /* Tailwind preflight strips the underline from links; the original keeps the UA one. */
 .grid a { color: #ffb86b; text-decoration: underline; }
 @media (max-width: 720px) { .about { right: max(12px, env(safe-area-inset-right, 0px)); width: calc(100vw - 24px); } }
+
+.legal { display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 4px; font: 500 11px var(--f-code); letter-spacing: 0.08em; text-transform: uppercase; }
+.legal a { color: #a9aec4; text-decoration: none; }
+.legal a:hover, .legal a:focus-visible { color: #fff; text-decoration: underline; text-underline-offset: 3px; }

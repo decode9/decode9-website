@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import EntryClient from '@/components/Entry/EntryClient';
 import { buildPageMetadata, buildPageViewport } from '@/lib/seo/metadata';
+import { LEGAL_COPY, legalPath } from '@/data/legal';
 import { withBase } from '@/utils/asset';
 
 export const metadata: Metadata = buildPageMetadata('entry');
@@ -16,6 +17,11 @@ const EntryPage = () => (
       </p>
       <p>
         <a href={withBase('/perfil/')}>My Professional Mode: perfil profesional de Jorge Bastidas</a>
+      </p>
+      <p>
+        <a href={withBase(legalPath('es', 'privacy'))}>{LEGAL_COPY.es.labels.privacy}</a>
+        {' · '}
+        <a href={withBase(legalPath('es', 'terms'))}>{LEGAL_COPY.es.labels.terms}</a>
       </p>
     </noscript>
     <EntryClient />

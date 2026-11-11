@@ -8,6 +8,8 @@
  *  - the four routes answer 200, have lang="es" and load without page/console errors
  *    (expected network errors of an unconfigured API, news feeds or GA are ignored);
  *  - the legacy /es/ redirects to /;
+ *  - the four legal pages answer 200, show the legal name and CUIL and declare their language
+ *    (English pages mark the document container with lang="en");
  *  - on an iPhone, the red side of the entry goes to /decode9/movil/ (and to /decode9/ with ?escritorio=1);
  *  - the transmitter contact form sends (API mocked with page.route) or, when the build has no API URL,
  *    shows the «not sent» message.
@@ -25,6 +27,14 @@ const ROUTES = ['/', '/decode9/', '/decode9/movil/', '/perfil/'];
 const EXPECTED_NETWORK_NOISE =
   /Failed to load resource|net::ERR_|CORS|Access-Control|googletagmanager|google-analytics|noticias|hacker-news|hn\.algolia|firebaseio/i;
 const MOCK_RECEIPT = 'SOS-4242';
+const LEGAL_NAME = 'Jorge Bastidas Araujo';
+const LEGAL_CUIL = '20964746193';
+const LEGAL_ROUTES = [
+  { path: '/privacy/', lang: 'en' },
+  { path: '/terms/', lang: 'en' },
+  { path: '/es/privacidad/', lang: 'es' },
+  { path: '/es/terminos/', lang: 'es' },
+];
 
 const results = [];
 const check = (name, ok, detail = '') => {
@@ -86,6 +96,24 @@ const checkRoutes = async (browser) => {
   await context.close();
 };
 
+const checkLegalPages = async (browser) => {
+  const context = await browser.newContext();
+  for (const { path, lang } of LEGAL_ROUTES) {
+    const page = await context.newPage();
+    const errors = watchErrors(page);
+    const response = await page.goto(`${BASE}${path}`, { waitUntil: 'load' });
+    check(`${path} responds 200`, response?.status() === 200, String(response?.status()));
+    const name = page.locator('[data-legal="name"]');
+    check(`${path} shows the legal name`, (await name.textContent())?.trim() === LEGAL_NAME);
+    check(`${path} shows the CUIL`, (await page.locator('[data-legal="cuil"]').textContent())?.trim() === LEGAL_CUIL);
+    const docLang = await name.evaluate((el) => el.closest('[lang]')?.getAttribute('lang'));
+    check(`${path} is marked lang="${lang}"`, docLang === lang, String(docLang));
+    check(`${path} without page errors`, errors.length === 0, errors.join(' | '));
+    await page.close();
+  }
+  await context.close();
+};
+
 const chooseRed = async (browser, query) => {
   const context = await browser.newContext({ ...devices['iPhone 13'] });
   const page = await context.newPage();
@@ -137,6 +165,7 @@ const checkContactForm = async (browser) => {
 const browser = await launch();
 try {
   await checkRoutes(browser);
+  await checkLegalPages(browser);
   await checkMobileEntry(browser);
   await checkContactForm(browser);
 } finally {

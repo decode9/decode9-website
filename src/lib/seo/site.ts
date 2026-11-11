@@ -50,3 +50,10 @@ export const PAGES: Record<PageKey, PageSeo> = {
 };
 
 export const pageUrl = (key: PageKey): string => `${SITE_URL}${PAGES[key].path}`;
+
+/** Legal pages (/privacy/, /terms/, /es/privacidad/, /es/terminos/): sober dark page, low sitemap priority. */
+export const LEGAL_SEO = {
+  themeColor: '#0b0b10',
+  priority: 0.3,
+  ogLocale: { es: 'es_ES', en: 'en_US' },
+} as const;
