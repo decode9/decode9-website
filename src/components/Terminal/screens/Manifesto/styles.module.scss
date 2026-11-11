@@ -1,0 +1,62 @@
+// Inline styles of the original Manifiesto windows (OPENERS.man, stepHTML, mythHTML, quoteHTML).
+.mb12 {
+  margin-bottom: 12px;
+}
+
+.mt12 {
+  margin-top: 12px;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.dataQuote {
+  font-size: 24px;
+  margin: 6px 0;
+}
+
+.fs15 {
+  font-size: 15px;
+}
+
+.fs16 {
+  font-size: 16px;
+}
+
+.italic {
+  font-size: 16px;
+  font-style: italic;
+}
+
+.block {
+  display: block;
+  margin-top: 8px;
+}
+
+.right {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.struck {
+  text-decoration: line-through;
+}
+
+.quote {
+  margin: 10px 0 12px;
+}
+
+.tagBtn {
+  cursor: pointer;
+}

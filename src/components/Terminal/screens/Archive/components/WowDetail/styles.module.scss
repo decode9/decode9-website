@@ -1,0 +1,103 @@
+// Original L609–615, @container wb L719–720 and L748.
+.wow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.bars {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  height: 180px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  background: rgba(8, 1, 1, 0.7);
+}
+
+.wb {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  animation: wbin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  i {
+    display: block;
+    width: 16px;
+    height: var(--h);
+    min-height: 4px;
+    background: linear-gradient(0deg, var(--r), var(--amber));
+    box-shadow: 0 0 10px rgba(255, 140, 40, 0.6);
+  }
+
+  b {
+    font-family: var(--f-m);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--cream);
+    border: 1px solid var(--r);
+    padding: 1px 4px;
+    border-radius: 50%;
+  }
+}
+
+@keyframes wbin {
+  from {
+    opacity: 0;
+    transform: scaleY(0.1);
+    transform-origin: bottom;
+  }
+}
+
+.title {
+  margin: 6px 0 8px;
+}
+
+.body {
+  font-size: 16.5px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.link {
+  margin-top: 10px;
+  text-align: right;
+}
+
+@container wb (max-width: 520px) {
+  .wow {
+    grid-template-columns: 1fr;
+  }
+
+  .bars {
+    justify-content: center;
+    height: 150px;
+  }
+}
+
+@container wb (max-width: 340px) {
+  .bars {
+    gap: 4px;
+  }
+
+  .wb i {
+    width: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wow {
+    grid-template-columns: 1fr;
+  }
+
+  .bars {
+    height: 140px;
+    justify-content: center;
+  }
+}

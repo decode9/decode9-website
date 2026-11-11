@@ -9,6 +9,7 @@
 
 # next.js
 /.next/
+/.next-*/
 /out/
 
 # production
@@ -33,3 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+# leftovers of the previous site (untracked, pending cleanup)
+/scripts/

@@ -1,0 +1,5 @@
+// Both languages are always in the DOM; the terminal root's data-lang hides one (instant switch, original html[data-lang]).
+:global([data-lang='en']) .es,
+:global(:not([data-lang='en'])[data-lang]) .en {
+  display: none !important;
+}

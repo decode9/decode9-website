@@ -1,0 +1,52 @@
+.bubble {
+  position: fixed; z-index: 4; left: 0; top: 0; width: min(640px, calc(100vw - 32px)); box-sizing: border-box;
+  display: flex; align-items: flex-start; color: #15182b;
+  opacity: 0; transform: scale(0.88); transform-origin: var(--ox, 100%) var(--oy, 50%); pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.bubble[data-on] { opacity: 1; transform: none; pointer-events: auto; }
+/* sin escena 3D: la tarjeta se centra en pantalla */
+.centered { left: 50%; top: 50%; translate: -50% -50%; --ox: 50%; --oy: 50%; }
+.sheet { box-sizing: border-box; border-radius: 18px; padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.7); }
+.a { flex: 1.15; background: #eceef3; position: relative; z-index: 2; }
+.b { flex: 1; background: #d9dce5; margin: 22px 0 0 -12px; padding-left: 30px; transform: rotate(1.4deg); position: relative; z-index: 1; }
+.rx { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e0552e; margin-right: 8px; vertical-align: 1px; box-shadow: 0 0 0 0 rgba(224, 85, 46, 0.6); animation: rx 1.4s ease-out infinite; }
+@keyframes rx { to { box-shadow: 0 0 0 9px rgba(224, 85, 46, 0); } }
+.whoSays { margin: 0; font: 600 11px var(--f-code); letter-spacing: 0.12em; text-transform: uppercase; color: #9a5a12; }
+.bubble h2 { margin: 0; font: 650 32px/0.9 var(--f-display); letter-spacing: -0.035em; text-transform: uppercase; text-wrap: balance; }
+.bubble h2 em { font-style: italic; font-weight: 300; color: #c9701a; }
+.pitch { margin: 0; font: 400 14px/1.45 var(--f-body); color: #3d4157; }
+.bubble form { display: flex; gap: 6px; background: #fff; border: 1.5px solid #c9ccd8; border-radius: 999px; padding: 4px 4px 4px 14px; transition: border-color 0.2s; }
+.bubble form:focus-within { border-color: #e08a2e; }
+.bubble input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 500 14px var(--f-body); color: #15182b; }
+.bubble input::placeholder { color: #7d8197; }
+.bubble input.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; flex: none; }
+.bubble form button { appearance: none; border: 0; cursor: pointer; width: 38px; height: 38px; border-radius: 50%; background: #15182b; color: var(--dawn); font: 600 18px/1 var(--f-body); flex: none; }
+.bubble form button:hover { background: #2c3150; }
+.note { margin: 0; font: 400 12px var(--f-body); color: #4d5168; }
+.note:empty { display: none; }
+.footRow { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.again { appearance: none; border: 0; background: none; cursor: pointer; padding: 0; font: 500 11px var(--f-code); color: #6b6f86; }
+.again:hover { color: #15182b; }
+.provD { justify-self: start; font: 500 10px var(--f-code); letter-spacing: 0.04em; color: #5a3608; background: #ffd23f; padding: 3px 7px; border-radius: 4px; }
+.dl { list-style: none; margin: 0; padding: 0; display: grid; }
+.dl li { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 9px 0; border-top: 1px solid rgba(21, 24, 43, 0.12); }
+.k { font: 500 10.5px var(--f-code); letter-spacing: 0.06em; text-transform: uppercase; color: #5d6178; }
+.v { font: italic 600 14px var(--f-body); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cp { appearance: none; border: 1px solid rgba(21, 24, 43, 0.25); background: transparent; border-radius: 999px; font: 500 10px var(--f-code); padding: 4px 8px; cursor: pointer; color: #15182b; }
+.cp:hover { background: #15182b; color: #eceef3; }
+.cp[data-copy=''] { opacity: 0.35; pointer-events: none; }
+.sig { margin: 0; font: 400 10.5px var(--f-code); color: #5d6178; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hint {
+  position: fixed; z-index: 4; left: 0; top: 0; pointer-events: none; font: 500 11px var(--f-code); letter-spacing: 0.04em; color: var(--ink);
+  background: rgba(18, 22, 46, 0.82); border: 1px solid rgba(255, 184, 107, 0.45); padding: 5px 9px; border-radius: 999px; white-space: nowrap;
+  opacity: 0; transform: translate(-50%, -100%); transition: opacity 0.3s;
+}
+.hint[data-on] { opacity: 1; }
+@media (max-width: 720px) {
+  .bubble { flex-direction: column; max-height: calc(100vh - 150px); overflow-y: auto; border-radius: 18px; }
+  .b { margin: -10px 0 0; padding-left: 20px; padding-top: 26px; transform: none; width: 100%; }
+  .bubble h2 { font-size: 26px; }
+  .hint { z-index: 7; }
+}

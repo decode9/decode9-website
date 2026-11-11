@@ -1,0 +1,35 @@
+name = "decode9-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Orígenes con CORS (separados por coma). Cualquier otro no recibe cabeceras CORS.
+ALLOWED_ORIGINS = "http://localhost:3000,http://localhost:4173"
+# Remitente de los avisos (dominio verificado en Resend).
+NOTIFY_FROM = "decode9 <transmisor@decode9.codes>"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "decode9-api"
+# En local no hace falta un id real.
+database_id = "8637b7f2-3983-4d9a-bcc7-cf20bc5a5c55"
+migrations_dir = "src/database/migrations"
+
+# ─── Producción (Cloudflare, plan gratis) ──────────────────────────────────────
+# Se usa con `--env production` (npm run deploy / db:migrate:remote).
+# En wrangler los entornos NO heredan [vars] ni bindings: todo se repite aquí.
+# Secretos (wrangler secret put <NOMBRE> --env production): SALT, RESEND_API_KEY, NOTIFY_TO.
+[env.production]
+name = "decode9-api"
+workers_dev = true
+
+[env.production.vars]
+ALLOWED_ORIGINS = "https://decode9.codes,https://www.decode9.codes"
+NOTIFY_FROM = "decode9 <transmisor@decode9.codes>"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "decode9-api"
+# PEGAR AQUÍ el id que imprime `npx wrangler d1 create decode9-api`.
+database_id = "8637b7f2-3983-4d9a-bcc7-cf20bc5a5c55"
+migrations_dir = "src/database/migrations"

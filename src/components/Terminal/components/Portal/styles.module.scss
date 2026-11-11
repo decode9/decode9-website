@@ -1,0 +1,39 @@
+// Pill portal (original #portal). Inactive since the pills moved to the entry page; kept for parity.
+// Inner pieces keep their original class names under :global, scoped by .portal.
+.portal{position:fixed;inset:0;z-index:70;background:#FAFAF9;color:#141213;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px max(16px,env(safe-area-inset-left,0px));animation:ptin .7s ease both}
+.portal :global {
+  .pt-ask{font-family:var(--f-m);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#9a9390}
+  .pt-foot{font-family:var(--f-b);font-size:16px;color:#7c7572;text-align:center;max-width:46ch}
+  .pt-rev{min-height:1.1em;font-family:var(--f-h);font-size:clamp(40px,7vw,90px);line-height:1;text-align:center}
+  .pt-rev.r{color:#D3161E}.pt-rev.b{color:#1C3FD6}
+  .pills{display:flex;gap:clamp(70px,14vw,180px);align-items:center;justify-content:center}
+  .shadow{width:calc(clamp(52px,6.2vw,74px)*1.35);height:16px;margin-top:14px;border-radius:50%;filter:blur(7px);transition:transform .5s,opacity .5s}
+  .pill-red .shadow{background:radial-gradient(ellipse,rgba(200,10,20,.45),rgba(0,0,0,.08) 60%,transparent 72%)}
+  .pill-blue .shadow{background:radial-gradient(ellipse,rgba(30,60,220,.45),rgba(0,0,0,.08) 60%,transparent 72%)}
+  .tag-under{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8b8582;margin-top:10px;opacity:0;transition:opacity .3s}
+  @media (hover:none){.tag-under{opacity:1}}
+  .pill-btn{all:unset;cursor:pointer;position:relative;display:grid;justify-items:center;padding:28px 18px;-webkit-tap-highlight-color:transparent}
+  .pill-btn:focus-visible{outline:2px solid #999;outline-offset:6px;border-radius:999px}
+  .capsule{position:relative;width:clamp(52px,6.2vw,74px);aspect-ratio:74/196;border-radius:999px;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s;transform:translateY(0) rotate(0)}
+  .capsule .half{position:absolute;left:0;right:0;height:50%;overflow:hidden}
+  .capsule .half.top{top:0;border-radius:999px 999px 0 0}
+  .capsule .half.bot{bottom:0;border-radius:0 0 999px 999px}
+  .pill-red .half.top{background:linear-gradient(90deg,#4a0004 0%,#a8040c 16%,#e5121b 40%,#ff4a3e 52%,#d9101a 66%,#8d0309 88%,#3d0003 100%)}
+  .pill-red .half.bot{background:linear-gradient(90deg,#3c0003 0%,#8a030a 16%,#c40d16 40%,#e53a31 52%,#b80c14 66%,#740207 88%,#2f0002 100%)}
+  .pill-blue .half.top{background:linear-gradient(90deg,#060c4a 0%,#1328a8 16%,#2448ef 40%,#6d93ff 52%,#2142e0 66%,#0f1f8d 88%,#05093d 100%)}
+  .pill-blue .half.bot{background:linear-gradient(90deg,#05093c 0%,#0f208a 16%,#1d3ccb 40%,#5579f0 52%,#1a37bd 66%,#0c1974 88%,#04072f 100%)}
+  .capsule .seam{position:absolute;left:3%;right:3%;top:50%;height:1px;background:rgba(0,0,0,.35);box-shadow:0 1px 0 rgba(255,255,255,.18)}
+  .capsule .shine{position:absolute;left:30%;width:13%;top:7%;bottom:9%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.35) 30%,rgba(255,255,255,.12) 55%,rgba(255,255,255,.4) 85%,rgba(255,255,255,.05));filter:blur(.4px)}
+  .capsule .shine2{position:absolute;right:18%;width:7%;top:12%;bottom:14%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.05))}
+  .capsule .cap{position:absolute;left:22%;right:22%;top:3%;height:7%;border-radius:999px;background:radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.85),rgba(255,255,255,0) 70%)}
+  .capsule .inner{position:absolute;left:24%;right:24%;bottom:6%;height:20%;border-radius:999px;background:radial-gradient(ellipse at 50% 70%,rgba(255,255,255,.35),transparent 70%)}
+  .shadow{width:calc(clamp(52px,6.2vw,74px)*1.35);height:16px;margin-top:14px;border-radius:50%;filter:blur(7px);transition:transform .5s,opacity .5s}
+  .pill-red .shadow{background:radial-gradient(ellipse,rgba(200,10,20,.45),rgba(0,0,0,.08) 60%,transparent 72%)}
+  .pill-blue .shadow{background:radial-gradient(ellipse,rgba(30,60,220,.45),rgba(0,0,0,.08) 60%,transparent 72%)}
+  .pill-btn:hover .capsule,.pill-btn:focus-visible .capsule{transform:translateY(-14px) rotate(-6deg)}
+  .pill-blue:hover .pill-blue:hover .capsule,.pill-blue:focus-visible .capsule{transform:translateY(-14px) rotate(6deg)}
+  .pill-btn:hover .shadow,.pill-btn:focus-visible .shadow{transform:scale(.8);opacity:.6}
+  .pills:hover .pill-btn:not(:hover) .capsule{filter:saturate(.25) brightness(1.1);opacity:.55}
+  .pill-btn:hover .tag-under,.pill-btn:focus-visible .tag-under{opacity:1}
+}
+@keyframes ptin{from{opacity:0}}

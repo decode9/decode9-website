@@ -1,0 +1,11 @@
+.alarm { position: fixed; left: 0; top: 0; z-index: 20; pointer-events: none; display: flex; align-items: center; gap: 6px; opacity: 0; transition: opacity 0.25s; will-change: transform; }
+.alarm[data-on] { opacity: 1; }
+.alarm svg { width: 46px; height: 46px; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5)); animation: ringshake 0.09s linear infinite alternate; }
+.alarm span { font: 800 14px/1 var(--f-display); letter-spacing: 0.06em; color: #ffd23f; text-shadow: 0 2px 0 #7a2a10, 0 0 14px rgba(255, 120, 60, 0.8); animation: ringtxt 0.3s steps(2) infinite; }
+@keyframes ringshake { from { transform: rotate(-14deg) translateX(-1px); } to { transform: rotate(14deg) translateX(1px); } }
+@keyframes ringtxt { 50% { opacity: 0.4; } }
+.sim { position: fixed; z-index: 21; left: max(24px, env(safe-area-inset-left, 0px)); top: calc(env(safe-area-inset-top, 0px) + 92px); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.sim span { font: 500 9.5px var(--f-code); letter-spacing: 0.08em; text-transform: uppercase; color: #ffd23f; }
+.sim button { appearance: none; cursor: pointer; font: 500 10.5px var(--f-code); color: #e9ebf3; background: rgba(255, 210, 63, 0.1); border: 1px dashed rgba(255, 210, 63, 0.6); border-radius: 4px; padding: 4px 7px; }
+.sim button:hover { background: #ffd23f; color: #15120c; }
+@media (max-width: 720px) { .sim { top: auto; bottom: calc(var(--foot-h) + env(safe-area-inset-bottom, 0px) + 10px); left: 12px; } }

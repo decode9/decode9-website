@@ -1,0 +1,100 @@
+// Original L232–244 (.form, .fld, .topics) and the inline font-size of the intro.
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.intro {
+  font-size: 17px;
+}
+
+.fld {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  > label,
+  legend {
+    font-family: var(--f-m);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--r2);
+    padding: 0;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    font: inherit;
+    font-family: var(--f-m);
+    font-size: 16px;
+    color: var(--cream);
+    background: rgba(8, 1, 1, 0.85);
+    border: 1px solid var(--line);
+    padding: 11px 12px;
+    border-radius: 0;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    caret-color: var(--r);
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--cream);
+    box-shadow: 0 0 0 3px rgba(255, 43, 28, 0.25);
+  }
+
+  input[aria-invalid='true'] {
+    border-color: var(--amber);
+  }
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  legend {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  label {
+    cursor: pointer;
+    position: relative;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  input:checked + .ch {
+    background: var(--r);
+    color: #1a0202;
+    border-color: var(--r);
+  }
+
+  input:focus-visible + .ch {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.ch {
+  display: inline-block;
+  font-family: var(--f-h);
+  font-size: 19px;
+  line-height: 1;
+  padding: 6px 12px 2px;
+  border: 1px solid var(--line);
+  color: var(--r2);
+  text-transform: uppercase;
+}

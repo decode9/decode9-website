@@ -1,0 +1,71 @@
+.hero {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: min(84vh, 92vw * 0.866);
+  aspect-ratio: 900 / 780;
+  transform: translateX(calc(-50% + var(--px, 0px))) translateY(var(--hy, 0px));
+  z-index: 4;
+  pointer-events: none;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 28px rgba(0, 0, 0, 0.35));
+}
+
+.halo {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 70%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 225, 77, 0.38), rgba(255, 225, 77, 0) 62%);
+  z-index: -1;
+  transition: background 0.4s;
+}
+
+[data-side='red'] .halo {
+  background: radial-gradient(circle, rgba(255, 80, 90, 0.45), rgba(255, 80, 90, 0) 62%);
+}
+
+[data-side='blue'] .halo {
+  background: radial-gradient(circle, rgba(63, 244, 228, 0.4), rgba(63, 244, 228, 0) 62%);
+}
+
+[data-ready] .hero {
+  animation: rise 1s 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 12vh;
+  }
+}
+
+/* exit: the chosen side eats the screen */
+[data-leaving] .hero {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+/* phones: Jorge glued to the floor */
+@media (max-aspect-ratio: 9/10) {
+  .hero {
+    height: auto;
+    width: min(142vw, 672px);
+    bottom: 0;
+  }
+}
+
+@media (max-aspect-ratio: 9/10) and (max-height: 700px) {
+  .hero {
+    width: min(120vw, 576px);
+  }
+}

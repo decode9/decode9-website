@@ -1,0 +1,13 @@
+// Original L244–245 (+ .win .txlog{min-height:0}).
+.txlog {
+  font-family: var(--f-m);
+  font-size: 13px;
+  color: var(--r2);
+  min-height: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.ok {
+  color: #5df29a;
+}

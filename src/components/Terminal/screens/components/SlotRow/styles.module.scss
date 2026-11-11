@@ -1,0 +1,99 @@
+// Original L147–151, L345–347, mobile L576–578, @container wb L736–737.
+.slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 10px;
+}
+
+.slot {
+  all: unset;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 8px 12px;
+  border: 1px solid var(--line);
+  background: rgba(20, 2, 2, 0.6);
+  text-align: center;
+  font-family: var(--f-h);
+  font-size: 21px;
+  line-height: 1;
+  color: var(--r2);
+  text-transform: uppercase;
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.n {
+  font-family: var(--f-m);
+  font-size: 10px;
+  color: var(--r3);
+}
+
+.sel {
+  background: rgba(255, 43, 28, 0.3);
+  border-color: var(--cream);
+  color: var(--cream);
+  box-shadow:
+    inset 3px 0 0 var(--cream),
+    inset -3px 0 0 var(--cream);
+}
+
+.two {
+  grid-template-columns: 1fr 1fr;
+
+  .slot {
+    font-size: 16px;
+    padding: 12px 4px 10px;
+    hyphens: auto;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
+
+
+@container wb (max-width: 460px) {
+  .slots {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  }
+
+  .slot {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 900px) {
+  .slots,
+  .slots.two {
+    display: flex !important;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 6px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--r3) transparent;
+  }
+
+  .slot,
+  .two .slot {
+    flex: none;
+    width: 104px;
+    padding: 10px 6px 8px;
+    font-size: 15px !important;
+    gap: 5px;
+    scroll-snap-align: start;
+  }
+
+  .slot .hex {
+    width: 44px;
+    height: 44px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

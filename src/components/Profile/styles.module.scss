@@ -1,0 +1,70 @@
+/* Atmósfera del perfil: tokens del original (:root) y fondo del cielo detrás del canvas de la escena. */
+.root {
+  --sky-top: #121831;
+  --sky-low: #2b2452;
+  --ink: #eef0ff;
+  --muted: #a6abcb;
+  --dawn: #ffb86b;
+  --code: #9fd8ff;
+  --leaf: #7fd28e;
+  --glass: rgba(18, 22, 46, 0.78);
+  --line: rgba(166, 171, 203, 0.22);
+  --f-display: var(--font-archivo), 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --f-body: var(--font-archivo), 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --f-code: var(--font-jetbrains), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --f-tag: var(--font-tag), 'Permanent Marker', var(--f-body);
+  --foot-h: 46px;
+  color-scheme: dark;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.55;
+
+  :global {
+    [hidden] {
+      display: none !important;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--dawn);
+      outline-offset: 2px;
+    }
+  }
+}
+
+:global(html):has(.root) {
+  scroll-snap-type: y mandatory;
+  background-color: #121831;
+  -webkit-text-size-adjust: 100%;
+}
+
+:global(body):has(.root) {
+  margin: 0;
+  background: radial-gradient(120% 90% at 50% 30%, #2b2452 0%, #121831 70%) fixed;
+  background-color: #121831;
+}
+
+.sleepGuard {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  display: none;
+}
+
+:global(body[data-asleep]) .sleepGuard {
+  display: block;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .root {
+    --foot-h: 42px;
+    --top-h: 76px;
+    --nav-h: 50px;
+  }
+}

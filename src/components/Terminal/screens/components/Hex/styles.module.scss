@@ -1,0 +1,50 @@
+// Original L152–156.
+.hex {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%);
+  background: linear-gradient(160deg, var(--amber), #b5520a);
+  position: relative;
+  flex: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    clip-path: inherit;
+    background: #1a0202;
+  }
+
+  svg {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--amber);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px rgba(255, 178, 28, 0.7));
+  }
+}
+
+.big {
+  width: 84px;
+  height: 84px;
+
+  svg {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.blue {
+  background: linear-gradient(160deg, var(--blue), #0e3a66);
+
+  svg {
+    stroke: var(--blue);
+    filter: drop-shadow(0 0 6px rgba(71, 182, 255, 0.7));
+  }
+}

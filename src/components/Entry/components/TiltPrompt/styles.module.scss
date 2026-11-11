@@ -1,0 +1,77 @@
+.tilt {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  transform: translate(-50%, -8px);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 40px;
+  background: rgba(11, 11, 16, 0.72);
+  color: var(--paper);
+  font: 600 11px/1 var(--f-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.4s, transform 0.4s;
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    animation: wob 2.4s ease-in-out infinite;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--volt);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes wob {
+  25% { transform: rotate(-14deg); }
+  75% { transform: rotate(14deg); }
+}
+
+.on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.ask {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.t2 {
+  display: none;
+}
+
+.ask .t1 {
+  display: none;
+}
+
+.ask .t2 {
+  display: inline;
+}
+
+/* phone in landscape: hidden behind the rotate hint */
+@media (orientation: landscape) and (pointer: coarse) and (hover: none) and (max-height: 540px) {
+  .tilt {
+    visibility: hidden;
+  }
+}

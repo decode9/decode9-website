@@ -1,0 +1,241 @@
+@use '../../../../styles/tokens' as *;
+
+// Desk window (original .win, .wbar, .wid, .wt, .wbtns, .wmin, .wx, .wbody and its animations).
+.win {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 3, 3, 0.86);
+  border: 1px solid rgba(255, 90, 70, 0.55);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 40, 20, 0.12);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.wbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 6px 5px 10px;
+  background: linear-gradient(90deg, rgba(255, 43, 28, 0.55), rgba(255, 43, 28, 0.18));
+  border-bottom: 1px solid rgba(255, 90, 70, 0.5);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  flex: none;
+}
+
+.wtop {
+  border-color: rgba(255, 230, 216, 0.85);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 40, 20, 0.25);
+
+  .wbar {
+    background: linear-gradient(90deg, var(--r), rgba(255, 43, 28, 0.35));
+  }
+}
+
+.dragging {
+  opacity: 0.92;
+
+  .wbar {
+    cursor: grabbing;
+  }
+}
+
+.wid {
+  font-family: var(--f-m);
+  font-size: 10.5px;
+  color: rgba(255, 230, 216, 0.7);
+  white-space: nowrap;
+}
+
+.wt {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--f-h);
+  font-size: 21px;
+  line-height: 1;
+  padding-top: 3px;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wbtns {
+  display: flex;
+  gap: 4px;
+}
+
+.wmin,
+.wx {
+  all: unset;
+  cursor: pointer;
+  width: 24px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: var(--cream);
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.wmin {
+  font-size: 11px;
+  border: 1px solid rgba(255, 230, 216, 0.35);
+
+  &:hover {
+    background: rgba(255, 230, 216, 0.15);
+  }
+}
+
+.wx {
+  font-size: 12px;
+  border: 1px solid rgba(255, 230, 216, 0.6);
+
+  &:hover {
+    background: var(--cream);
+    color: #1a0202;
+  }
+}
+
+.wbody {
+  padding: 16px 18px;
+  overflow: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--r3) transparent;
+}
+
+.small .wbody {
+  padding: 12px 14px;
+}
+
+.scanw .wbody {
+  padding: 0;
+}
+
+.min {
+  height: auto !important;
+  min-height: 0 !important;
+
+  .wbody {
+    display: none;
+  }
+}
+
+.arrive {
+  animation: winIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.leave {
+  animation: winOut 0.22s ease-in forwards;
+  pointer-events: none;
+}
+
+.flk {
+  animation: wflk 0.35s steps(3);
+}
+
+@keyframes winIn {
+  0% {
+    opacity: 0;
+    transform: translate(var(--fx), var(--fy)) scale(0.92);
+    clip-path: inset(0 0 100% 0);
+    filter: brightness(2.5);
+  }
+  55% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1.4);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes winOut {
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+    filter: blur(4px) brightness(1.8);
+    clip-path: inset(45% 0 45% 0);
+  }
+}
+
+@keyframes wflk {
+  0% {
+    opacity: 0.3;
+    filter: brightness(2);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: $desk-min) {
+  .win {
+    resize: both;
+    min-width: 300px;
+    min-height: 140px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      background: linear-gradient(
+        135deg,
+        transparent 45%,
+        var(--r2) 45%,
+        var(--r2) 55%,
+        transparent 55%,
+        transparent 70%,
+        var(--r2) 70%,
+        var(--r2) 80%,
+        transparent 80%
+      );
+    }
+
+    .wbody {
+      flex: 1;
+    }
+  }
+
+  .min {
+    resize: none;
+    min-height: 0;
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .win {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    max-height: none !important;
+  }
+
+  .wbar {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrive,
+  .leave,
+  .flk {
+    animation: none !important;
+  }
+}

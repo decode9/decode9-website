@@ -1,0 +1,17 @@
+import type { Bilingual, OriginLog } from '@/interfaces/terminal';
+
+/** Expediente de origen: the eight logs (original LOGS). */
+export const ORIGIN_LOGS: readonly OriginLog[] = [
+  { img: 'o1', t: ['Monkarian','Monkarian'], d: ['Pertenecía a los monkarians, una civilización de primates inteligentes con un enorme desarrollo científico. Uno de sus investigadores no dejaba de preguntarse qué existe más allá de nuestra realidad.','He belonged to the monkarians, a civilization of intelligent primates with vast scientific progress. One of their researchers kept asking what lies beyond our reality.'] },
+  { img: 'o2', t: ['El experimento','The experiment'], d: ['Durante años investigó una tecnología capaz de atravesar fronteras entre dimensiones. Tras muchos intentos estabilizó la conexión, y frente a él se abrió un portal.','For years he researched a technology able to cross the borders between dimensions. After many attempts he stabilized the link, and a portal opened in front of him.'] },
+  { img: 'o3', t: ['El Averno','The Averno'], d: ['Un mundo extremo: calor, volcanes y tormentas de energía. Y lleno de vida. Varias razas habían aprendido a habitarlo; los demonoides, la más extendida, conocían cada grieta del territorio.','An extreme world: heat, volcanoes and energy storms. And full of life. Several races had learned to live there; the demonoids, the most widespread, knew every crack in the land.'] },
+  { img: 'o4', t: ['El error','The error'], d: ['Un error en los cálculos de transferencia cruzó su biología con la energía dimensional. Llegó con piel roja y cuernos. La mente y la curiosidad quedaron intactas.','A transfer miscalculation fused his biology with dimensional energy. He arrived with red skin and horns. His mind and curiosity stayed intact.'] },
+  { img: 'c4', t: ['Un mundo por comprender','A world to understand'], d: ['Estudió la geología, la atmósfera, los recursos y las razas del Averno. Entendió que muchos de sus problemas podían resolverse con ciencia e ingeniería.','He studied the Averno’s geology, atmosphere, resources and races. He saw that many of its problems could be solved with science and engineering.'] },
+  { img: 'c6', t: ['Ingeniería compartida','Shared engineering'], d: ['Trabajó junto a las distintas razas. Juntos diseñaron refugios, climatización, transporte y energía. Ninguna tenía sola todas las respuestas.','He worked alongside the different races. Together they designed shelters, climate control, transport and power. No one had every answer alone.'] },
+  { img: 'c9', t: ['Una nueva civilización','A new civilization'], d: ['Surgieron laboratorios, centros de investigación y ciudades entre los volcanes. Innovar no es imponer tecnología: es entender el problema con quienes lo viven.','Labs, research centers and cities rose between the volcanoes. Innovation isn’t imposing technology: it’s understanding the problem with the people who live it.'] },
+  { img: 'o5', t: ['La búsqueda continúa','The search continues'], d: ['Nunca dejó de preguntar. Cada respuesta le abre una pregunta nueva, y por eso sigue investigando, aprendiendo de otras razas y construyendo.','He never stopped asking. Every answer opens a new question, so he keeps researching, learning from other races and building.'] },
+];
+
+export const ORIGIN_TEXT = {
+  title: ['Expediente de origen', 'Origin file'],
+} as const satisfies Record<string, Bilingual>;

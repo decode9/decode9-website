@@ -1,0 +1,86 @@
+.device {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.slot,
+.led,
+.btnSide {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .device {
+    width: 430px;
+    height: min(900px, 96vh);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.8));
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: #2a0606;
+      clip-path: polygon(0 70px, 46px 24px, 250px 24px, 276px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      z-index: 0;
+      background: #0e0202;
+      clip-path: polygon(0 69px, 46px 23px, 249px 23px, 275px 0, 100% 0, 100% calc(100% - 39px), calc(100% - 39px) 100%, 0 100%);
+    }
+  }
+
+  .slot {
+    display: block;
+    position: absolute;
+    left: 52px;
+    top: 36px;
+    width: 180px;
+    height: 22px;
+    z-index: 3;
+    background: repeating-linear-gradient(90deg, var(--r) 0 3px, transparent 3px 9px);
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    opacity: 0.85;
+  }
+
+  .led {
+    display: block;
+    position: absolute;
+    right: 36px;
+    top: 40px;
+    width: 64px;
+    height: 8px;
+    z-index: 2;
+    background: radial-gradient(circle, var(--r) 0 3px, transparent 3.5px) 0 0 / 16px 8px repeat-x;
+    filter: drop-shadow(0 0 4px var(--r));
+  }
+
+  .btnSide {
+    display: block;
+    position: absolute;
+    width: 5px;
+    border-radius: 3px;
+    background: var(--r);
+    z-index: 0;
+  }
+
+  .screen {
+    inset: 78px 18px 26px 18px;
+    border-radius: 14px;
+  }
+}

@@ -1,0 +1,182 @@
+@use '../../styles/tokens' as *;
+
+// CRT shell (original .crt). Pieces of other components opt in through data attributes:
+// [data-piece] assembles (top bar, menu items, HUD boxes, nav foot, footer), [data-layer] is a
+// background layer (wire canvas, glyphs) and [data-stage] is the screen area.
+.crt {
+  @include terminal-tokens;
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 200px;
+  grid-template-rows: 62px minmax(0, 1fr) 46px;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  background: radial-gradient(120% 90% at 55% 45%, #2a0505 0%, #120202 55%, #060000 100%);
+  isolation: isolate;
+  animation: flick 6s infinite;
+  color: var(--txt);
+  font-family: var(--f-b);
+  font-size: 18px;
+  line-height: 1.45;
+  box-sizing: border-box;
+
+  :global(.glow) {
+    text-shadow: 0 0 6px rgba(255, 50, 30, 0.6), -1px 0 rgba(70, 180, 255, 0.25), 1px 0 rgba(255, 0, 0, 0.4);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.28) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 51;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 40, 20, 0.03), transparent 30%, transparent 70%, rgba(255, 40, 20, 0.04));
+    mix-blend-mode: screen;
+  }
+}
+
+// Zero-specificity base (original *, button and :focus-visible rules) so component rules always win.
+:where(.crt) :where(:global(*)),
+:where(.crt) :where(:global(*::before)),
+:where(.crt) :where(:global(*::after)) {
+  box-sizing: border-box;
+}
+
+:where(.crt) :where(:global(button)) {
+  font: inherit;
+  color: inherit;
+}
+
+:where(.crt) :where(:global(:focus-visible)) {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+@keyframes flick {
+  0%,
+  100% {
+    filter: none;
+  }
+  47% {
+    filter: none;
+  }
+  48% {
+    filter: brightness(1.12) contrast(1.05);
+  }
+  49% {
+    filter: none;
+  }
+  82% {
+    filter: brightness(0.94);
+  }
+  83% {
+    filter: none;
+  }
+}
+
+/* CRT off (d9crt-fx = off) */
+.nocrt {
+  animation: none;
+
+  &::after,
+  &::before {
+    display: none;
+  }
+
+  :global(.glow) {
+    text-shadow: none;
+  }
+}
+
+/* Empty system behind the login (original .crt.pre) */
+.pre {
+  :global([data-piece]) {
+    opacity: 0.09;
+    filter: blur(1.5px);
+  }
+
+  :global([data-layer]) {
+    opacity: 0.25;
+  }
+
+  :global([data-layer='wire']) {
+    opacity: 0.12 !important;
+  }
+
+  :global([data-stage]) {
+    opacity: 0;
+  }
+
+  :global([data-hide-pre]) {
+    visibility: hidden;
+  }
+}
+
+/* Assembly by pieces (original .crt.asm) */
+.asm {
+  :global([data-piece]) {
+    animation: piece 0.42s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  :global([data-layer]),
+  :global([data-stage]) {
+    transition: opacity 0.5s;
+    transition-delay: var(--d, 0ms);
+  }
+}
+
+@keyframes piece {
+  0% {
+    opacity: 0;
+    transform: translateX(var(--px, -24px)) scaleY(0.2);
+    filter: brightness(3) blur(2px);
+  }
+  35% {
+    opacity: 1;
+    transform: translateX(0) scaleY(1.15);
+  }
+  60% {
+    opacity: 0.4;
+  }
+  75% {
+    opacity: 1;
+    filter: brightness(1.6);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .crt {
+    grid-template-columns: 250px minmax(0, 1fr) 0;
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .crt {
+    position: relative;
+    min-height: 100dvh;
+    display: block;
+    padding-bottom: 20px;
+
+    &::after,
+    &::before {
+      position: fixed;
+    }
+  }
+}

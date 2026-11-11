@@ -1,0 +1,115 @@
+// Original L193–198, L349–351, mobile L358 + L586, @container wb L717–718.
+.skw {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.title {
+  margin: 10px 0;
+}
+
+.body {
+  font-size: 17px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.chip {
+  font-family: var(--f-b);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 230, 216, 0.5);
+  color: var(--cream);
+  background: rgba(255, 40, 20, 0.15);
+}
+
+.star {
+  color: var(--amber);
+  margin-left: 4px;
+}
+
+.pipRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.pips {
+  display: flex;
+  gap: 4px;
+
+  i {
+    width: 22px;
+    height: 6px;
+    background: rgba(255, 40, 20, 0.18);
+    transform: skewX(-20deg);
+  }
+
+  i.f {
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(255, 178, 28, 0.6);
+  }
+}
+
+
+.researching {
+  color: #5df29a;
+  display: block;
+  margin-top: 8px;
+}
+
+.cut {
+  position: relative;
+  min-height: 300px;
+  border-left: 2px solid var(--r);
+  background: linear-gradient(180deg, rgba(255, 40, 20, 0.08), transparent);
+
+  img {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 16px rgba(255, 60, 40, 0.35));
+  }
+}
+
+@container wb (max-width: 520px) {
+  .skw {
+    grid-template-columns: 1fr;
+  }
+
+  .cut {
+    min-height: 240px;
+    border-left: 0;
+    border-top: 2px solid var(--r);
+  }
+}
+
+@media (max-width: 900px) {
+  .skw {
+    grid-template-columns: 1fr;
+  }
+
+  .cut {
+    min-height: 220px;
+  }
+}

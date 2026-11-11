@@ -1,25 +1,22 @@
 import type { MetadataRoute } from 'next';
-import { LEGAL_KINDS, legalUrl } from '@/data/legal';
-import { i18n, localeUrl } from '@/i18n';
+import { LEGAL_KINDS, LEGAL_LOCALES } from '@/data/legal';
+import { legalAlternates, legalUrl } from '@/lib/seo/legalMetadata';
+import { LEGAL_SEO, PAGES, SITE_URL } from '@/lib/seo/site';
 
 export const dynamic = 'force-static';
 
-const languages = (urlFor: (locale: (typeof i18n.locales)[number]) => string) =>
-  Object.fromEntries(i18n.locales.map((code) => [code, urlFor(code)]));
-
 const sitemap = (): MetadataRoute.Sitemap => [
-  ...i18n.locales.map((locale) => ({
-    url: localeUrl(locale),
+  ...Object.values(PAGES).map((page) => ({
+    url: `${SITE_URL}${page.path}`,
     changeFrequency: 'monthly' as const,
-    priority: locale === i18n.defaultLocale ? 1 : 0.9,
-    alternates: { languages: languages(localeUrl) },
+    priority: page.priority,
   })),
   ...LEGAL_KINDS.flatMap((kind) =>
-    i18n.locales.map((locale) => ({
+    LEGAL_LOCALES.map((locale) => ({
       url: legalUrl(locale, kind),
       changeFrequency: 'yearly' as const,
-      priority: 0.3,
-      alternates: { languages: languages((code) => legalUrl(code, kind)) },
+      priority: LEGAL_SEO.priority,
+      alternates: { languages: legalAlternates(kind, (code) => legalUrl(code, kind)) },
     })),
   ),
 ];

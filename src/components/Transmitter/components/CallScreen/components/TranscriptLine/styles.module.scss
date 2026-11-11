@@ -1,0 +1,29 @@
+.p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+
+  time {
+    font-size: 11px;
+    color: var(--dim);
+    padding-top: 3px;
+  }
+
+  b {
+    color: var(--r);
+    font-weight: 400;
+  }
+}
+
+.cur::after {
+  content: '▌';
+  animation: blink 0.8s steps(2) infinite;
+  color: var(--r);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,23 @@
+.ticker {
+  overflow: hidden; min-width: 0; flex: 1; display: flex; align-items: center; margin-left: -14px; padding-left: 22px;
+  -webkit-mask: linear-gradient(90deg, #000 0, #000 94%, transparent); mask: linear-gradient(90deg, #000 0, #000 94%, transparent);
+}
+.run { display: flex; width: max-content; animation: tick 38s linear infinite; color: var(--muted); }
+.ticker:hover .run, .ticker:focus-within .run { animation-play-state: paused; }
+.run span { padding-right: 48px; white-space: nowrap; }
+.run em { font-style: normal; color: var(--code); }
+.run a { color: #c9cde6; text-decoration: none; white-space: nowrap; padding-right: 48px; transition: color 0.2s; }
+.run a:hover { color: #fff; }
+.run a small { color: #7f84a3; font-size: inherit; margin-left: 6px; }
+.run a .cat { font-style: normal; font-weight: 500; margin-right: 8px; padding: 1px 6px; border-radius: 3px; background: rgba(159, 216, 255, 0.12); color: var(--code); }
+.run a .cat[data-c='PHP'] { background: rgba(201, 168, 255, 0.14); color: #c9b6ff; }
+.run a .cat[data-c='Cripto'] { background: rgba(255, 210, 63, 0.14); color: #ffd23f; }
+.run a .cat[data-c='Dev'] { background: rgba(255, 154, 107, 0.14); color: #ff9a6b; }
+@keyframes tick { to { transform: translateX(-50%); } }
+:global(body[data-asleep]) .run { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .run { animation: none; } }
+@media (max-width: 720px) {
+  .ticker { padding-left: 16px; }
+  .run { color: #8c91b0; }
+  .run a .cat { padding: 0 4px; margin-right: 6px; }
+}

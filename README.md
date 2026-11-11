@@ -1,23 +1,30 @@
-# decode9 — Decode Session
+# decode9 · decode9.codes
 
-Sitio de Jorge Bastidas (decode9): una **sesión guiada** por capítulos sobre un escenario 3D persistente, con un
-agente de IA que narra el recorrido y responde preguntas (Solvo). Export estático a GitHub Pages en
-[decode9.codes](https://decode9.codes), en inglés (`/`) y español (`/es/`).
+Sitio personal de Jorge Bastidas (decode9). Es un export estático de Next.js que se publica en GitHub Pages en
+[decode9.codes](https://decode9.codes), todo en español (`lang="es"`). Tiene cuatro páginas:
 
-- **Apertura:** la pantalla de carga ensambla el isotipo con partículas al ritmo del progreso real (fuentes, runtime
-  3D, modelo, página); al 100 % se materializa el sólido y la marca se desliza a su lugar en el hero.
-- **Recorrido horizontal** en desktop (≥1024 px de ancho, ≥600 px de alto, con movimiento permitido): la rueda, el
-  trackpad, ← / → y el rail de capítulos avanzan por los paneles. En móvil y con movimiento reducido el sitio es
-  vertical y no hay pantalla de carga. La variante de Tailwind `h:` aplica el layout horizontal.
+| Ruta | Página | Qué es |
+| --- | --- | --- |
+| `/` | Entrada «Elige tu lado» | El lado rojo lleva a decode9 y el azul al perfil profesional. La cara de Jorge sigue el puntero o el giroscopio. En celular, el lado rojo abre `/decode9/movil/`. |
+| `/decode9/` | Terminal | Escritorio CRT con ventanas: archivos del investigador, Canal de publicaciones, Enlace (formulario de contacto), menú contextual y ES/EN dentro de la página. |
+| `/decode9/movil/` | Transmisor | Versión de celular de decode9: dial, llamada, contacto, transmisiones, bitácoras y audios. |
+| `/perfil/` | Perfil de Jorge | Recorrido 3D por scroll entre los mundos que terraforma, con capítulos, noticias, walkie de contacto y salto a decode9. |
+
+`/es/` es la URL del sitio anterior: redirige a `/` y lleva `noindex`.
+
+**Parámetros de URL:** `?escritorio=1` fuerza la versión de escritorio en celular (entrada y terminal), `?alias=`
+llega desde el QR de la terminal al transmisor, `?giro=1` activa el giroscopio, y `?hora=` y `?sim=1` simulan la hora
+del perfil.
 
 ## Stack
 
-- **Next.js 14** (App Router, `output: 'export'`), **React 18**, **TypeScript**, **Tailwind**
-- **three.js** (motor propio, cargado de forma diferida) · **GSAP** (ScrollTrigger, SplitText, ScrambleText,
-  DrawSVG, MotionPath, Flip) · **Lenis**
-- **Blender 5** para el isotipo 3D, el póster de fallback y la imagen OG (modelos como código)
-- **Solvo** (canal de chat web) para el guía; sin configurarlo, el guía funciona en modo sin conexión
-- **Vitest** para dominio y adaptadores · **Playwright** para el smoke test y las capturas de proyectos
+- **Next.js 14** (App Router, `output: 'export'`, `trailingSlash`), **React 18**, **TypeScript**
+- **Sass** (CSS Modules por componente) y **Tailwind** para lo global
+- **three.js** para la escena del perfil, **Web Audio** y `speechSynthesis` para sonido y voz, y
+  **qrcode-generator** para el QR de la terminal
+- **Vitest** para dominio y adaptadores, y **Playwright** para el smoke test
+- **Cloudflare Worker** (`worker/`, Hono + zod + D1) como API de formularios y noticias
+- **Google Analytics 4** (`G-VMLFSX6GXW`) y AdSense (`ca-pub-1675722214703683`, `public/ads.txt`)
 
 ## Scripts
 
@@ -28,56 +35,86 @@ agente de IA que narra el recorrido y responde preguntas (Solvo). Export estáti
 | `npm start` | Sirve `out/` en `localhost:4173` |
 | `npm test` | Tests unitarios (Vitest) |
 | `npm run typecheck` / `npm run lint` | TypeScript / ESLint |
-| `npm run verify` | Smoke test end-to-end contra `npm start` (`SOLVO_MOCK=1` con un build configurado) |
-| `npm run models` | Regenera con Blender el GLB del isotipo y el póster |
-| `npm run capture:sites` | Captura los sitios en vivo de los proyectos y los optimiza a WebP |
+| `npm run verify` | Smoke test con Playwright contra `npm start` |
 
-`?stage=off|low|medium|high` fuerza la calidad del escenario 3D (útil para QA).
+`npm run verify` usa el Chromium de Playwright. Si no lo encuentra, toma `CHROME=/ruta/al/navegador` o el
+`chromium_headless_shell` de `~/.cache/ms-playwright`. `VERIFY_URL` cambia la URL base.
 
 ## Arquitectura
 
-Regla de dependencias: `components → hooks/context → interfaces (puertos) ← lib (adaptadores)`. Los componentes
-nunca importan adaptadores; `components/Experience/components/AppProviders` es el composition root. La lógica que no
-es React son funciones fábrica tipadas (`createX(deps): X`).
+Regla de dependencias: `components → hooks → interfaces (puertos) ← lib (adaptadores)`. Los componentes no importan
+la infraestructura de `lib/`. La reciben por props o hooks desde el **composition root**, que es el `index.tsx` del
+componente raíz de cada página (`Entry`, `Terminal/components/Shell`, `Transmitter` y `Profile`). Las piezas que no son
+React son fábricas `createX(deps)` que devuelven un objeto con `dispose()`. three.js, Web Audio, voz, QR, canvas pesado
+y `fetch` viven solo en `lib/`.
+
+Las páginas interactivas se montan solo en el cliente (`dynamic(..., { ssr: false })` dentro de un wrapper
+`'use client'`). El HTML estático conserva el texto que sirve para SEO.
 
 ```
 src/
-  app/(en)/, app/(es)/es/   dos root layouts estáticos, un diccionario por página
+  app/                     rutas: page.tsx, decode9/, decode9/movil/, perfil/, es/ (redirige), robots.ts, sitemap.ts
   components/
-    Experience/            composición de la página + AppProviders + ChapterConductor
-    Layout/                RootDocument, Header (rail de capítulos), Hud, Footer
-    Guide/GuideConsole/    consola del guía (launcher, transcript, sugerencias, compositor)
-    Stage/                 escenario WebGL (import diferido) y póster de fallback
-    Sections/              un capítulo por carpeta: Hero, About, Services, Lab, Work, TechStack, Process, Contact
-    UI/                    primitivas compartidas
-  context/                 Dictionary, Scene (store), Guide (estado del recorrido + agente)
-  data/                    capítulos y estados de escena, proyectos, servicios, stack, labs
-  hooks/                   scroll, capítulos, conversación con el agente, narración
-  interfaces/              puertos y modelos (ConversationalAgent, SceneStore, CaseStudy…)
+    Layout/RootDocument/   <html lang="es">, fuentes, GA y JSON-LD
+    Entry/                 «Elige tu lado» (cara, mira, giroscopio y warp de salida)
+    Terminal/              shell CRT, gestor de ventanas y pantallas (screens/: Home, Channel, Link…)
+    Transmitter/           transmisor móvil (dial, llamada, canal, contacto, hojas de medios)
+    Profile/               perfil 3D (estaciones, capítulos, walkie, noche, salto a decode9)
+  data/                    textos y contenidos tipados: entry/, terminal/, transmitter/, profile/, posts.ts, profanity.ts
+  hooks/                   dispositivo, giroscopio, modo de entrada, rutas por hash
+  interfaces/              puertos y modelos: analytics, signal, walkie, news, post, audio, storage, terminal…
   lib/
-    agent/                 adaptador de Solvo, agente offline, decorator withFallback
-    three/                 stage, partículas, isotipo, formas, director de escena
-    scene/, motion/, seo/, config/
-  utils/                   funciones puras (markdown seguro, math compartida con los shaders…)
-scripts/blender/           isotipo como polígonos → GLB, póster y OG
-scripts/capture/           capturas de los proyectos con Playwright
-docs/solvo/                corpus y perfil del guía para Solvo
+    api/                   cliente HTTP y gateways (señal, walkie, noticias con respaldo de Hacker News)
+    audio/, canvas/, three/profile/, net/, share/
+    seo/                   site.ts (título, descripción y theme-color por ruta), metadata.ts, jsonLd.ts
+    analytics.ts           trackEvent (GA4)
+    tracking.ts            adaptador del puerto Analytics y decoradores de los gateways
+    config/env.ts          NEXT_PUBLIC_API_URL
+  utils/                   funciones puras (validadores, groserías, storage, math…)
+worker/                    API en Cloudflare (proyecto aparte, con su propio package.json)
+docs/arquitectura.md       mapa del sitio y convenciones en detalle
+verify.mjs                 smoke test de Playwright
 ```
 
-Los componentes siguen la convención *module component*: `index.tsx` + `interface.ts` + `useX.ts`, hijos en
-`components/`, `export default` al final.
+Más detalle (mapa de páginas, claves de `localStorage`, assets y fuentes) en
+[`docs/arquitectura.md`](docs/arquitectura.md).
 
-## El guía (Solvo)
+## Convenciones
 
-El guía narra cada capítulo con textos locales (no gastan tokens) y responde preguntas libres por el canal de chat
-web de Solvo. Para ponerlo en vivo, seguir [`docs/solvo/README.md`](docs/solvo/README.md) y completar
-`.env.production` a partir de `.env.example`. Si Solvo no está configurado o no responde, el sitio cambia solo al
-agente sin conexión.
+- **Module component:** una carpeta por componente con `index.tsx`, `interface.ts`, `useX.ts` y `styles.module.scss`.
+  Los hijos van en `components/`. Siempre arrow functions y `export default` al final.
+- **Datos** en `src/data/`, tipados contra `src/interfaces/`. Los textos bilingües de la terminal son tuplas `[es, en]`.
+- **Analítica:** los eventos pasan por el puerto `Analytics` (`interfaces/analytics.ts`). Llevan solo valores
+  cerrados, **nunca texto del visitante**. Eventos: `choose_side` {side}, `signal_sent` {origen, ok},
+  `walkie_sent` {ok}, `post_open` {type, id} y `d9_jump`.
+- **SEO:** cada ruta tiene título, descripción, canonical y OpenGraph/Twitter con `/brand/decode9-og.jpg`, definidos en
+  `lib/seo/site.ts`. JSON-LD Person y WebSite, sitemap y robots generados.
 
-## Assets
+## Worker / API
 
-- **Isotipo 3D:** `scripts/blender/isotype_polygons.py` define la marca como polígonos medidos sobre el PNG;
-  `npm run models` la extruye en Blender (`public/models/isotype.v1.glb`) y renderiza el póster.
-- **OG:** `FONT_DIR=… python3 scripts/blender/compose_og.py` (tipografías OFL de google/fonts).
-- **Proyectos:** `npm run capture:sites` (requiere `npx playwright install chromium`). Los logos vienen de los
-  repositorios de cada marca.
+`worker/` reemplaza los PHP del sitio viejo con el mismo contrato:
+
+| Ruta | Uso |
+| --- | --- |
+| `POST /senal` | Enlace de la terminal y Contacto del transmisor. Responde un código `SOS-####`. |
+| `POST /walkie` | Walkie del perfil. |
+| `GET /noticias` | Ticker del perfil. Junta 5 fuentes con caché de 30 min. |
+
+Sin `NEXT_PUBLIC_API_URL`, los formularios avisan que el canal no está disponible y las noticias salen del respaldo
+de Hacker News. Instalación, D1, secrets y despliegue están en [`worker/README.md`](worker/README.md).
+
+## Despliegue
+
+1. **Worker:** `cd worker && npm run deploy`. La primera vez hay que seguir los pasos de `worker/README.md`
+   (`wrangler login`, D1, migraciones y secrets).
+2. **Sitio:** pon la URL que imprime el deploy en `.env.production` y haz push a `main`. El workflow
+   `.github/workflows/nextjs.yml` corre `npm test`, `typecheck` y `next build`, y publica `out/` en GitHub Pages
+   con el `CNAME` `decode9.codes`.
+
+## Variables
+
+| Variable | Archivo | Uso |
+| --- | --- | --- |
+| `NEXT_PUBLIC_API_URL` | `.env.production` (versionado) | URL del worker. Es pública y queda dentro del build estático. Vacía = sin API. |
+
+Para desarrollo local usa `.env.local` (ignorado por git) a partir de `.env.example`.

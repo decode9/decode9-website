@@ -1,0 +1,30 @@
+// Original L615–617 (.pkey) and the inline font-size of the 'pinfo' body.
+.text {
+  font-size: 15px;
+}
+
+.pkey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  font-family: var(--f-m);
+  font-size: 11px;
+  color: var(--r2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--amber);
+    stroke-width: 1.8;
+  }
+}

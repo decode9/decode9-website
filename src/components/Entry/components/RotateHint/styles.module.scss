@@ -1,0 +1,38 @@
+.rotar {
+  display: none;
+}
+
+@media (orientation: landscape) and (pointer: coarse) and (hover: none) and (max-height: 540px) {
+  .rotar {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    font: 600 13px/1.4 var(--f-body);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 24px;
+
+    svg {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 14px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      animation: gira 2.2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes gira {
+    0%,
+    20% { transform: rotate(90deg); }
+    55%,
+    100% { transform: rotate(0); }
+  }
+}

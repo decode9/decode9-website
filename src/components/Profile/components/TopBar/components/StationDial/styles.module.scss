@@ -1,0 +1,69 @@
+.dial { position: relative; width: min(620px, 52vw); height: 66px; flex: none; }
+.stations { position: relative; height: 24px; }
+.dial button {
+  position: absolute; left: var(--x); top: 0; transform: translateX(-50%);
+  appearance: none; border: 0; background: transparent; cursor: pointer; padding: 4px 2px; white-space: nowrap;
+  font: 600 11.5px/1 var(--f-body); letter-spacing: 0.08em; text-transform: uppercase; color: #c3c7e2;
+  text-shadow: 0 1px 2px rgba(8, 10, 24, 0.95), 0 0 14px rgba(8, 10, 24, 0.85); transition: color 0.25s;
+}
+.dial button::after { content: ''; position: absolute; left: 50%; top: 26px; width: 1.5px; height: 13px; margin-left: -0.75px; background: #c3c7e2; opacity: 0.75; }
+.dial button:hover { color: #fff; }
+.dial button[aria-current='true'] { color: #fff; }
+.dial button[aria-current='true']::after { background: var(--dawn); opacity: 1; }
+.q { color: var(--dawn); }
+.dial button.d9 { color: #ff6b55; }
+.dial button.d9 .lb { font-family: var(--f-tag); font-size: 15px; letter-spacing: 0.02em; text-transform: none; font-weight: 400; }
+.dial button.d9[aria-current='true'] { color: #ff8a70; }
+.dial button.d9[aria-current='true']::after { background: #ff4a2a; }
+.ticks {
+  position: absolute; left: 0; right: 0; top: 30px; height: 9px; border-bottom: 1px solid rgba(201, 205, 230, 0.4);
+  background: repeating-linear-gradient(90deg, rgba(201, 205, 230, 0.38) 0 1px, transparent 1px 7px) bottom/100% 5px no-repeat;
+}
+.needle { position: absolute; top: 22px; left: 4%; width: 2px; height: 24px; margin-left: -1px; background: var(--dawn); box-shadow: 0 0 12px var(--dawn); pointer-events: none; }
+.needle::after { content: ''; position: absolute; left: 50%; bottom: -6px; margin-left: -5px; border: 5px solid transparent; border-top: 6px solid var(--dawn); border-bottom: 0; }
+.dial[data-tuning] .needle { animation: jit 0.18s steps(2) infinite; }
+@keyframes jit { 50% { transform: translateX(1.5px); } }
+@keyframes blink { 50% { opacity: 0.25; } }
+.readout {
+  position: absolute; top: 50px; right: 0; margin: 0; display: flex; gap: 10px; align-items: baseline; white-space: nowrap;
+  font: 500 10.5px var(--f-code); letter-spacing: 0.06em; color: #b4b8d6; text-shadow: 0 1px 2px rgba(8, 10, 24, 0.95);
+}
+.readout b { font: 600 13px var(--f-code); color: var(--dawn); font-variant-numeric: tabular-nums; min-width: 4ch; text-align: right; }
+.nm { color: #fff; font-weight: 500; }
+.ph { color: #b4b8d6; }
+.dot { font-style: normal; width: 6px; height: 6px; border-radius: 50%; background: var(--leaf); box-shadow: 0 0 8px var(--leaf); align-self: center; }
+.dial[data-tuning] .dot { background: var(--dawn); box-shadow: 0 0 8px var(--dawn); animation: blink 0.5s steps(2) infinite; }
+
+@media (max-width: 1080px) {
+  .dial { width: min(620px, 62vw); }
+  .lb { font-size: 9px; letter-spacing: 0.05em; }
+}
+@media (max-width: 720px) {
+  .dial {
+    position: fixed; left: 24px; right: 24px; width: auto; height: 30px;
+    bottom: calc(var(--foot-h) + env(safe-area-inset-bottom, 0px) + 4px); z-index: 6;
+  }
+  .dial::before {
+    content: ''; position: absolute; left: -24px; right: -24px; top: -20px; bottom: -4px; z-index: -1;
+    background: rgba(14, 18, 38, 0.9); border-top: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .stations { height: 16px; }
+  .dial button { width: 26px; height: 18px; padding: 0; }
+  .dial button::before { content: ''; position: absolute; left: 50%; top: 4px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; border: 1.5px solid #c3c7e2; box-sizing: border-box; }
+  .dial button[aria-current='true']::before { background: var(--dawn); border-color: var(--dawn); }
+  .dial button::after { top: 16px; height: 7px; }
+  .q { display: none; }
+  .ticks { top: 18px; height: 6px; }
+  .needle { top: 13px; height: 13px; }
+  .needle::after { display: none; }
+  .readout { display: none; }
+  .lb { display: none; }
+  .dial button[aria-current='true'] .lb {
+    display: block; position: absolute; left: 50%; bottom: calc(100% + 1px); transform: translateX(-50%);
+    font: 600 9px/1 var(--f-body); letter-spacing: 0.12em; color: #fff; white-space: nowrap;
+  }
+  .dial button:first-child[aria-current='true'] .lb { left: 0; transform: none; }
+  .dial button.d9[aria-current='true'] .lb { font: 400 12px/1 var(--f-tag); letter-spacing: 0.02em; color: #ff8a70; left: auto; right: 0; transform: none; }
+  .dial button[data-world='5'][aria-current='true'] .lb { left: auto; right: -6px; transform: none; }
+  :global(body[data-asleep]) .dial { filter: grayscale(1) brightness(0.5) contrast(0.85); opacity: 0.7; transition: filter 1.4s ease, opacity 1.4s ease; }
+}
