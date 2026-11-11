@@ -1,0 +1,49 @@
+.panes {
+  --c: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.pane {
+  position: absolute;
+  inset: 2px;
+  overflow-y: auto;
+  padding: 4px 14px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  scrollbar-width: none;
+  z-index: 1;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.paneOn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 200px;
+  border: 1px solid var(--r);
+  background: var(--bg);
+  color: var(--cream);
+  padding: 10px 12px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  z-index: 40;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.toastOn {
+  opacity: 1;
+  transform: none;
+}

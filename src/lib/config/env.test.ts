@@ -1,19 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { readSolvoConfig } from './env';
+import { readEnv } from './env';
 
-describe('readSolvoConfig', () => {
-  const chatKey = `wpk_${'0f'.repeat(16)}`;
-
-  it('accepts a valid key and URL', () => {
-    expect(readSolvoConfig({ baseUrl: 'https://api.solvo.lat', chatKey })).toEqual({
-      baseUrl: 'https://api.solvo.lat',
-      chatKey,
-    });
+describe('readEnv', () => {
+  it('allows an empty API URL', () => {
+    expect(readEnv({}).apiUrl).toBe('');
   });
-
-  it('rejects missing or malformed values', () => {
-    expect(readSolvoConfig({})).toBeNull();
-    expect(readSolvoConfig({ baseUrl: 'https://x', chatKey: 'wpk_nope' })).toBeNull();
-    expect(readSolvoConfig({ baseUrl: 'ftp://x', chatKey })).toBeNull();
+  it('trims spaces and trailing slashes', () => {
+    expect(readEnv({ apiUrl: ' https://api.example.dev/ ' }).apiUrl).toBe('https://api.example.dev');
   });
 });

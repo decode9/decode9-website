@@ -1,14 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { i18n, localeUrl } from '@/i18n';
+import { PAGES, SITE_URL } from '@/lib/seo/site';
 
 export const dynamic = 'force-static';
 
 const sitemap = (): MetadataRoute.Sitemap =>
-  i18n.locales.map((locale) => ({
-    url: localeUrl(locale),
+  Object.values(PAGES).map((page) => ({
+    url: `${SITE_URL}${page.path}`,
     changeFrequency: 'monthly',
-    priority: locale === i18n.defaultLocale ? 1 : 0.9,
-    alternates: { languages: Object.fromEntries(i18n.locales.map((code) => [code, localeUrl(code)])) },
+    priority: page.priority,
   }));
 
 export default sitemap;

@@ -1,0 +1,9 @@
+# Copiar a .dev.vars (no se sube a git). En producción: `wrangler secret put <NOMBRE> --env production`.
+
+# Sal secreta del hash de IP del límite de envíos. Cadena aleatoria larga (p. ej. `openssl rand -hex 32`).
+SALT=cambia-esto-por-una-cadena-aleatoria-larga
+
+# Aviso por correo (opcional). Sin estas dos, el Worker guarda en D1 y no envía nada.
+RESEND_API_KEY=
+# Destinatarios separados por coma.
+NOTIFY_TO=

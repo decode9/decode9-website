@@ -1,0 +1,34 @@
+{
+  "name": "decode9-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p test",
+    "lint": "eslint --max-warnings 0",
+    "test": "vitest run",
+    "verify": "npm run lint && npm run typecheck && npm test",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote --env production",
+    "deploy": "wrangler deploy --env production"
+  },
+  "dependencies": {
+    "hono": "^4.13.16",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261107.1",
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^26.6.6",
+    "eslint": "^9.39.5",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.12",
+    "wrangler": "^4.158.0"
+  },
+  "allowScripts": {
+    "workerd@1.20261110.1": true,
+    "esbuild@0.28.2": true
+  }
+}

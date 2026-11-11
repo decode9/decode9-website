@@ -1,0 +1,242 @@
+/*
+ * Shared pieces of the transmitter look (original /decode9/movil/ CSS): cut-corner plates, labels,
+ * hazard strips, dot rows, big buttons, the ✕ button, top bars and DECODE9 lines.
+ * Imported by every Transmitter child (and by the phase 3b panes/sheets) as `shared`.
+ * The colour tokens (--bg, --panel, --r, --soft, --dim, --deep, --cream) live on the Transmitter root.
+ */
+
+$cut-shape: polygon(
+  var(--c) 0,
+  100% 0,
+  100% calc(100% - var(--c)),
+  calc(100% - var(--c)) 100%,
+  0 100%,
+  0 var(--c)
+);
+
+/* plate with cut corners: red 1.5px border, panel fill */
+.cut {
+  position: relative;
+  isolation: isolate;
+  --c: 12px;
+  background: var(--r);
+  clip-path: $cut-shape;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    background: var(--panel);
+    clip-path: $cut-shape;
+    z-index: -1;
+  }
+}
+
+.holes {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  z-index: 0;
+
+  i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background:
+      linear-gradient(var(--deep), var(--deep)) center/8px 1.5px no-repeat,
+      linear-gradient(var(--deep), var(--deep)) center/1.5px 8px no-repeat;
+  }
+
+  i:nth-child(1) {
+    left: 0;
+    top: 0;
+  }
+  i:nth-child(2) {
+    right: 0;
+    top: 0;
+  }
+  i:nth-child(3) {
+    left: 0;
+    bottom: 0;
+  }
+  i:nth-child(4) {
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.lbl {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.dim {
+  color: var(--dim);
+}
+
+.soft,
+.amb {
+  color: var(--soft);
+}
+
+.big {
+  font-family: var(--font-teko), 'Teko', sans-serif;
+  line-height: 0.85;
+  font-weight: 400;
+}
+
+.blink {
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hz {
+  height: 6px;
+  flex: none;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--r) 0 14px,
+    transparent 14px 18px,
+    var(--deep) 18px 22px,
+    transparent 22px 26px
+  );
+  opacity: 0.8;
+}
+
+.dots {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  flex: none;
+
+  i {
+    width: 12px;
+    height: 3px;
+    background: var(--deep);
+  }
+
+  &.amber i {
+    background: var(--dim);
+  }
+
+  i.dotOn {
+    background: var(--r);
+  }
+}
+
+/* top bar of the call and main screens */
+.bar {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px 0 16px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+}
+
+.x {
+  border: 1px solid var(--r);
+  height: 22px;
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+/* DECODE9: … lines */
+.line {
+  font-size: 14px;
+  line-height: 1.42;
+  color: var(--soft);
+  margin: 10px 0;
+
+  b {
+    color: var(--r);
+    font-weight: 400;
+  }
+}
+
+/* big action button (solid; add .ghost for the outlined version) */
+.send {
+  --c: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--r);
+  color: var(--bg);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-align: left;
+  flex: none;
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  clip-path: $cut-shape;
+
+  big {
+    font-family: var(--font-teko), 'Teko', sans-serif;
+    font-size: 31px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.ghost {
+  color: var(--r);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--bg);
+    z-index: -1;
+    clip-path: $cut-shape;
+  }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* full-size screen inside the floating frame (#s-call, #s-main, #s-off); add .screenOn to show */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.screenOn {
+  opacity: 1;
+  pointer-events: auto;
+}

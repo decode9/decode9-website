@@ -1,0 +1,19 @@
+.moon {
+  position: fixed; z-index: 4; right: max(26px, env(safe-area-inset-right, 0px)); bottom: calc(var(--foot-h) + env(safe-area-inset-bottom, 0px) + 22px);
+  width: 66px; height: 66px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: transparent; -webkit-tap-highlight-color: transparent;
+  transition: filter 1.4s ease, opacity 1.4s ease;
+}
+.moon span {
+  position: absolute; right: calc(100% + 8px); top: 50%; transform: translate(6px, -50%); white-space: nowrap; font: 600 11px/1 var(--f-code);
+  letter-spacing: 0.1em; text-transform: uppercase; color: #1a1d2e; background: #e6e9f5; padding: 6px 9px; border-radius: 3px; opacity: 0;
+  transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+}
+.moon:hover span, .moon:focus-visible span { opacity: 1; transform: translate(0, -50%); }
+.moon:focus-visible { outline: 2px solid #e6e9f5; outline-offset: 4px; }
+.flat { background: radial-gradient(circle at 35% 30%, #f2f4fb, #9aa0b8 70%); }
+:global(body[data-p-open]) .moon { opacity: 0; pointer-events: none; }
+:global(body[data-asleep]) .moon { filter: grayscale(1) brightness(0.5) contrast(0.85); opacity: 0.7; pointer-events: none; }
+@media (max-width: 720px) {
+  .moon { width: 34px; height: 34px; bottom: auto; top: calc(env(safe-area-inset-top, 0px) + var(--top-h) + 4px); right: max(12px, env(safe-area-inset-right, 0px)); }
+  .moon span { right: auto; left: auto; top: calc(100% + 6px); transform: translate(-30%, 0); }
+}

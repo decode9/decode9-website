@@ -1,0 +1,59 @@
+/* #vs: video box and controls (original .vbox, .vbig, .ctrl). */
+$cut-10: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+$cut-8: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+$cut-7: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+
+.vbox {
+  position: relative;
+  background: #000;
+  clip-path: $cut-10;
+
+  video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #000;
+    filter: url(#rojo);
+  }
+}
+
+.vbig {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 66px;
+  height: 50px;
+  background: var(--r);
+  color: var(--bg);
+  font-size: 18px;
+  clip-path: $cut-8;
+  transition: opacity 0.25s;
+
+  .playing & {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.ctrl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 4px;
+}
+
+.pp {
+  width: 50px;
+  height: 40px;
+  flex: none;
+  background: var(--r);
+  color: var(--bg);
+  font-size: 16px;
+  clip-path: $cut-7;
+}
+
+.track {
+  flex: 1;
+}

@@ -1,0 +1,4 @@
+.sun { position: fixed; z-index: 3; left: 0; top: 0; width: 80px; height: 80px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* sin letrero sobre el logo: el sol sigue llevando a theempire.tech */
+.sun span { display: none; }
+:global(body[data-p-open]) .sun, :global(body[data-asleep]) .sun { display: none; }

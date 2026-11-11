@@ -32,11 +32,13 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next-qa/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "out",
-    "scripts"
+    "scripts",
+    "worker"
   ]
 }

@@ -1,0 +1,220 @@
+// Original L647–666 (.ptabs … .pcount), L614 (.pempty), container rules L707/L729 and @media L674.
+.ptabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 2px solid rgba(255, 230, 216, 0.6);
+  margin-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ptab {
+  all: unset;
+  cursor: pointer;
+  flex: none;
+  font-family: var(--f-h);
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 10px 2px;
+  color: var(--r);
+  text-transform: uppercase;
+
+  &[aria-selected='true'] {
+    color: var(--cream);
+    background: rgba(255, 43, 28, 0.35);
+    box-shadow: inset 0 -3px 0 var(--cream);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: -2px;
+  }
+}
+
+.pempty {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.emptyText {
+  font-size: 16px;
+}
+
+.pgrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ptile {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: start;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: rgba(20, 2, 2, 0.65);
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -18px;
+    bottom: -18px;
+    width: 36px;
+    height: 36px;
+    background: var(--r);
+    transform: rotate(45deg);
+    opacity: 0.5;
+  }
+
+  &:hover {
+    border-color: var(--cream);
+    background: rgba(40, 4, 4, 0.8);
+  }
+
+  &.sel {
+    border-color: var(--amber);
+    background: rgba(255, 178, 28, 0.14);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.tBlue::after {
+  background: var(--blue);
+}
+
+.pdt {
+  font-family: var(--f-m);
+  font-size: 10.5px;
+  color: var(--r2);
+  letter-spacing: 0.06em;
+}
+
+.ptile .thex {
+  width: 38px;
+  height: 38px;
+  align-self: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.pt {
+  font-family: var(--f-b);
+  font-weight: 600;
+  color: var(--cream);
+  font-size: 14.5px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ppager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.ppg {
+  all: unset;
+  cursor: pointer;
+  min-width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-m);
+  font-size: 12px;
+  color: var(--r2);
+  border: 1px solid var(--line);
+
+  &.on {
+    background: var(--r);
+    color: #1a0202;
+    border-color: var(--r);
+  }
+
+  &[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.pcount {
+  margin-left: auto;
+  font-family: var(--f-m);
+  font-size: 11px;
+  color: var(--r3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .pgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container wb (max-width: 520px) {
+  .pgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container wb (max-width: 340px) {
+  .pgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ptile {
+    aspect-ratio: auto;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+  }
+
+  .pdt {
+    grid-column: 1 / -1;
+  }
+
+  .ptab {
+    font-size: 16px;
+    padding: 6px 7px 2px;
+  }
+
+  .ppager {
+    gap: 3px;
+  }
+
+  .pcount {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}

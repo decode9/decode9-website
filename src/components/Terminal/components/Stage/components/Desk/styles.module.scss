@@ -1,0 +1,20 @@
+@use '../../../../styles/tokens' as *;
+
+// Window area (original .desk, .desk.arr).
+.desk {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.arr > :global([data-terminal-win]) {
+  transition: left 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), top 0.38s cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: $mobile-max) {
+  .desk {
+    display: grid;
+    gap: 14px;
+  }
+}

@@ -1,0 +1,296 @@
+// Original L619–641 (.pmedia … .pprog), L684–694 (.pvid, .pmute, .pfs, fullscreen), L372 (lgpulse),
+// @media L644/L672 and @container wb (max-width:460px).
+@use '../../../../styles/tokens' as *;
+
+@keyframes lgpulse {
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 40, 20, 0.85));
+    transform: scale(1.03);
+  }
+}
+
+.pmedia {
+  display: grid;
+  gap: 10px;
+}
+
+.pscreen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  background: #050000;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0 1px, transparent 1px 3px);
+    pointer-events: none;
+  }
+
+  &:hover .pbig {
+    opacity: 1;
+  }
+
+  &:fullscreen {
+    border: 0;
+    aspect-ratio: auto;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+
+    .pvid {
+      object-fit: contain;
+    }
+  }
+
+  &:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+  }
+}
+
+.pvid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+.pbadge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  font-family: var(--f-m);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 8px;
+}
+
+.pbig {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: var(--cream);
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  background: rgba(211, 22, 30, 0.5);
+  transition: opacity 0.3s;
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.pcover {
+  position: relative;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  align-items: center;
+  height: 120px;
+
+  > * {
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+.pcv {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 120px;
+  max-height: 120px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: rgba(8, 1, 1, 0.7);
+}
+
+.pcovEmb {
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle, rgba(80, 8, 8, 0.9), #0a0101);
+
+  svg {
+    width: 70%;
+    height: 70%;
+  }
+}
+
+.playing {
+  .pbadge {
+    color: #fff;
+    background: var(--r);
+  }
+
+  .pbig {
+    opacity: 0;
+  }
+
+  .pcovEmb svg {
+    animation: lgpulse 1.2s ease-in-out infinite;
+  }
+}
+
+.pctl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pplay {
+  all: unset;
+  cursor: pointer;
+  width: 34px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--cream);
+  color: var(--cream);
+  font-size: 13px;
+
+  &:hover {
+    background: var(--r);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.ptc {
+  font-family: var(--f-m);
+  font-size: 12px;
+  color: var(--r2);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+  width: 6ch;
+}
+
+.ptot {
+  text-align: right;
+}
+
+.pprog {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 40, 20, 0.18);
+  cursor: pointer;
+  position: relative;
+
+  i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(90deg, var(--r), var(--amber));
+  }
+}
+
+.pmute,
+.pfs {
+  all: unset;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.pmute {
+  font-size: 13px;
+}
+
+.pfs {
+  font-size: 15px;
+  color: var(--cream);
+
+  &:hover {
+    border-color: var(--cream);
+  }
+}
+
+.title {
+  margin: 6px 0 8px;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.link {
+  margin-top: 8px;
+  text-align: right;
+}
+
+@media (max-width: $mobile-max) {
+  .pcover {
+    grid-template-columns: 90px 1fr;
+    height: 90px;
+  }
+
+  .pcv {
+    height: 90px;
+    max-height: 90px;
+  }
+
+  .pcovEmb {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@container wb (max-width: 460px) {
+  .pcover {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .pcv {
+    height: 90px;
+  }
+
+  .pcovEmb {
+    width: 100%;
+    height: 120px;
+  }
+
+  .pctl {
+    flex-wrap: wrap;
+  }
+
+  .pprog {
+    flex-basis: 100%;
+    order: 5;
+  }
+}

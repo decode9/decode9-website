@@ -1,0 +1,215 @@
+// Shared content styles for the window bodies of the screens (phases 2b/2c). Original L121–262.
+//
+// Usage from a screen component:
+//   import content from '@/components/Terminal/styles/content.module.scss';
+//   <span className={content.lbl}>…</span>
+//   <h3 className={content.h2}>…</h3>
+//   <p className={content.body}>… <b>amber</b></p>
+//   <span className={cn(content.tag, content.tagA)}>…</span>
+//   <dl className={content.fmeta}><div><dt>…</dt><dd className={content.g}>…</dd></div></dl>   (.g green, .a amber)
+//   <button className={content.btn}>…</button>
+//   <p className={cn(content.quote, 'glow')}>…</p>   ('glow' is global, defined on the CRT root)
+// Mark the block that must be "decoded" when the window opens or flicks with data-dec:
+//   <div data-dec>…</div>    (original .wbody .dec)
+// Tokens (var(--r), var(--cream), var(--f-m)…) are available everywhere inside the terminal.
+
+.lbl {
+  font-family: var(--f-m);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--r2);
+}
+
+.h2 {
+  margin: 0;
+  font-weight: 500;
+  font-family: var(--f-h);
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 0.95;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.h3 {
+  margin: 0;
+  font-weight: 500;
+  font-family: var(--f-h);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  color: var(--txt);
+  font-size: 19px;
+  max-width: 62ch;
+
+  b {
+    color: var(--amber);
+    font-weight: 600;
+  }
+}
+
+.quote {
+  margin: 0;
+  font-family: var(--f-b);
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.2;
+  color: var(--cream);
+}
+
+.gloss {
+  margin: 0;
+  color: var(--txt);
+  border-left: 3px solid var(--amber);
+  padding-left: 12px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--f-m);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  color: var(--r2);
+}
+
+.tagA {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.fmeta {
+  margin: 0;
+  display: grid;
+  border-top: 1px solid var(--line);
+
+  div {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line2);
+  }
+
+  dt {
+    font-family: var(--f-m);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    color: var(--r3);
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--f-m);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+
+  dd.g {
+    color: #5df29a;
+  }
+
+  dd.a {
+    color: var(--amber);
+  }
+}
+
+.btn {
+  all: unset;
+  cursor: pointer;
+  justify-self: start;
+  font-family: var(--f-h);
+  font-size: 28px;
+  line-height: 1;
+  padding: 8px 18px 4px;
+  color: #1a0202;
+  background: var(--r);
+  border: 2px solid var(--cream);
+  box-shadow: 0 0 18px rgba(255, 43, 28, 0.45);
+  text-transform: uppercase;
+
+  &:hover {
+    background: var(--r2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.note {
+  margin: 0;
+  font-family: var(--f-m);
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.noteErr {
+  color: var(--amber);
+}
+
+@media (max-width: 480px) {
+  .fmeta div {
+    grid-template-columns: 120px 1fr;
+  }
+}
+
+// Root of every window body (original .wbody as container "wb"): headings scale with the window width
+// and the @container wb rules of the screens apply. Usage: <div className={content.pane}>…</div>
+.pane {
+  container-type: inline-size;
+  container-name: wb;
+
+  .h2 {
+    font-size: clamp(24px, 8.5cqi, 52px);
+  }
+
+  .quote {
+    font-size: clamp(19px, 6.2cqi, 32px);
+  }
+}
+
+@container wb (max-width: 460px) {
+  .fmeta div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 900px) {
+  .pane .note {
+    display: none;
+  }
+}
+
+// External link (original a.ext).
+.ext {
+  font-family: var(--f-m);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--amber);
+
+  &:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+}

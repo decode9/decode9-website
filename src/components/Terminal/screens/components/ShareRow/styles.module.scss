@@ -1,0 +1,59 @@
+// Original L691–697, @container wb L739.
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.shr {
+  display: flex;
+  gap: 6px;
+}
+
+.shb {
+  all: unset;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--r2);
+  transition: 0.2s;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+    background: rgba(255, 43, 28, 0.25);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--amber);
+  }
+}
+
+.ok {
+  color: #5df29a;
+  border-color: #5df29a;
+}
+
+@container wb (max-width: 460px) {
+  .share {
+    justify-content: flex-start;
+  }
+}

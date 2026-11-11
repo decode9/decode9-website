@@ -1,0 +1,58 @@
+/* Root of /decode9/movil/: colour tokens, page reset and the stage that centres the device. */
+.root {
+  --bg: #0b0101;
+  --panel: #170303;
+  --r: #ff2b1c;
+  --soft: #ff7a5e;
+  --dim: #7a1810;
+  --deep: #4a0b07;
+  --am: #ff7a5e;
+  --cream: #ffe6d8;
+  --ln: rgba(255, 236, 230, 0.32);
+  --gx: 0px;
+  --j: 0px;
+  --no: 0;
+
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #050000;
+  color: var(--r);
+  font-family: var(--font-share), 'Share Tech Mono', monospace;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* zero-specificity resets so component classes (.send, .x, .chip…) always win */
+:where(.root) {
+  :where(*, *::before, *::after) {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(button) {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  :where(a) {
+    color: inherit;
+  }
+}
+
+/* floating frame with marks */
+.hud {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 6px 10px max(10px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}

@@ -1,29 +1,14 @@
-export const SOLVO_CHAT_KEY_PATTERN = /^wpk_[a-f0-9]{32}$/;
-
-export interface SolvoConfig {
-  baseUrl: string;
-  chatKey: string;
-}
-
-interface RawSolvoConfig {
-  baseUrl?: string;
-  chatKey?: string;
-}
-
 /**
- * NEXT_PUBLIC_* values are inlined at build time only when accessed literally,
- * hence the explicit defaults. Both values are public by design (Solvo's own
- * widget exposes the key in a <script> tag).
+ * Public runtime configuration. NEXT_PUBLIC_* values are inlined at build time
+ * only when accessed literally. An empty API URL is allowed: the adapters then
+ * fall back (e.g. news from Hacker News) or report the channel as unavailable.
  */
-export const readSolvoConfig = (
-  raw: RawSolvoConfig = {
-    baseUrl: process.env.NEXT_PUBLIC_SOLVO_API_URL,
-    chatKey: process.env.NEXT_PUBLIC_SOLVO_CHAT_KEY,
-  },
-): SolvoConfig | null => {
-  const baseUrl = raw.baseUrl?.trim();
-  const chatKey = raw.chatKey?.trim();
-  if (!baseUrl || !chatKey || !SOLVO_CHAT_KEY_PATTERN.test(chatKey)) return null;
-  if (!/^https?:\/\//.test(baseUrl)) return null;
-  return { baseUrl, chatKey };
-};
+export interface PublicEnv {
+  apiUrl: string;
+}
+
+export const readEnv = (raw: { apiUrl?: string } = { apiUrl: process.env.NEXT_PUBLIC_API_URL }): PublicEnv => ({
+  apiUrl: (raw.apiUrl ?? '').trim().replace(/\/+$/, ''),
+});
+
+export const env: PublicEnv = readEnv();

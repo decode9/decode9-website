@@ -1,0 +1,8 @@
+.track { position: relative; z-index: 2; pointer-events: none; transition: filter 1.4s ease, opacity 1.4s ease; }
+:global(body[data-asleep]) .track { filter: grayscale(1) brightness(0.5) contrast(0.85); opacity: 0.7; pointer-events: none; }
+@media (max-width: 720px) {
+  .track::before, .track::after { content: ''; position: fixed; left: 0; right: 0; z-index: -1; pointer-events: none; }
+  .track::before { top: 0; height: 30vh; background: linear-gradient(180deg, rgba(14, 18, 38, 0.85), rgba(14, 18, 38, 0)); }
+  .track::after { bottom: 0; height: 42vh; background: linear-gradient(0deg, rgba(14, 18, 38, 0.95) 30%, rgba(14, 18, 38, 0)); }
+  :global(body[data-asleep]) .track { filter: none; opacity: 1; }
+}

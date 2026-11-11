@@ -1,0 +1,92 @@
+/* Entrada «Elige tu lado»: diagonal split, red (decode9, graffiti/hacker) vs blue (Jorge, sport/engineering). */
+.root {
+  --red: #e3122b;
+  --red-deep: #7a0614;
+  --blue: #1636ff;
+  --blue-deep: #06125e;
+  --ink: #0b0b10;
+  --paper: #f6f4ef;
+  --volt: #ffe14d;
+  --cyan: #3ff4e4;
+  --term: #7dff9b;
+  --f-tag: var(--font-tag), 'Sedgwick Ave Display', 'Permanent Marker', cursive;
+  --f-sport: var(--font-barlow), 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+  --f-body: var(--font-archivo), 'Archivo', system-ui, sans-serif;
+  --f-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  color-scheme: dark;
+  color: var(--paper);
+  font-family: var(--f-body);
+  line-height: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:global(body):has(.root) {
+  background: #0b0b10;
+  overflow: hidden;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.root:not([data-ready]) .stage {
+  visibility: hidden;
+}
+
+.grain {
+  position: absolute;
+  inset: -50%;
+  z-index: 7;
+  pointer-events: none;
+  opacity: 0.13;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(4) infinite;
+}
+
+@keyframes grain {
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -2%); }
+}
+
+/* mouse: the crosshair replaces the cursor */
+@media (hover: hover) and (pointer: fine) {
+  .root[data-aiming],
+  .root[data-aiming] * {
+    cursor: none !important;
+  }
+}
+
+.debug {
+  position: fixed;
+  left: 8px;
+  bottom: 8px;
+  z-index: 99;
+  margin: 0;
+  padding: 6px 8px;
+  background: #000c;
+  color: #7dff9b;
+  font: 11px/1.35 monospace;
+  pointer-events: none;
+  white-space: pre;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root *,
+  .root *::before,
+  .root *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* phone in landscape: only the rotate hint is shown */
+@media (orientation: landscape) and (pointer: coarse) and (hover: none) and (max-height: 540px) {
+  .stage {
+    visibility: hidden;
+  }
+}

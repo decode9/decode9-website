@@ -1,0 +1,141 @@
+.lock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 14px;
+  min-height: 0;
+}
+
+.tag {
+  align-self: center;
+  border-left: 3px solid var(--r);
+  border-right: 3px solid var(--r);
+  color: var(--cream);
+  padding: 3px 14px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  background: rgba(255, 43, 28, 0.08);
+}
+
+.clock {
+  --c: 16px;
+  flex: none;
+  padding: 24px 16px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+
+  &::before {
+    background: #1e0303;
+  }
+
+  small {
+    font-size: 12px;
+    color: var(--soft);
+    padding-bottom: 10px;
+    letter-spacing: 0.1em;
+  }
+}
+
+.live {
+  position: absolute;
+  left: 18px;
+  top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--r);
+  z-index: 1;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: var(--r);
+    margin-right: 6px;
+    vertical-align: 0;
+    animation: blink 1s steps(2) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.d {
+  font-family: var(--font-teko), 'Teko', sans-serif;
+  font-size: 92px;
+  line-height: 0.78;
+  color: #ffe6d8;
+  text-shadow: 0 0 18px rgba(255, 43, 28, 0.55);
+}
+
+.hello {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  span {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--r);
+  }
+
+  b {
+    font-family: var(--font-teko), 'Teko', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 0.9;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+.date {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: var(--soft);
+}
+
+.emb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 40px;
+
+  svg {
+    height: 100%;
+    max-height: 120px;
+    width: auto;
+    opacity: 0.9;
+  }
+}
+
+.warn {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  b {
+    font-family: var(--font-teko), 'Teko', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--soft);
+    line-height: 1.4;
+  }
+}

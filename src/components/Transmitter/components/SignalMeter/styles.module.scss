@@ -1,0 +1,15 @@
+.sig {
+  display: inline-flex;
+  gap: 2px;
+  vertical-align: middle;
+
+  i {
+    width: 5px;
+    height: 9px;
+    background: var(--r);
+  }
+
+  i[data-off] {
+    background: var(--deep);
+  }
+}

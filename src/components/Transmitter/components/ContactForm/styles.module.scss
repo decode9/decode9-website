@@ -1,0 +1,70 @@
+/* CONTACTO pane (original #f / #ok). */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--r);
+  height: 46px;
+
+  span {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    width: 76px;
+    flex: none;
+  }
+
+  input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: var(--soft);
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    min-width: 0;
+
+    &::placeholder {
+      color: var(--dim);
+    }
+  }
+}
+
+.err {
+  border-color: var(--cream);
+
+  span {
+    color: var(--cream);
+  }
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.gap {
+  height: 14px;
+}
+
+.morse {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.okHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+}
+
+.code {
+  font-size: 62px;
+}
+
+.again {
+  margin-top: 6px;
+}

@@ -1,0 +1,24 @@
+// Global variables of the decode9 terminal (original :root). Applied on the .crt root by mixin.
+@mixin terminal-tokens {
+  --bg: #0b0101;
+  --bg2: #160303;
+  --panel: rgba(22, 3, 3, 0.78);
+  --r: #ff2b1c;
+  --r2: #ff5a45;
+  --r3: #a3241b;
+  --r4: #4a0b08;
+  --cream: #ffe6d8;
+  --txt: #f1c3b4;
+  --dim: #b46a5c;
+  --amber: #ffb21c;
+  --blue: #47b6ff;
+  --line: rgba(255, 58, 40, 0.38);
+  --line2: rgba(255, 58, 40, 0.18);
+  --f-h: var(--font-teko), 'Oswald', 'Arial Narrow', Impact, sans-serif;
+  --f-b: var(--font-barlow), 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --f-m: var(--font-share), ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+
+$desk-min: 901px;
+$mobile-max: 900px;

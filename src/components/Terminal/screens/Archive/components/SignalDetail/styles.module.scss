@@ -1,0 +1,18 @@
+// Inline styles of the original arcHTML.
+.title {
+  margin-top: 6px;
+}
+
+.bars {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 26px;
+  margin: 8px 0;
+
+  i {
+    display: block;
+    width: 6px;
+    background: var(--r);
+  }
+}
