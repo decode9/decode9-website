@@ -1,32 +1,78 @@
-import { PAGES, SITE_LANG, SITE_URL } from './site';
+import { CONTENT_LANG, OG_IMAGE_SIZE, PAGES, PERSON, SITE_NAME, SITE_URL, absoluteUrl, type PageKey } from './site';
 
-/** Structured data: who Jorge / decode9 is, for search engines. */
-export const buildJsonLd = () => ({
+/** Stable node ids so every page's graph points at the same Person and WebSite. */
+export const JSON_LD_IDS = {
+  person: `${SITE_URL}/#jorge`,
+  website: `${SITE_URL}/#website`,
+  page: (key: PageKey) => `${absoluteUrl(PAGES[key].path)}#webpage`,
+} as const;
+
+/** Pages whose main subject is Jorge himself: they carry the full Person node. */
+const PERSON_PAGES: readonly PageKey[] = ['entry', 'profile'];
+
+const ref = (id: string) => ({ '@id': id });
+
+const buildPerson = () => ({
+  '@type': 'Person',
+  '@id': JSON_LD_IDS.person,
+  name: PERSON.name,
+  alternateName: PERSON.alternateName,
+  description: PAGES.profile.description,
+  jobTitle: PERSON.jobTitle,
+  worksFor: { '@type': 'Organization', name: PERSON.worksFor.name, url: PERSON.worksFor.url },
+  url: absoluteUrl(PAGES.profile.path),
+  image: absoluteUrl(PERSON.image),
+  email: `mailto:${PERSON.email}`,
+  sameAs: [...PERSON.sameAs],
+  knowsLanguage: [...PERSON.knowsLanguage],
+  knowsAbout: [...PERSON.knowsAbout],
+});
+
+/** Minimal node elsewhere, so the publisher/author references resolve inside every page. */
+const buildPersonRef = () => ({ '@type': 'Person', '@id': JSON_LD_IDS.person, name: PERSON.name, url: absoluteUrl(PAGES.profile.path) });
+
+const buildWebSite = () => ({
+  '@type': 'WebSite',
+  '@id': JSON_LD_IDS.website,
+  url: `${SITE_URL}/`,
+  name: SITE_NAME,
+  alternateName: `${PERSON.name} · ${SITE_NAME}`,
+  description: PAGES.entry.description,
+  inLanguage: CONTENT_LANG,
+  publisher: ref(JSON_LD_IDS.person),
+  author: ref(JSON_LD_IDS.person),
+});
+
+const buildWebPage = (key: PageKey) => {
+  const page = PAGES[key];
+  const isProfile = key === 'profile';
+  return {
+    '@type': isProfile ? 'ProfilePage' : 'WebPage',
+    '@id': JSON_LD_IDS.page(key),
+    url: absoluteUrl(page.path),
+    name: page.title,
+    description: page.description,
+    inLanguage: CONTENT_LANG,
+    isPartOf: ref(JSON_LD_IDS.website),
+    author: ref(JSON_LD_IDS.person),
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(page.image.url),
+      ...OG_IMAGE_SIZE,
+      caption: page.image.alt,
+    },
+    ...(isProfile ? { mainEntity: ref(JSON_LD_IDS.person) } : { about: ref(JSON_LD_IDS.person) }),
+  };
+};
+
+/** Structured data of one route: WebSite + its WebPage (ProfilePage on /perfil/), plus the full Person where Jorge is the subject. */
+export const buildJsonLd = (key: PageKey) => ({
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'Person',
-      '@id': `${SITE_URL}/#jorge`,
-      name: 'Jorge Bastidas',
-      alternateName: 'decode9',
-      description: PAGES.profile.description,
-      jobTitle: ['Senior Full Stack Engineer', 'CTO'],
-      worksFor: { '@type': 'Organization', name: 'The Empire', url: 'https://theempire.tech' },
-      url: `${SITE_URL}${PAGES.profile.path}`,
-      image: `${SITE_URL}/brand/decode9-og.jpg`,
-      email: 'mailto:decode9.dev@gmail.com',
-      sameAs: ['https://github.com/decode9', 'https://www.linkedin.com/in/decode9/'],
-      knowsAbout: ['Arquitectura de software', 'Agentes de IA', 'Automatización', 'Serverless', 'TypeScript', 'React', 'Node.js'],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE_URL}/#website`,
-      url: `${SITE_URL}/`,
-      name: 'decode9',
-      description: PAGES.entry.description,
-      inLanguage: SITE_LANG,
-      publisher: { '@id': `${SITE_URL}/#jorge` },
-      author: { '@id': `${SITE_URL}/#jorge` },
-    },
+    buildWebSite(),
+    buildWebPage(key),
+    PERSON_PAGES.includes(key) ? buildPerson() : buildPersonRef(),
   ],
 });
+
+export const serializeJsonLd = (key: PageKey): string => JSON.stringify(buildJsonLd(key)).replace(/</g, '\\u003c');

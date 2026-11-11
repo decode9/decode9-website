@@ -28,11 +28,12 @@ Para comparar: `npx serve ~/Proyectos/decode9/jorge -l 5055` frente a `npm run b
   móvil), `?giro=1`, `?hora=` y `?sim=1` (perfil).
 - **Claves de localStorage:** `d9crt-lang`, `d9crt-fx`, `d9crt-mute`, `d9m-mute`, `tf-sound`.
 - **Assets:** los `img/x` del original están en `/decode9/img/x`. Los frames de la entrada, en
-  `/entrada/frames/fNN.webp`. Favicon y OG en `public/brand/`. three y QR vienen de npm. Las fuentes las sirve
+  `/entrada/frames/fNN.webp`. Íconos en la raíz de `public/` (`favicon.ico`, `apple-touch-icon.png`, `icon-192/512.png`) e
+  imágenes OG en `public/og/`. three y QR vienen de npm. Las fuentes las sirve
   `next/font` (`lib/fonts.ts`).
 - **Variables CSS de fuentes:** `--font-archivo` (D9 Body y perfil, eje `wdth`), `--font-barlow` (D9 Sport y `--f-b`),
   `--font-tag` (D9 Tag), `--font-teko` (`--f-h`), `--font-share` (`--f-m`), `--font-jetbrains` (`--f-code`).
-- **No tocar sin motivo:** `GA_ID` en `lib/analytics.ts`, `public/ads.txt`, `CNAME` y `public/brand/`.
+- **No tocar sin motivo:** `GA_ID` en `lib/analytics.ts`, `public/ads.txt` y `CNAME`.
 
 ## Reglas de código
 
@@ -62,10 +63,35 @@ Para comparar: `npx serve ~/Proyectos/decode9/jorge -l 5055` frente a `npm run b
 - `src/utils/`: `profanity`, `validators` (alias, correo, WhatsApp, canal de regreso, texto del walkie y `LIMITS`),
   `storage`, `cn`, `math` y `async`.
 
+## SEO
+
+- **Copia:** `lib/seo/site.ts` tiene, por ruta, título (50–60 caracteres, se publica con `title.absolute`), descripción
+  (140–160), imagen OG con su `alt`, theme-color y prioridad. Todo sale del contenido visible (entrada, terminal,
+  transmisor y `data/profile/chapters.ts`); `PERSON` reúne los datos de Jorge para el JSON-LD. Un test
+  (`lib/seo/seo.test.ts`) vigila los largos.
+- **Idioma:** `og:locale` `es_LA` (Facebook y LinkedIn no aceptan `es_419`); el JSON-LD usa `inLanguage: es-419`. Las
+  legales en inglés usan `en_US`, con hreflang en/es/x-default.
+- **Twitter/X:** no hay `twitter:site` ni `creator`: el sitio no enlaza ninguna cuenta de X. Solo la tarjeta
+  `summary_large_image`.
+- **Imágenes OG** (`public/og/{entrada,terminal,transmisor,perfil}.jpg`): capturas reales del sitio compuestas con
+  Archivo y JetBrains Mono. Las legales reutilizan la de la entrada. Si cambia el diseño, se regeneran.
+- **JSON-LD por página** (`lib/seo/jsonLd.ts`, componente `Seo/JsonLd`): WebSite con `publisher` → Person, WebPage (o
+  ProfilePage con `mainEntity` en `/perfil/`). La Person completa va en `/` y `/perfil/`; en el resto, un nodo mínimo
+  con el mismo `@id`.
+- **Contenido indexable** (`Seo/PageSummary`, textos en `data/seo/summaries.ts`): h1, uno o dos párrafos y enlaces
+  internos en el HTML estático, ocultos a la vista con el patrón *sr-only*. Se eligió sr-only y no `noscript` porque
+  Google indexa el DOM renderizado (con JS, `noscript` se ignora) y porque así los lectores de pantalla también lo
+  leen. No es texto engañoso: cada frase repite copia visible de la página. Donde la página montada ya pinta su propio
+  h1 (entrada y perfil), el resumen se retira al montar (`replaceOnMount`) para no duplicarlo. En `/perfil/` los
+  capítulos (`Seo/ProfileChapters`, desde `CHAPTERS`) se quedan siempre: la escena 3D los muestra de a uno en paneles.
+- **`/decode9/movil/`** va en el sitemap con canonical propio: no es una copia responsive de `/decode9/`, es otra
+  página (transmisor, contacto, estaciones).
+- **404** (`app/not-found.tsx`) y `/es/` llevan `noindex`. El sitemap lleva `lastmod` con la fecha del build.
+
 ## Verificación
 
 ```
 npm run typecheck && npm run lint && npm test && npm run build
 npm start          # sirve out/ en :4173
-npm run verify     # Playwright: 4 rutas sin errores, lang="es", /es/ → /, redirección móvil y contacto del transmisor
+npm run verify     # SEO estático de out/ (verify.seo.mjs) y Playwright: 4 rutas sin errores, lang="es", /es/ → /, redirección móvil y contacto del transmisor
 ```

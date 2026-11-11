@@ -113,13 +113,13 @@ export const DIAL_X = STATIONS.map((s) => s.x);
 /** Lines of the warp log while decode9 loads. */
 export const D9_LOG = ['> conectando con decode9', '> abriendo los archivos', '> descifrando señal', '> acceso concedido'];
 
-/** Contact frequencies of the walkie (sheet b). Empty `copy` = disabled button (data pending). */
+/** Contact frequencies of the walkie (sheet b): the same public channels as the previous site. */
 export const FREQUENCIES: readonly { k: string; v: string; copy: string }[] = [
-  { k: 'correo', v: 'por confirmar', copy: '' },
-  { k: 'whatsapp', v: 'por confirmar', copy: '' },
-  { k: 'github', v: '@por-confirmar', copy: '' },
-  { k: 'linkedin', v: '@por-confirmar', copy: '' },
-  { k: 'sitio', v: 'decode9.codes', copy: 'decode9.codes' },
+  { k: 'correo', v: 'decode9.dev@gmail.com', copy: 'decode9.dev@gmail.com' },
+  { k: 'whatsapp', v: '+1 (786) 531-8494', copy: '+17865318494' },
+  { k: 'github', v: '@decode9', copy: 'https://github.com/decode9' },
+  { k: 'linkedin', v: '@decode9', copy: 'https://www.linkedin.com/in/decode9/' },
+  { k: 'sitio', v: 'decode9.codes', copy: 'https://decode9.codes' },
 ];
 
 export const EMPIRE_URL = 'https://theempire.tech';

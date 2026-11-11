@@ -49,7 +49,6 @@ const Walkie = ({ view, gateway, frequencies, bubbleRef, hintRef, centered, onRe
         </section>
         <section className={cn(styles.sheet, styles.b)} aria-label="Datos de contacto">
           <p className={styles.whoSays}>Frecuencias directas</p>
-          <span className={styles.provD}>datos por confirmar con Jorge</span>
           <ul className={styles.dl}>
             {frequencies.map((f, i) => (
               <li key={f.k}>
