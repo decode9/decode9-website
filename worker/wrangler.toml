@@ -12,7 +12,7 @@ NOTIFY_FROM = "decode9 <transmisor@decode9.codes>"
 binding = "DB"
 database_name = "decode9-api"
 # En local no hace falta un id real.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "8637b7f2-3983-4d9a-bcc7-cf20bc5a5c55"
 migrations_dir = "src/database/migrations"
 
 # ─── Producción (Cloudflare, plan gratis) ──────────────────────────────────────
@@ -31,5 +31,5 @@ NOTIFY_FROM = "decode9 <transmisor@decode9.codes>"
 binding = "DB"
 database_name = "decode9-api"
 # PEGAR AQUÍ el id que imprime `npx wrangler d1 create decode9-api`.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "8637b7f2-3983-4d9a-bcc7-cf20bc5a5c55"
 migrations_dir = "src/database/migrations"
