@@ -85,6 +85,8 @@ export interface ProfileStageBridge {
     alarm: RefObject<HTMLDivElement>;
   };
   getState: () => ProfileUiSnapshot;
+  /** Height in px of one journey stop (100svh, the scroll-snap unit). Scroll is measured in this unit, not innerHeight. */
+  stopHeight: () => number;
   /** Call once the scene runs (null on dispose). Turns off the DOM fallbacks (scroll dial, walkie timer). */
   registerApi: (api: ProfileStageApi | null) => void;
   /** Every frame: scroll position in stops (0–6, fractional) and whether the camera settled. */

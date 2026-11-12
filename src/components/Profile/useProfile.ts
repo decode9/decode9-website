@@ -27,7 +27,6 @@ export const fallbackStatus = (index: number): StationStatus => {
 };
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const here = () => Math.round(window.scrollY / window.innerHeight);
 
 export interface ProfileEnv extends Pick<D9JumpDeps, 'isMobile' | 'navigate' | 'urls' | 'formatWarp' | 'analytics'> {
   deps: ProfileDeps;
@@ -65,7 +64,12 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
   const isAsleep = useCallback(() => live.current.asleep, []);
   const sound = useAmbientSound(deps.createSound, deps.storage, isAsleep);
 
-  const stopTop = useCallback((i: number) => stopRefs.current[i]?.offsetTop ?? i * window.innerHeight, []);
+  /** One stop is 100svh: on mobile it can be shorter than innerHeight (browser bar hidden). */
+  const stopHeight = useCallback(() => stopRefs.current[0]?.offsetHeight || window.innerHeight, []);
+  /** Scroll in stops (fractional). */
+  const scrollStops = useCallback(() => window.scrollY / stopHeight(), [stopHeight]);
+  const here = useCallback(() => Math.round(scrollStops()), [scrollStops]);
+  const stopTop = useCallback((i: number) => stopRefs.current[i]?.offsetTop ?? i * stopHeight(), [stopHeight]);
   const scrollToStop = useCallback((i: number) => {
     const el = stopRefs.current[i];
     if (el) el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth' });
@@ -158,7 +162,7 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
         goTo(w);
       }
     },
-    [closeChapter, d9, goTo, openChapter, openWalkie],
+    [closeChapter, d9, goTo, here, openChapter, openWalkie],
   );
 
   const pressStopCta = useCallback(
@@ -169,7 +173,7 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
         void d9.leave();
       } else goTo(D9_INDEX);
     },
-    [d9, goTo, openChapter],
+    [d9, goTo, here, openChapter],
   );
 
   /* ---------- dial ---------- */
@@ -191,7 +195,7 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
       const i = here();
       setInStop(i);
       if (live.current.stageReady) return;
-      const sp = window.scrollY / window.innerHeight;
+      const sp = scrollStops();
       setDial(sp, Math.abs(sp - Math.round(sp)) < 0.03);
       setStatus((s) => (s.index === i ? s : fallbackStatus(Math.max(0, Math.min(D9_INDEX, i)))));
       const st = d9.state.current;
@@ -205,7 +209,7 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
       window.removeEventListener('scroll', onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [d9, setDial]);
+  }, [d9, here, scrollStops, setDial]);
 
   /* ---------- about, Escape, noche, ?sim=1 ---------- */
   const closeAbout = useCallback(() => {
@@ -274,6 +278,7 @@ const useProfile = ({ deps, ...env }: ProfileEnv): UseProfileResult => {
   const bridge = useMemo<ProfileStageBridge>(
     () => ({
       refs,
+      stopHeight,
       getState: () => ({
         panelOpen: live.current.panelOpen,
         aboutOpen: live.current.aboutOpen,

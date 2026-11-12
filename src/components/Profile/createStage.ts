@@ -22,6 +22,7 @@ export const toStagePorts = (bridge: ProfileStageBridge): StagePorts => {
       const s = bridge.getState();
       return { panelOpen: s.panelOpen, walkieOpen: s.walkie.open, walkieStrato: s.walkie.strato, d9: s.d9, reduceMotion: s.reduceMotion };
     },
+    stopHeight: bridge.stopHeight,
     onStopProgress: bridge.onStopProgress,
     onReadout: (r) => {
       const { key, status } = formatStatus(r, WORLDS);

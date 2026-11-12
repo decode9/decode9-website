@@ -82,10 +82,17 @@ export const createProfileRuntime = ({ canvas, data, ports, modules = {}, win: w
   const extensions: StageModule[] = (modules.extensions ?? []).map((make) => make(ctx));
   const effects = createSceneEffects({ parent: profile.root, snippets: data.snippets, createCanvas: () => doc.createElement('canvas'), random });
 
+  /** Canvas/camera size: the whole window. */
   const viewport = { width: win.innerWidth, height: win.innerHeight };
+  /** Scroll unit: one stop (100svh), measured on resize. Falls back to the window before the track mounts. */
+  let stopHeight = win.innerHeight;
+  const measureStop = () => {
+    stopHeight = ports.stopHeight() || win.innerHeight;
+  };
   const resize = () => {
     viewport.width = win.innerWidth;
     viewport.height = win.innerHeight;
+    measureStop();
     stage.resize(viewport.width, viewport.height);
     profile.computeAnchors(camera.aspect, viewport.height);
   };
@@ -148,7 +155,7 @@ export const createProfileRuntime = ({ canvas, data, ports, modules = {}, win: w
   let hintSeen = false;
   let autoWalkie = false;
   let raf = 0;
-  let spS = scrollToStops(win.scrollY, win.innerHeight, LAST);
+  let spS = scrollToStops(win.scrollY, stopHeight, LAST);
 
   const syncWalkie = (open: boolean, strato: boolean) => {
     if (open && (walkie.mode === 'dock' || walkie.mode === 'back')) walkie.open(strato);
@@ -214,7 +221,7 @@ export const createProfileRuntime = ({ canvas, data, ports, modules = {}, win: w
     last = now;
     const tt = now / 1000;
     const ui = ports.getState();
-    const sp = scrollToStops(win.scrollY, viewport.height, LAST);
+    const sp = scrollToStops(win.scrollY, stopHeight, LAST);
     // si alguien baja más allá del contacto sin haber dicho que sí, se le pregunta
     if (!ui.d9.ok && !ui.d9.asking && !ui.d9.leaving && sp > NW + 0.12) ports.askD9();
     if (ui.d9.ok && !ui.d9.leaving && sp < NW - 0.25) ports.revokeD9();
