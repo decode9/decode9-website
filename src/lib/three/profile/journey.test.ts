@@ -28,6 +28,16 @@ describe('scroll → stops', () => {
     expect(scrollToStops(-50, 900, 6)).toBe(0);
   });
 
+  it('measures in stop heights, so a snapped stop lands even if the window is taller (mobile, bar hidden)', () => {
+    const svh = 640; // one stop (100svh)
+    const lvh = 720; // innerHeight with the browser bar hidden
+    const sp = scrollToStops(3 * svh, svh, 6);
+    expect(sp).toBe(3);
+    expect(segmentAt(sp, 6).flying).toBe(false);
+    // the old unit (innerHeight) left Jorge hanging two thirds of the way between stops 2 and 3
+    expect(segmentAt(scrollToStops(3 * svh, lvh, 6), 6).flying).toBe(true);
+  });
+
   it('follows with inertia and snaps when close', () => {
     const next = followScroll(0, 1, 0.05, false);
     expect(next).toBeGreaterThan(0);

@@ -50,6 +50,8 @@ export interface StageReadout {
 export interface StagePorts {
   elements: () => StageElements;
   getState: () => StageUiState;
+  /** Height in px of one journey stop (the scroll-snap unit); 0 while the track is not mounted. */
+  stopHeight: () => number;
   onStopProgress: (sp: number, settled: boolean) => void;
   onReadout: (readout: StageReadout) => void;
   onWalkieShown: () => void;

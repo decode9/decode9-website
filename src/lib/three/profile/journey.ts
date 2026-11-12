@@ -7,9 +7,13 @@ import { advanceProgress, smooth } from './terraform';
  * inertia, camera between anchors, Jorge's orbital trajectory and the terraform autopilot.
  */
 
-/** Scroll in stops: one viewport per stop, clamped to [0, last]. */
-export const scrollToStops = (scrollY: number, viewportHeight: number, last: number): number =>
-  THREE.MathUtils.clamp(scrollY / Math.max(1, viewportHeight), 0, last);
+/**
+ * Scroll in stops, clamped to [0, last]. `stopHeight` is the real height of one stop (the snap unit,
+ * 100svh), not `innerHeight`: on mobile with the browser bar hidden the window is taller than a stop
+ * and dividing by it leaves Jorge hanging mid-flight on a snapped stop.
+ */
+export const scrollToStops = (scrollY: number, stopHeight: number, last: number): number =>
+  THREE.MathUtils.clamp(scrollY / Math.max(1, stopHeight), 0, last);
 
 /** Inertia: the camera follows the scroll with lag, like a body with mass (spS of the original). */
 export const followScroll = (spS: number, sp: number, dt: number, reduce: boolean): number => {
